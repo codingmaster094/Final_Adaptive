@@ -1,0 +1,47 @@
+version: 0.2
+
+env:
+  shell: bash
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo Installing source Python dependencies...
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - echo test
+      - jq --version
+      - n 18
+      - npm cache clean --force
+      - npm view next version
+      - ls
+      - touch $CODEBUILD_BUILD_ID-audit-report.json
+      - echo Installing source NPM dependencies...
+      - rm -rf node_modules package-lock.json
+      - rm -rf .next
+      - npm install
+      - npm install @react-pdf/renderer --legacy-peer-deps
+      - node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))'
+      - sed -i 's/.env.dev/.env.$ENVIRONMENT/g' package.json
+      - echo Start App
+      - nohup npm run start:application &
+  build:
+    on-failure: CONTINUE
+    commands:
+      - echo Build started on `date`
+      # - npm run build
+      - echo running an audit of 3rd party dependencies
+      - echo Running BDD tests...
+      - behave -f json -o $CODEBUILD_BUILD_ID-test-report.json || TEST_REPORT_FAILED=true
+  post_build:
+    on-failure: CONTINUE
+    commands:
+      - |
+        if [ "$TEST_REPORT_FAILED" = "true" ]; then
+          aws s3 cp $CODEBUILD_BUILD_ID-test-report.json s3://$TEST_REPORT_BUCKET/$CODEBUILD_BUILD_ID-test-report.json
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Behave tests failed for corporate webapp"}' https://hooks.slack.com/services/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
+        fi
+      - echo $CODEBUILD_BUILD_SUCCEEDING

@@ -1,0 +1,14 @@
+@font-face{
+    font-family: 'Ivy-Mode';
+    src: url('../fonts/IvyMode-Regular.ttf'),
+    url('../fonts/IvyMode-Regular.woff'),
+    url('../fonts/IvyMode-Regular.woff2'); 
+    font-weight: 500;
+}
+@font-face{
+    font-family: 'Ivy-Mode';
+    src: url('../fonts/IvyMode-SemiBold.ttf'),
+    url('../fonts/IvyMode-SemiBold.woff'),
+    url('../fonts/IvyMode-SemiBold.woff2'); 
+    font-weight: 600;
+}

@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer{
+    *{
+        @apply m-0 p-0 box-border;
+    }
+    p{
+        @apply text-black-100;
+    }
+    svg{
+        @apply flex-none;
+    }
+    nav ul li{
+        @apply transition-colors duration-500 ease-in-out hover:lg:text-blue hover:text-green;
+    }
+  
+    .card-carousel .owl-stage-outer{
+        @apply pt-5 pb-5;
+    }
+    .card-carousel .owl-nav{
+        @apply absolute md:top-[-150px] top-[-45px] md:right-[20px] right-[10px] flex;
+    }
+    .card-carousel .owl-nav .owl-prev{
+        @apply w-[48px] h-[48px] relative flex justify-center items-center;
+    }
+    .card-carousel .owl-nav .owl-next{
+        @apply w-[48px] h-[48px] relative flex justify-center items-center;
+    }
+    .card-carousel .owl-nav .owl-prev span{
+        @apply block w-[32px] h-[32px] text-[0] relative before:content-[''] before:bg-prev_left before:bg-cover before:bg-center before:bg-no-repeat before:w-[32px] before:h-[32px] before:absolute before:top-0 before:left-0;
+    }
+    .card-carousel .owl-nav .owl-next span{
+        @apply block text-[0] w-[32px] h-[32px] relative before:content-[''] before:bg-next_arrow before:bg-cover before:bg-center before:bg-no-repeat before:w-[32px] before:h-[32px] before:absolute before:top-0 before:right-0;
+    }
+    .owl-carousel .owl-dots .owl-dot.active span, .owl-carousel .owl-dots .owl-dot:hover span{
+        @apply !bg-pink;
+    }
+ .swiper-slide{
+    @apply h-auto
+ }
+}
+@layer components{
+    .btn-link{
+      @apply *:text-[18px] block text-black px-4 border-black border-solid  hover:border-green transition-all duration-300 ease-in-out font-medium font-overpass border-2  py-2 w-fit cursor-pointer
+    }
+   
+    .btn-green{
+        @apply *:text-[18px] text-black border-2 border-solid border-green bg-green hover:bg-transparent transition-all duration-300 ease-in-out font-overpass font-medium px-4 py-2 w-fit cursor-pointer
+    } 
+    
+  }
+  @layer utilities{
+    .path-animation {
+      stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        animation: drawPath 3s ease forwards infinite;
+        -webkit-animation: drawPath 3s ease forwards infinite;
+    }
+    
+      @keyframes drawPath {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+  }
