@@ -10,7 +10,6 @@ const Portfolio_Measure_of_fit = ({
   imageSrc,
   borderBlack,
 }) => {
-  console.log("imageSrc", imageSrc.url);
   return (
     <section className="t-section factor-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 w-full border-b-[1px] border-b-black-200 border-b-solid">
       <div className="container">
@@ -38,19 +37,32 @@ const Portfolio_Measure_of_fit = ({
                 {measures.map((measure, index) => (
                   <div key={index} className="measure-item space-y-2">
                     <h3 className="relative before:content-[''] before:w-[10px] before:h-[10px] before:bg-green text-h5 font-semibold text-black pl-5 before:absolute before:top-0 before:left-0 before:rounded-full before:mt-[11px]">
-                      {measure.item_title}
+                      {measure.item_title || measure.title}
                     </h3>
                     {measure.item_desc && (
-                      <div
-                        dangerouslySetInnerHTML={{ __html: measure.item_desc }}
-                      ></div>
-                    )}
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: measure.item_desc
+                          }}
+                        ></div>
+                      )}
+                    {measure.description && (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: measure.description
+                          }}
+                        ></div>
+                      )}
                   </div>
                 ))}
               </div>
               {buttonTitle && (
                 <div className="btn-pink bg-green font-overpass font-medium text-black text-[body] px-4 py-2 border-solid border-[1.5px] border-transparent hover:bg-transparent hover:border-green transition-all duration-480 ease-in-out cursor-pointer">
-                  <Link href={buttonTitle.url} role="link">
+                  <Link
+                    href={buttonTitle.url}
+                    target={buttonTitle.target}
+                    role="link"
+                  >
                     {buttonTitle.title}
                   </Link>
                 </div>

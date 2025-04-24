@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Hero_without_img = ({ hero_text, hero_peragraph, button1, button2 }) => {
@@ -11,26 +12,25 @@ const Hero_without_img = ({ hero_text, hero_peragraph, button1, button2 }) => {
                 <h1 className="text-h1 text-black font-ivy font-semibold">
                   {hero_text}
                 </h1>
-                {hero_peragraph
-                &&
-                <p>{hero_peragraph}</p>
-                }
+                {hero_peragraph && (
+                  <div dangerouslySetInnerHTML={{ __html: hero_peragraph }} />
+                )}
               </div>
               <div className="button-area flex flex-wrap justify-center items-center lg:gap-[48px] gap-4 lg:mt-[64px] md:mt-8 mt-4">
                 {button1 && (
-                  <div className="btn-link *:text-4">
-                    <a href={button1.link} role="link">
+                  <div className={`btn-link *:text-4`}>
+                    <Link href={button1.url} role="link">
                       {button1.title}
-                    </a>
+                    </Link>
                   </div>
                 )}
+
+                {/* Button 2 with Dynamic Color */}
                 {button2 && (
-                  <div
-                    className={`btn-green *:text-4`}
-                  >
-                    <a href={button2.link} role="link">
+                  <div className={`btn-green *:text-4`}>
+                    <Link href={button2.url} role="link">
                       {button2.title}
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>

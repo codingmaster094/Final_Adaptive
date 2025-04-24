@@ -5,121 +5,60 @@ import Timeline_Section from '../components/Timeline_Section'
 import Tab_section from '../components/Tab_section'
 import Testimonial_Section from '../components/Testimonial_Section'
 import Card_Section from '../components/Card_Section'
+import Alldata from '../../../utile/AllDatafetch'
+import AllPostGet from '../../../utile/AllPostget'
 
-const cardData = [
-  {
-    image: "/img/slide-1.jpg",
-    title: "The Power Of Meeting Equity For Successful Hybrid Reunion",
-    date: "14 Jul 2023",
-    category: "Consulting",
-    description:
-      "Meeting equity is crucial for successful hybrid meetings, promoting inclusivity...",
-    BTNTitle: "Read More",
-    link: "/",
-  },
-  {
-    image: "/img/slide2.jpg",
-    title: "Why Financial Agility Matters Now More Than Ever",
-    date: "10 Jul 2023",
-    category: "Finance",
-    description: "Adaptive strategies for a changing economic environment...",
-    BTNTitle: "Read More",
-    link: "/",
-  },
-  {
-    image: "/img/slide3.jpg",
-    title: "Top 5 Risk Management Trends of 2023",
-    date: "01 Jul 2023",
-    category: "Risk",
-    description: "Stay ahead by knowing what’s trending in risk strategy...",
-    BTNTitle: "Read More",
-    link: "/",
-  },
-  {
-    image: "/img/slide4.jpg",
-    title: "How Retail Investors Are Changing the Game",
-    date: "25 Jun 2023",
-    category: "Investing",
-    description:
-      "The rise of retail investors is reshaping financial markets...",
-       BTNTitle: "Read More",
-    link: "/",
-  },
-  {
-    image: "/img/slide4.jpg",
-    title: "How Retail Investors Are Changing the Game",
-    date: "25 Jun 2023",
-    category: "Investing",
-    description:
-      "The rise of retail investors is reshaping financial markets...",
-       BTNTitle: "Read More",
-    link: "/",
-  }
-];
-const page = () => {
+const page = async() => {
+  let Homepagedata;
+  let blogsdatas;
+ try {
+  Homepagedata = await Alldata('home');
+  blogsdatas = await AllPostGet();
+ } catch (error) {
+   console.error("Error fetching data:", error);
+   return <div>Error loading data.</div>;
+ }
+
+ if (!Homepagedata || !blogsdatas) {
+   return <div>No data available.</div>;
+ }
+
   return (
     <>
       <Hero_Section
-        hero_text="Secure Your Portfolio with Confidence."
-        hero_peragraph="Market Shield provides advanced risk management solutions designed to protect your investments through intelligent strategies and real-time insights."
-        button1="Explore Market Shield Today"
-        button2={{
-          title: "Sign up Today!",
-        }}
-        image="/img/banner-img.webp"
+        hero_text={Homepagedata?.hero_title}
+        hero_peragraph={Homepagedata?.hero_desc}
+        button1={Homepagedata?.hero_button_left}
+        button2={Homepagedata?.hero_button_right}
+        image={Homepagedata?.hero_image}
       />
-      <Tools_Section />
+      <Tools_Section toolsData={Homepagedata?.solutions} />
 
       <Timeline_Section
-        title="Market Shield: Precision Protection for Smarter Investing"
-        sub_title=""
-        description="In an unpredictable market, Market Shield is your ultimate safeguard—combining technology, strategy, and insight to ensure your portfolio thrives no matter the challenges. This innovative feature at the heart of Adaptive 's offerings is designed for modern investors who demand clarity and control over their financial future."
-        sub_description=""
-        button_title="Explore market Shield"
-        Data_features={[
-          {
-            id: 1,
-            title: "Tailored Risk Management",
-            content:
-              "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-            image: "/img/timeline.png",
-          },
-          {
-            id: 2,
-            title: "Strategic Hedging with Precision",
-            content:
-              "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-            image: "/img/frame.png",
-          },
-          {
-            id: 3,
-            title: "Cost Transparency and Efficiency",
-            content:
-              "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-            image: "/img/timeline.png",
-          },
-          {
-            id: 4,
-            title: "Effortless Integration",
-            content:
-              "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-            image: "/img/frame.png",
-          },
-          {
-            id: 5,
-            title: "Smart Insights at a Glance",
-            content:
-              "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-            image: "/img/timeline.png",
-          },
-        ]}
+        title={Homepagedata?.market_shield_title}
+        description={Homepagedata?.market_shield_desc}
+        button_title={Homepagedata?.market_shield_button}
+        m_title={Homepagedata?.market_shield_sub_title}
+        Data_features={Homepagedata?.market_shiled}
+        why_choose_title={Homepagedata?.why_choose_title}
+        why_choose_desc={Homepagedata?.why_choose_desc}
       />
-      <Tab_section />
-      <Testimonial_Section />
+
+      <Tab_section
+        our_free_tools_title={Homepagedata?.our_free_tools_title}
+        our_free_tools_desc={Homepagedata?.our_free_tools_desc}
+        free_tools={Homepagedata?.free_tools}
+      />
+
+      <Testimonial_Section
+        testimonial_title={Homepagedata?.testimonial_title}
+        testimonial_desc={Homepagedata?.testimonial_desc}
+        testimonial_items={Homepagedata?.testimonial_items}
+      />
       <Card_Section
-        title="Stay Updated with Adaptive"
-        description="Stay informed with the latest updates from Adaptive, including new tools, features, and special offers. Discover how our innovative strategies continue to redefine risk management and investment solutions for advisors, retail investors, and enterprises."
-        cards={cardData}
+        title={Homepagedata?.blog_title}
+        description={Homepagedata?.blog_desc}
+        cards={blogsdatas}
       />
     </>
   );

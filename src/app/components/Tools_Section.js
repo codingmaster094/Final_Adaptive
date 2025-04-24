@@ -1,14 +1,15 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 
-const Tools_Section = () => {
-  const [activeImage, setActiveImage] = useState("/img/banner-img.webp");
+const Tools_Section = ({ toolsData }) => {
+  const [activeImage, setActiveImage] = useState();
   const sectionsRef = useRef([]);
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const sections = sectionsRef.current.filter((section) => section); // Filter out null elements
+    const sections = sectionsRef.current.filter((section) => section); 
     const stickyImage = document.getElementById("stickyImage");
     const container = containerRef.current;
 
@@ -49,6 +50,7 @@ const Tools_Section = () => {
     };
   }, []);
 
+
   return (
     <section
       ref={containerRef}
@@ -58,71 +60,48 @@ const Tools_Section = () => {
         <div className="flex flex-col lg:flex-row items-start lg:gap-[100px] md:gap-[48px] gap-[32px]">
           {/* Left Content */}
           <div className="w-full lg:w-1/2 flex flex-col lg:gap-20 gap-8">
-            {[
-              {
-                title: "Advisors & Wealth Managers",
-                subtitle:
-                  "Strategic tools for professionals managing client portfolios.",
-                description:
-                  "Adaptive provides advisors with cutting-edge risk management tools like Market Shield, offering detailed analytics, customizable hedging strategies, and tax-smart planning solutions.",
-                link: "Learn More About Solutions for Advisors",
-                image: "/img/banner-img.webp",
-              },
-              {
-                title: "Enterprises",
-                subtitle:
-                  "Scale innovation with enterprise-level tools and solutions.",
-                description:
-                  "Adaptive offers robust tools and comprehensive API access for secure integration of advanced risk analytics and portfolio protection.",
-                link: "Explore Enterprise Solutions",
-                image: "/img/frame.png",
-              },
-              {
-                title: "Retail Investors",
-                subtitle:
-                  "Make informed decisions with professional-grade tools.",
-                description:
-                  "For individual investors, Adaptive simplifies portfolio management by providing tools to fine-tune risk in asset allocations and hedge market risks.",
-                link: "Discover Retail Investor Solutions",
-                image: "/img/banner-img.webp",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                ref={(el) => {
-                  if (el) sectionsRef.current[index] = el;
-                }}
-                className="content-section space-y-8 flex flex-col"
-                data-image={item.image}
-              >
-                <h2 className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] before:left-[-16px] before:opacity-20 before:z-0">
-                  {item.title}
-                </h2>
-                <div className="text font-inter text-black-100 font-normal text-body space-y-4">
-                  <h3 className="text-black font-medium">{item.subtitle}</h3>
-                  <p>{item.description}</p>
+            {toolsData &&
+              toolsData?.map((item, index) => (
+                <div
+                  key={index}
+                  ref={(el) => {
+                    if (el) sectionsRef.current[index] = el;
+                  }}
+                  className="content-section space-y-8 flex flex-col"
+                  data-image={item.image.url}
+                >
+                  <h2 className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] before:left-[-16px] before:opacity-20 before:z-0">
+                    {item.title}
+                  </h2>
+                  <div className="text font-inter text-black-100 font-normal text-body space-y-4">
+                    <h3 className="text-black font-medium">{item.sub_title}</h3>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    ></div>
+                  </div>
+                  <div className="btn-link *:text-4 border-green hover:border-black">
+                    <Link href={item.button.url} role="link">
+                      {item.button.title}
+                    </Link>
+                  </div>
+                  <div className="content-img w-full mb-8 lg:hidden block">
+                    <Image
+                      src={item.image.url}
+                      alt="image"
+                      width={694}
+                      height={410}
+                      role="img"
+                      className="w-full"
+                    />
+                  </div>
                 </div>
-                <div className="btn-link *:text-4 border-green hover:border-black">
-                  <a href="#" role="link">
-                    {item.link}
-                  </a>
-                </div>
-                <div className="content-img w-full mb-8 lg:hidden block">
-                  <Image
-                    src={item.image}
-                    alt="image"
-                    width={694}
-                    height={410}
-                    role="img"
-                    className="w-full"
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
 
           {/* Sticky Image Box */}
-          <div className="stick-box w-full lg:w-1/2 sticky top-40 lg:block hidden">
+          <div
+            className="stick-box w-full lg:w-1/2 sticky top-40 lg:block hidden"
+          >
             <Image
               id="stickyImage"
               src={activeImage}

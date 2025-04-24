@@ -2,7 +2,6 @@
 import React from "react";
 
 const Forecast_section = ({ data }) => {
-  console.log('data.resourcesTitle', data.resourcesTitle)
   return (
     <section className="t-section forecast-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 h-full">
       <div className="container">

@@ -1,7 +1,7 @@
-export default async function Alldata(params) {
+export default async function AllPostGet(params) {
   try {
     const response = await fetch(
-      `https://adaptive.rocket-wp.com/wp-json/custom/v1/page-acf-data?slug=${params}`,
+      `https://adaptive.rocket-wp.com/wp-json/wp/v2/posts`,
       {
         cache: "no-store",
       }

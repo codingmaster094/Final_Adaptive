@@ -13,24 +13,25 @@ const PortfolioAbout = ({
           <div className="tool-content font-inter space-y-8">
             <div className="text-h5">
               <p>
-                <strong>{title}</strong>
+                <strong dangerouslySetInnerHTML={{ __html: title }}></strong>
               </p>
             </div>
-            <div className="text-black-300 space-y-4">
-              {description.map((para, index) => (
-                <p key={index}>{para}</p>
-              ))}
-              <ul className="text-gray-600 space-y-4 relative [&_li]:relative [&_li]:pl-6 [&_li]:before:content-[''] [&_li]:before:w-2 [&_li]:before:h-2 [&_li]:before:bg-gray-400 [&_li]:before:rounded-full [&_li]:before:absolute [&_li]:before:top-[7px] [&_li]:before:left-0 [&_li]:before:z-0">
-                {protectionLevels.map((level, index) => (
+            <div
+              className="text-black-300 space-y-4"
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></div>
+            <ul className="text-gray-600 space-y-4 relative [&_li]:relative [&_li]:pl-6 [&_li]:before:content-[''] [&_li]:before:w-2 [&_li]:before:h-2 [&_li]:before:bg-gray-400 [&_li]:before:rounded-full [&_li]:before:absolute [&_li]:before:top-[7px] [&_li]:before:left-0 [&_li]:before:z-0">
+              {protectionLevels.map((level, index) => (
                   <li key={index}>
-                    <strong>{level.title}</strong>
+                  <strong
+                    dangerouslySetInnerHTML={{ __html: level.title }}
+                  ></strong>
                     <br />
-                    {level.description}
+                    {level.content.replace(/<\/?p[^>]*>/g, "")}
                   </li>
-                ))}
-              </ul>
-              <p>{conclusion}</p>
-            </div>
+              ))}
+            </ul>
+            <div dangerouslySetInnerHTML={{ __html: conclusion}}></div>
           </div>
         </div>
       </div>

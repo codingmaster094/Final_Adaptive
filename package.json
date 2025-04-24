@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@tailwindcss/postcss": "^4.0.7",
+    "dayjs": "^1.11.13",
     "gsap": "^3.12.7",
     "jquery": "^3.7.1",
     "next": "15.1.7",

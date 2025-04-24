@@ -4,26 +4,12 @@ import Callwritingcangenerate_tools from '../components/Callwritingcangenerate_t
 import Category from '../components/Category';
 import Portfolio_Measure_of_fit from '../components/Portfolio_Measure_of_fit';
 import Putbuyingtool from '../components/Putbuyingtool';
+import Alldata from '../../../utile/AllDatafetch';
 
 const page = async() => {
  let Callwritingcangenerate;
- try {
-   const response = await fetch(
-     `https://adaptive.rocket-wp.com/wp-json/custom/v1/page-acf-data?slug=call-writing`,
-     {
-       cache: "no-store",
-     }
-   );
-   if (!response) {
-     throw new Error(`Failed to fetch data: ${response.statusText}`);
-   }
-
-   const data = await response.json();
-   Callwritingcangenerate = data;
- } catch (error) {
-   console.error("Error fetching data:", error);
-   return <div>Error loading data.</div>;
- }
+ Callwritingcangenerate = await Alldata("call-writing");
+ 
 
  if (!Callwritingcangenerate) {
    return <div>No data available.</div>;

@@ -13,8 +13,8 @@ const page = () => {
     description:
       "Risk Weather helps you decide when to write calls or buy downside protection by analyzing market conditions. It evaluates the cost of protection based on price premiums and implied volatility.",
     buttons: [
-      { text: "Explore Market Shield Today", link: "#", variant: "outline" },
-      { text: "Sign up Today!", link: "#", variant: "filled" },
+      { text: "Explore Market Shield Today", link: "/", variant: "outline" },
+      { text: "Sign up Today!", link: "/", variant: "filled" },
     ],
   };
 
