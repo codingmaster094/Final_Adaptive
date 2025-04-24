@@ -3,10 +3,6 @@ const nextConfig = {
   images: {
     domains: ["adaptive.rocket-wp.com"],
   },
-  experimental: {
-    scrollRestoration: true,
-    turbopack: false,
-  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.alias["lodash"] = "lodash-es";
