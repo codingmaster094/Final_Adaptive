@@ -13,31 +13,34 @@ export function TransitionProvider({ children }) {
   const [timeline, setTimeline] = useState(() =>
     gsap.timeline({ paused: true })
   );
-
   const container = useRef(null);
-  const pathname = usePathname(); 
+  const pathname = usePathname();
+
+  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
 
   useGSAP(() => {
+    // Skip animations if not desktop
+    if (!isDesktop) return;
+
     const tl = gsap.timeline();
 
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); 
+    // Clean up existing ScrollTriggers
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    if (window.innerWidth >= 1024) {
-      tl.from("header", { duration: 0.5, delay: 1, opacity: 0 })
-        .from(".hero-text h1, .hero-text p, .hero-left .button-area", {
-          y: 10,
-          opacity: 0,
-          delay: 0.2,
-          duration: 0.3,
-          stagger: 0.2,
-        })
-        .from(
-          ".hero-right img",
-          { y: 10, delay: 0.3, opacity: 0, stagger: 0.1, duration: 0.2 },
-          "-=0.7"
-        )
-        .from(".tools-section", { y: 5, opacity: 0, duration: 0.1 });
-    }
+    tl.from("header", { duration: 0.5, delay: 1, opacity: 0 })
+      .from(".hero-text h1, .hero-text p, .hero-left .button-area", {
+        y: 10,
+        opacity: 0,
+        delay: 0.2,
+        duration: 0.3,
+        stagger: 0.2,
+      })
+      .from(
+        ".hero-right img",
+        { y: 10, delay: 0.3, opacity: 0, stagger: 0.1, duration: 0.2 },
+        "-=0.7"
+      )
+      .from(".tools-section", { y: 5, opacity: 0, duration: 0.1 });
 
     const createScrollAnimation = (trigger, elements, options = {}) => {
       const defaults = { y: 30, opacity: 0, duration: 0.6, stagger: 0.2 };
@@ -101,29 +104,28 @@ export function TransitionProvider({ children }) {
       });
     };
 
-      const initFooterAnimation = () => {
-        gsap.set("footer, .footer", { opacity: 0, y: 50 });
+    const initFooterAnimation = () => {
+      gsap.set("footer, .footer", { opacity: 0, y: 50 });
 
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: "footer, .footer",
-              start: "top 95%",
-              end: "top 70%",
-              scrub: 1,
-            },
-          })
-          .to("footer, .footer", { opacity: 1, y: 0, duration: 1 });
-      };
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: "footer, .footer",
+            start: "top 95%",
+            end: "top 70%",
+            scrub: 1,
+          },
+        })
+        .to("footer, .footer", { opacity: 1, y: 0, duration: 1 });
+    };
 
-    if (window.innerWidth >= 1024) {
-      initPageAnimations();
-      initializeAnimations();
-      initFooterAnimation();
-    }
+    initPageAnimations();
+    initializeAnimations();
+    initFooterAnimation();
 
     timeline.add(gsap.to(container.current, { opacity: 0 }));
-  }, [pathname]);
+  }, [pathname, isDesktop]);
+
   return (
     <TransitionContext.Provider value={{ timeline, setTimeline }}>
       <div ref={container}>{children}</div>
