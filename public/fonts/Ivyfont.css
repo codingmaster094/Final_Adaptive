@@ -4,6 +4,7 @@
     url('./IvyMode-Regular.woff'),
     url('./IvyMode-Regular.woff2'); 
     font-weight: 500;
+    font-display: swap;
 }
 @font-face{
     font-family: 'Ivy-Mode';
@@ -11,4 +12,5 @@
     url('./IvyMode-SemiBold.woff'),
     url('./IvyMode-SemiBold.woff2'); 
     font-weight: 600;
+    font-display: swap;
 }

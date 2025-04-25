@@ -4,6 +4,7 @@
     url('./Inter-Regular.woff'),
     url('./Inter-Regular.woff2'); 
     font-weight: 400;
+    font-display: swap;
 }
 @font-face{
     font-family: 'Inter';
@@ -11,6 +12,7 @@
     url('./Inter-Medium.woff'),
     url('./Inter-Medium.woff2'); 
     font-weight: 500;
+    font-display: swap;
 }
 @font-face{
     font-family: 'Inter';
@@ -18,4 +20,5 @@
     url('./Inter-SemiBold.woff'),
     url('./Inter-SemiBold.woff2'); 
     font-weight: 600;
+    font-display: swap;
 }
