@@ -39,10 +39,10 @@ export function TransitionProvider({ children }) {
         ".hero-right img",
         {
           y: 10,
-          delay: 0,
+          delay: 0.3,
           opacity: 0,
-          stagger: 0  ,
-          duration: 0.05,
+          stagger: 0.1,
+          duration: 0.2,
         },
         "-=0.7"
       )
