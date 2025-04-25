@@ -1,14 +1,14 @@
 @font-face{
     font-family: 'Overpass';
-    src: url('../fonts/overpass.regular.ttf'),
-    url('../fonts/overpass.regular.woff'),
-    url('../fonts/overpass.regular.woff2'); 
+    src: url('./overpass.regular.ttf'),
+    url('./overpass.regular.woff'),
+    url('./overpass.regular.woff2'); 
     font-weight: 500;
 }
 @font-face{
     font-family: 'Overpass';
-    src: url('../fonts/overpass.bold.ttf'),
-    url('../fonts/overpass.bold.woff'),
-    url('../fonts/overpass.bold.woff2'); 
+    src: url('./overpass.bold.ttf'),
+    url('./overpass.bold.woff'),
+    url('./overpass.bold.woff2'); 
     font-weight: 600;
 }
