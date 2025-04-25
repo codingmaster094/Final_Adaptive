@@ -5,18 +5,17 @@ import Forecast_section from "../components/Forecast_section";
 import PortfolioRisk_tools_market_section from "../components/PortfolioRisk_tools_market_section";
 import PortfolioRisk_tools_Personalize from "../components/PortfolioRisk_tools_Personalize";
 import Card_Section from "../components/Card_Section";
+import Alldata from "../../../utile/AllDatafetch";
 
-const page = () => {
-  const heroData = {
-    title:
-      "Optimize Your Strategy: Timing Calls and Downside Protection with Risk Weather",
-    description:
-      "Risk Weather helps you decide when to write calls or buy downside protection by analyzing market conditions. It evaluates the cost of protection based on price premiums and implied volatility.",
-    buttons: [
-      { text: "Explore Market Shield Today", link: "/", variant: "outline" },
-      { text: "Sign up Today!", link: "/", variant: "filled" },
-    ],
-  };
+const page = async() => {
+  let PortfolioRiskWeatherTool;
+     PortfolioRiskWeatherTool = await Alldata("portfolioriskweathertool");
+     
+    
+     if (!PortfolioRiskWeatherTool) {
+       return <div>No data available.</div>;
+     }
+    
 
   const riskData = {
     image: "/img/measure-image.svg",
@@ -183,13 +182,36 @@ const page = () => {
     ];
   return (
     <>
-      <Hero_Section2 data={heroData} />
-      <PortfolioRisk_tools_section data={riskData} />
-      <Forecast_section data={forecastData} />
+      <Hero_Section2
+        title={PortfolioRiskWeatherTool?.hero_title}
+        description={PortfolioRiskWeatherTool?.hero_desc}
+        buttons1={PortfolioRiskWeatherTool?.hero_left_button_}
+        buttons2={PortfolioRiskWeatherTool?.hero_right_button}
+      />
+      <PortfolioRisk_tools_section
+        title={PortfolioRiskWeatherTool?.risk_weather_title}
+        imageUrl1={PortfolioRiskWeatherTool?.risk_weather_image}
+        description={PortfolioRiskWeatherTool?.risk_weather_desc}
+        chart_title={PortfolioRiskWeatherTool?.chart_title}
+        imageUrl2={PortfolioRiskWeatherTool?.chart_image}
+      />
+      <Forecast_section
+        data={forecastData}
+        description={PortfolioRiskWeatherTool?.forecast_tool_desc}
+        button={PortfolioRiskWeatherTool?.forecast_tool_button}
+        forecast_tool_content={PortfolioRiskWeatherTool?.forecast_tool_content}
+        forecast_tool_right_image={
+          PortfolioRiskWeatherTool?.forecast_tool_right_image
+        }
+        decoding_title={PortfolioRiskWeatherTool?.decoding_title}
+        decoding_desc={PortfolioRiskWeatherTool?.decoding_desc}
+        decoding_lists={PortfolioRiskWeatherTool?.decoding_lists}
+        decoding_bottom_desc={PortfolioRiskWeatherTool?.decoding_bottom_desc}
+      />
       <PortfolioRisk_tools_market_section
         data={PortfolioRiskToolsMarketSection}
       />
-      <PortfolioRisk_tools_Personalize data={riskWeatherContent} /> 
+      <PortfolioRisk_tools_Personalize data={riskWeatherContent} />
       <Card_Section
         title="Stay Updated with Adaptive"
         description="Stay informed with the latest updates from Adaptive, including new tools, features, and special offers. Discover how our innovative strategies continue to redefine risk management and investment solutions for advisors, retail investors, and enterprises."

@@ -1,7 +1,19 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-const Forecast_section = ({ data }) => {
+const Forecast_section = ({
+  data,
+  description,
+  button,
+  forecast_tool_content,
+  forecast_tool_right_image,
+  decoding_title,
+  decoding_desc,
+  decoding_lists,
+  decoding_bottom_desc
+}) => {
   return (
     <section className="t-section forecast-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 h-full">
       <div className="container">
@@ -14,19 +26,20 @@ const Forecast_section = ({ data }) => {
               </h2>
               <div className="content flex justify-start items-center md:gap-8 gap-4 flex-col lg:flex-row">
                 <div className="t-left lg:w-[85%] w-full">
-                  <div className="text font-inter text-black-100 font-normal text-body">
-                    {data.description.map((para, index) => (
-                      <p key={index}>{para}</p>
-                    ))}
-                  </div>
+                  <div
+                    className="text font-inter text-black-100 font-normal text-body"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                  ></div>
                 </div>
                 <div className="t-right lg:w-[15%] w-full flex justify-start lg:justify-end items-end">
-                  <button
+                  <Link
+                    href={button.url}
+                    target={button.target}
                     className="btn-green text-[18px]"
                     onClick={() => alert("Sign-up Clicked!")}
                   >
-                    {data.buttonText}
-                  </button>
+                    {button.title}
+                  </Link>
                 </div>
               </div>
             </div>
@@ -34,32 +47,19 @@ const Forecast_section = ({ data }) => {
 
           {/* Mid Section */}
           <div className="timeline-mid flex justify-start items-start lg:gap-16 md:gap-8 gap-6 flex-col lg:flex-row mt-4">
-            <div className="time-left lg:w-[50%] w-full space-y-4">
-              {data.timeline.map((text, index) => (
-                <p key={index}>{text}</p>
-              ))}
-              <p>
-                {data.resourcesTitle}:{" "}
-                {data.resources.map((resource, index) => (
-                  <a
-                    key={index}
-                    href={resource.link}
-                    role="link"
-                    className="underline"
-                  >
-                    <b>{resource.name}</b>
-                    {index < data.resources.length - 1 && " | "}
-                  </a>
-                ))}
-              </p>
-            </div>
+            <div
+              className="time-left lg:w-[50%] w-full space-y-4"
+              dangerouslySetInnerHTML={{ __html: forecast_tool_content }}
+            ></div>
 
             <div className="time-right lg:w-[50%] w-full">
-              <img
-                src={data.image}
+              <Image
+                src={forecast_tool_right_image.url}
                 alt="forecast image"
                 role="img"
                 className="w-full h-auto"
+                width={712}
+                height={420}
               />
             </div>
           </div>
@@ -68,24 +68,25 @@ const Forecast_section = ({ data }) => {
           <div className="timeline-btm font-inter font-normal lg:mt-16 md:mt-12 mt-8">
             <div className="top mb-5">
               <div className="title relative">
-                <h3 className="title-head text-h3 relative after:content-[''] after:absolute after:bottom-[-12px] after:left-0 after:h-[20px] after:bg-bg_line2 after:bg-center after:bg-cover after:bg-no-repeat after:transition-all after:duration-500 transition-all duration-300 ease-in-out font-bold after:w-[180px]">
-                  {data.riskTitle}
-                </h3>
+                <h3
+                  className="title-head text-h3 relative after:content-[''] after:absolute after:bottom-[-12px] after:left-0 after:h-[20px] after:bg-bg_line2 after:bg-center after:bg-cover after:bg-no-repeat after:transition-all after:duration-500 transition-all duration-300 ease-in-out font-bold after:w-[180px]"
+                  dangerouslySetInnerHTML={{ __html: decoding_title }}
+                ></h3>
               </div>
             </div>
 
             <div className="text space-y-4 text-black-100">
-              <p>{data.riskDescription}</p>
+              <p>{decoding_desc.replace(/<\/?p[^>]*>/g, "")}</p>
               <div className="box bg-black-200 p-6">
                 <div className="list-b [&_ul>li]:list-disc w-fit mx-auto">
                   <ul>
-                    {data.riskLevels.map((risk, index) => (
-                      <li key={index}>{risk.label}</li>
+                    {decoding_lists?.map((risk, index) => (
+                      <li key={index}>{risk.lists}</li>
                     ))}
                   </ul>
                 </div>
               </div>
-              <p>{data.riskNote}</p>
+              <p>{decoding_bottom_desc.replace(/<\/?span[^>]*>/g, "")}</p>
             </div>
           </div>
         </div>
