@@ -37,6 +37,7 @@ export default {
         xmd: "860px",
         xlg: "991px",
         lg: "1025px",
+        xxl:"1152px",
         xl: "1280px",
         "2xl": "1440px",
       },

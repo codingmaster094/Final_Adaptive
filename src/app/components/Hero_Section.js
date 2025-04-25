@@ -8,9 +8,9 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
       <section className="hero-section pt-[100px]">
         <div className="container">
           <div className="inner pt-[48px] lg:pt-0">
-            <div className="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
+            <div className="inner-content flex flex-col xxl:flex-row xxl:space-y-0 space-y-[56px]">
               {/* Left Section */}
-              <div className="hero-left py-0 md:py-8 lg:py-[100px] xl:py-[130px] lg:w-[45%] w-full pr-0 lg:pr-[50px] xl:pr-[100px] flex justify-center flex-col">
+              <div className="hero-left py-0 md:py-8 xxl:py-[100px] xl:py-[130px] xxl:w-[45%] w-full pr-0 xxl:pr-[50px] xl:pr-[100px] flex justify-center flex-col">
                 <div className="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
                   <h1
                     className="text-h1 text-black font-ivy font-semibold"
@@ -44,14 +44,14 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
               </div>
 
               {/* Right Section (Image) */}
-              <div className="hero-right lg:w-[55%] w-full flex lg:justify-end justify-start xl:items-end md:items-center items-end">
+              <div className="hero-right xxl:w-[55%] w-full flex xxl:justify-end justify-start  items-end">
                 <Image
                   src={image.url}
                   width={818}
                   height={483}
                   alt="Hero image"
                   role="img"
-                  className="lg:w-fit w-full lg:h-auto h-full"
+                  className="xxl:w-fit w-full lg:h-auto h-full"
                   quality={75}
                   priority={true}
                 />
