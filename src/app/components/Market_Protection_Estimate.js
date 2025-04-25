@@ -40,7 +40,7 @@ const Market_Protection_Estimate = ({
             )}
             {protectionDetailsArray && (
               <>
-                <ul class="[&amp;_li]:pl-8 [&amp;_li]:relative [&amp;_li]:before:content-[''] [&amp;_li]:before:w-[10px] [&amp;_li]:before:h-[10px] [&amp;_li]:before:bg-black-200 [&amp;_li]:before:absolute [&amp;_li]:before:left-0 [&amp;_li]:before:top-[6px] [&amp;_li]:before:rounded-full space-y-2">
+                <ul className="[&amp;_li]:pl-8 [&amp;_li]:relative [&amp;_li]:before:content-[''] [&amp;_li]:before:w-[10px] [&amp;_li]:before:h-[10px] [&amp;_li]:before:bg-black-200 [&amp;_li]:before:absolute [&amp;_li]:before:left-0 [&amp;_li]:before:top-[6px] [&amp;_li]:before:rounded-full space-y-2">
                   {protectionDetailsArray &&
                     protectionDetailsArray?.map((items, i) => {
                       return <li key={i}>{items.content}</li>;

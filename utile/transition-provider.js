@@ -37,7 +37,13 @@ export function TransitionProvider({ children }) {
       })
       .from(
         ".hero-right img",
-        { y: 10, delay: 0.3, opacity: 0, stagger: 0.1, duration: 0.2 },
+        {
+          y: 10,
+          delay: 0.3,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 0.2,
+        },
         "-=0.7"
       )
       .from(".tools-section", { y: 5, opacity: 0, duration: 0.1 });
