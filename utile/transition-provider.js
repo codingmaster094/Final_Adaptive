@@ -36,7 +36,7 @@ export function TransitionProvider({ children }) {
         stagger: 0.2,
       })
       .from(
-        ".hero-right img",
+        ".hero-text",
         {
           y: 10,
           delay: 0.3,
