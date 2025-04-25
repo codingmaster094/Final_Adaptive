@@ -41,8 +41,8 @@ export function TransitionProvider({ children }) {
           y: 10,
           delay: 0,
           opacity: 0,
-          stagger: 0,
-          duration: 0.1,
+          stagger: 0  ,
+          duration: 0.05,
         },
         "-=0.7"
       )
