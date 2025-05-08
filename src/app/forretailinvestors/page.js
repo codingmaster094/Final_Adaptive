@@ -1,6 +1,8 @@
 import React from "react";
 import Hero_without_img from "../components/Hero_without_img";
 import Category from "../components/Category";
+import Retailer_tools_section from "../components/Retailer_tools_section";
+import Key_feuture from "../components/Key_feuture";
 const page = () => {
   const data = {
     hero_title: "Protect What You’ve Built Stay Invested for Long Term Growth.",
