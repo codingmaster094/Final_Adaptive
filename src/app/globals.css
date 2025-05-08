@@ -5,17 +5,27 @@
     *{
         @apply m-0 p-0 box-border;
     }
+    body{
+        @apply font-inter;
+    }
     p{
         @apply text-black-100;
     }
     svg{
         @apply flex-none;
     }
-    nav ul li{
-        @apply transition-colors duration-500 ease-in-out hover:lg:text-blue hover:text-green;
-    }
+        nav>ul>li {
+            @apply transition-colors duration-500 ease-in-out hover:lg:text-blue lg:py-[34px] py-0 xl:px-6 lg:px-3 px-0;
+        }
+         
+        nav.mega-menu li {
+            @apply hover:lg:!text-blue lg:!text-black !text-white hover:!text-pink-100 !px-0 !py-0;
+        }
   
-    .card-carousel .owl-stage-outer{
+        nav ul li a:hover svg path {
+           @apply lg:fill-blue;
+            }
+    /* .card-carousel .owl-stage-outer{
         @apply pt-5 pb-5;
     }
     .card-carousel .owl-nav{
@@ -35,10 +45,13 @@
     }
     .owl-carousel .owl-dots .owl-dot.active span, .owl-carousel .owl-dots .owl-dot:hover span{
         @apply !bg-pink;
-    }
+    } */
  .swiper-slide{
-    @apply h-auto
+    @apply !h-auto
  }
+ .swiper-pagination-bullet-active {
+    @apply !bg-pink;
+}
 }
 @layer components{
     .btn-link{
@@ -52,15 +65,16 @@
   }
   @layer utilities{
     .path-animation {
-      stroke-dasharray: 500;
-        stroke-dashoffset: 500;
+      strokeDasharray: 500;
+        strokeDashoffset: 500;
         animation: drawPath 3s ease forwards infinite;
         -webkit-animation: drawPath 3s ease forwards infinite;
     }
     
       @keyframes drawPath {
         to {
-          stroke-dashoffset: 0;
+          strokeDashoffset: 0;
         }
       }
+        
   }

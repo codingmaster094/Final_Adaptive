@@ -22,6 +22,10 @@ const Card_Section = ({ title, description, cards }) => {
   };
 
   const duplicatedSlides = cards?.concat(cards);
+  
+   const BlogPost = duplicatedSlides?.filter(
+     (cat) => cat.category_names[0] !== "Uncategorized"
+   );
 
   const setEqualHeight = useCallback((elementWrapper, element) => {
     let maxHeight = 0;
@@ -37,31 +41,12 @@ const Card_Section = ({ title, description, cards }) => {
     });
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setEqualHeight("equal-text", "heading");
-        setEqualHeight("equal-text", "paragraph");
-        setEqualHeight("equal-text", "heading1");
-        setEqualHeight("equal-text", "paragraph1");
-      } else {
-        ["heading", "paragraph", "heading1", "paragraph1"].forEach((cls) => {
-          document.querySelectorAll(`.equal-text .${cls}`).forEach((el) => {
-            el.style.height = "auto";
-          });
-        });
-      }
-    };
-
-    handleResize(); 
-    window.addEventListener("resize", handleResize); 
-    return () => window.removeEventListener("resize", handleResize);
-  }, [setEqualHeight]);
 
   return (
     <section className="card-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 border-b-[1px] border-b-black-200 border-b-solid border-t-[1px] border-t-black-200 border-t-solid overflow-hidden">
+    
       <div className="container">
-        <div className="top sm:w-[83%] w-full md:pb-0 pb-5">
+        <div className="top sm:w-[83%] w-full">
           <div className="title">
             <h2
               className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] before:left-[-16px] before:opacity-20 before:z-0 mb-8"
@@ -76,7 +61,7 @@ const Card_Section = ({ title, description, cards }) => {
 
         <div className="card-block relative">
           <Swiper
-            className="lg:!pt-[100px] md:!pt-20 sm:!pt-14 !pt-10 !pb-12"
+            className="lg:!pt-[100px] md:!pt-20 !pt-14  !pb-12 md:mt-[-50px]"
             modules={[Navigation, Autoplay, Pagination]}
             pagination={{ el: ".swiper-pagination", clickable: true }}
             navigation={{
@@ -89,23 +74,23 @@ const Card_Section = ({ title, description, cards }) => {
             breakpoints={{
               1280: { slidesPerView: 4 },
               1024: { slidesPerView: 3 },
-              768: { slidesPerView: 2 },
+              640: { slidesPerView: 2 },
               480: { slidesPerView: 1 },
               0: { slidesPerView: 1 },
             }}
             onSwiper={setSwiperInstance}
           >
-            {duplicatedSlides?.map((card, index) => (
+            {BlogPost?.map((card, index) => (
               <SwiperSlide className="item card-item" key={index}>
-                <div className="bg-white px-4">
+                <div className="bg-white px-4 flex flex-col h-full flex-1">
                   <Image
                     src={card?.featured_image_data?.url}
                     width={230}
                     height={240}
                     alt={card.title}
-                    className="w-full md:h-[240px] h-auto"
+                    className="w-full h-[240px] object-cover"
                   />
-                  <div className="content space-y-[20px] my-6 equal-text">
+                  <div className="content lg:space-y-5 space-y-3 my-6 equal-text flex flex-col h-full flex-1">
                     <div className="flex justify-between items-center">
                       <span className="text-[12px] font-medium font-inter uppercase text-black-100 bg-[#EEA7DF33] p-[6px] rounded-[4px]">
                         {card.category_names}
@@ -115,10 +100,10 @@ const Card_Section = ({ title, description, cards }) => {
                       </span>
                     </div>
                     <h3
-                      className="text-body font-bold font-inter heading"
-                      dangerouslySetInnerHTML={{
+                      className="text-body font-bold font-inter heading flex-1"
+                       dangerouslySetInnerHTML={{
                         __html: card.title?.rendered,
-                      }}
+                       }}
                     ></h3>
                     <div
                       className="text text-black-100 font-inter font-normal paragraph line-clamp-2"
@@ -128,10 +113,9 @@ const Card_Section = ({ title, description, cards }) => {
                     ></div>
                   </div>
                   <Link
-                    href={`/${card.slug}`}
+                    href={`/blog/${card.slug}`}
                     className="text-black font-semibold font-overpass block underline underline-offset-4"
                   >
-                    {/* {card.BTNTitle} */}
                     Read More
                   </Link>
                 </div>
@@ -141,7 +125,7 @@ const Card_Section = ({ title, description, cards }) => {
           </Swiper>
 
           <button
-            className="custom-swiper-button-prev absolute top-3 z-10 xl:left-[93%] lg:left-[92%] xmd:left-[87%] sm:left-[84%] left-[65%] translate-x-[50%] sm:block hidden"
+            className="custom-swiper-button-prev absolute top-3 z-10 xl:left-[93%] lg:left-[92%] xmd:left-[90%] sm:left-[84%] xsm:left-[80%] left-[70%] -translate-x-[50%]"
             onClick={prevSlide}
           >
             <Image
@@ -154,7 +138,7 @@ const Card_Section = ({ title, description, cards }) => {
           </button>
 
           <button
-            className="custom-swiper-button-next z-10 absolute top-3 right-5 sm:block hidden"
+            className="custom-swiper-button-next z-10 absolute top-3 right-5"
             onClick={nextSlide}
           >
             <Image

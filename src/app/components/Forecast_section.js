@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
-const Forecast_section = ({
-  data,
+const Forecast_section = ({ 
+  title,
   description,
   button,
   forecast_tool_content,
@@ -14,6 +14,28 @@ const Forecast_section = ({
   decoding_lists,
   decoding_bottom_desc
 }) => {
+   useEffect(() => {
+        const titles = document.querySelectorAll(".title-head");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setTimeout(() => {
+                  entry.target.classList.add("font-bold", "after:w-[180px]");
+                  entry.target.classList.remove("font-normal");
+                }, 500);
+              } else {
+                entry.target.classList.remove("font-bold", "after:w-[180px]");
+                entry.target.classList.add("font-normal");
+              }
+            });
+          },
+          { threshold: 0.75 }
+        );
+    
+        titles.forEach((title) => observer.observe(title));
+        return () => titles.forEach((title) => observer.unobserve(title));
+      }, []);
   return (
     <section className="t-section forecast-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 h-full">
       <div className="container">
@@ -21,8 +43,10 @@ const Forecast_section = ({
           {/* Top Section */}
           <div className="timeline-top w-full">
             <div className="t-left w-full">
-              <h2 className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] before:left-[-16px] before:opacity-20 before:z-0 md:mb-8 mb-6">
-                {data.title}
+              <h2
+                className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] before:left-[-16px] before:opacity-20 before:z-0 md:mb-8 mb-6"
+                dangerouslySetInnerHTML={{ __html: title }}
+              >
               </h2>
               <div className="content flex justify-start items-center md:gap-8 gap-4 flex-col lg:flex-row">
                 <div className="t-left lg:w-[85%] w-full">

@@ -42,7 +42,7 @@ const Testimonial_Section = ({
 
                   <div className="testright p-[30px] xlg:w-[60%] md:w-full xsm:w-[60%] w-full xsm:text-left text-center">
                     <div className="test-content space-y-8"  dangerouslySetInnerHTML={{ __html: item.description }}/>
-                      <div className="details flex flex-col">
+                      <div className="details flex flex-col mt-6">
                         <span className="font-medium">{item.author}</span>
                         <span>{item.postion}</span>
                       </div>

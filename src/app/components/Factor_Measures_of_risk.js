@@ -1,6 +1,7 @@
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
-const Factor_Measures_of_risk = ({ sectionTitle,description, measures }) => {
+const Factor_Measures_of_risk = ({ sectionTitle, description, measures }) => {
   return (
     <section className="t-section measure-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 w-full border-b-[1px] border-b-black-200 border-b-solid bg-white-100">
       <div className="container">
@@ -21,7 +22,9 @@ const Factor_Measures_of_risk = ({ sectionTitle,description, measures }) => {
           <div className="measure-card-block flex gap-8 flex-wrap">
             {measures?.map((measure, i) => (
               <div key={i} className="m-card md:w-[calc(50%-20px)] w-full">
-                <img
+                <Image
+                  width={725}
+                  height={310}
                   src={measure.image.url}
                   alt="measure card image"
                   role="img"
@@ -43,4 +46,4 @@ const Factor_Measures_of_risk = ({ sectionTitle,description, measures }) => {
   );
 };
 
-export default Factor_Measures_of_risk
+export default Factor_Measures_of_risk;

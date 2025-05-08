@@ -144,7 +144,7 @@ const Tab_section = ({
                       />
                     </div>
                     {tool.tool_button && (
-                      <div className="btn-link w-fit text-[16px] bg-transparent font-overpass font-medium text-black px-4 py-2 border-solid border-[1.5px] border-green hover:border-black transition-all duration-480 ease-in-out cursor-pointer mx-auto">
+                      <div className="btn-link border-green hover:border-black cursor-pointer mx-auto">
                         <Link
                           href={tool.tool_button.url}
                           role="link"

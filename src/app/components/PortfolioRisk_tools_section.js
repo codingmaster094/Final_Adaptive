@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const PortfolioRisk_tools_section = ({
@@ -13,7 +14,7 @@ const PortfolioRisk_tools_section = ({
         <div className="inner font-inter space-y-8">
           {/* Top Section */}
           <div className="top flex flex-col justify-center items-center text-center lg:gap-8 gap-4 mb-8">
-            <img src={imageUrl1.url} alt="measure image" role="img" />
+            <Image src={imageUrl1.url} alt="measure image" role="img" width={362} height={300} />
             <div className="text space-y-2">
               {/* <h2
                 className="text-h5"
@@ -35,7 +36,7 @@ const PortfolioRisk_tools_section = ({
               className="text-h3 font-semibold"
               dangerouslySetInnerHTML={{ __html: chart_title }}
             ></h3>
-            <img src={imageUrl2.url} alt="chart image" role="img" />
+            <Image src={imageUrl2.url} width={1488} height={528} alt="chart image" role="img" />
           </div>
         </div>
       </div>

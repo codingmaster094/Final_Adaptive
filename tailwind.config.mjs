@@ -6,21 +6,27 @@ const colors = {
     DEFAULT: "#000000",
     100: "#444444",
     200: "#D9D9D9",
+    300: "#252525",
+  },
+  purple: {
+    DEFAULT: "#960E79",
   },
   pink: {
-    DEFAULT:"#EEA7DF",
-    100:"#DF8B78"
+    DEFAULT: "#EEA7DF",
+    50: "#EEA7DF33",
+    80: "#EEA7DF4D",
+    100: "#DF8B78",
   },
-  green:{
-    DEFAULT:"#56E7A8",
+  green: {
+    DEFAULT: "#56E7A8",
   },
   white: {
     DEFAULT: "#fff",
-    100:"#F7F7F7",
+    100: "#F7F7F7",
   },
   blue: {
-    DEFAULT:"#7D1E69",
-  }
+    DEFAULT: "#7D1E69",
+  },
 };
 export default {
   content: [
@@ -66,7 +72,7 @@ export default {
         prev_left: "url('/img/prevarrow.svg')",
         next_arrow: "url('/img/Arrownext.svg')",
         tick_icon: "url('/img/tick-svggreen.svg')",
-        // Clip-path
+        // clipPath
         "clip-pink":
           "polygon(0% 25%, 42% 20%, 42% 5%, 100% 0%, 100% 95%, 51% 100%, 50% 94%, 3% 95%, 3% 95%, 3% 95%)",
 

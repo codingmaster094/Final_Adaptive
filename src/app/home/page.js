@@ -1,30 +1,31 @@
-import React from 'react'
-import Hero_Section from '../components/Hero_Section'
-import Tools_Section from '../components/Tools_Section'
-import Timeline_Section from '../components/Timeline_Section'
-import Tab_section from '../components/Tab_section'
-import Testimonial_Section from '../components/Testimonial_Section'
-import Card_Section from '../components/Card_Section'
-import Alldata from '../../../utile/AllDatafetch'
-import AllPostGet from '../../../utile/AllPostget'
+import React from "react";
+import Hero_Section from "../components/Hero_Section";
+import Tools_Section from "../components/Tools_Section";
+import Timeline_Section from "../components/Timeline_Section";
+import Tab_section from "../components/Tab_section";
+import Testimonial_Section from "../components/Testimonial_Section";
+import Card_Section from "../components/Card_Section";
+import Alldata from "../../../utile/AllDatafetch";
+import AllPostGet from "../../../utile/AllPostget";
 
-const page = async() => {
+const page = async () => {
   let Homepagedata;
   let blogsdatas;
- try {
-  Homepagedata = await Alldata('home');
-  blogsdatas = await AllPostGet();
- } catch (error) {
-   console.error("Error fetching data:", error);
-   return <div>Error loading data.</div>;
- }
+  try {
+    Homepagedata = await Alldata(`home`);
+    blogsdatas = await AllPostGet();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return <div>Error loading data.</div>;
+  }
 
- if (!Homepagedata || !blogsdatas) {
-   return <div>No data available.</div>;
- }
+  if (!Homepagedata || !blogsdatas) {
+    return <div>No data available.</div>;
+  }
 
   return (
     <>
+
       <Hero_Section
         hero_text={Homepagedata?.hero_title}
         hero_peragraph={Homepagedata?.hero_desc}
@@ -62,6 +63,6 @@ const page = async() => {
       />
     </>
   );
-}
+};
 
-export default page
+export default page;
