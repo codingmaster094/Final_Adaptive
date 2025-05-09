@@ -7,8 +7,7 @@ const Market_Protection_Estimate = ({
   description,
   protectionDetails,
   protectionDetailsArray,
-  imageSrc,
-  ulData,
+  imageSrc
 }) => {
   return (
     <section className="t-section market-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 w-full border-b-[1px] border-b-black-200 border-b-solid">

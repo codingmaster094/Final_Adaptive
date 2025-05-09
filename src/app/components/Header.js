@@ -198,7 +198,7 @@ const Header = () => {
                       <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white w-full">
                         <li>
                           <Link
-                            href="/foradvisorandwealthmanager"
+                            href="/advisor-wealth-manager"
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
@@ -208,7 +208,7 @@ const Header = () => {
                         </li>
                         <li>
                           <Link
-                            href="/forretailinvestors "
+                            href="/retail-investors "
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
@@ -296,7 +296,7 @@ const Header = () => {
                         </li>
                         <li>
                           <Link
-                            href="/PortfolioProtectionCalculator"
+                            href="/portfolio-protection-calculator"
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
@@ -308,7 +308,7 @@ const Header = () => {
                       <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white">
                         <li>
                           <Link
-                            href="/PortfolioRiskWeather"
+                            href="/portfolio-risk-Weather"
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
@@ -373,7 +373,7 @@ const Header = () => {
                       <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white w-full">
                         <li>
                           <Link
-                            href="/protectioncalculator"
+                            href="/protection-calculator"
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
@@ -383,7 +383,7 @@ const Header = () => {
                         </li>
                         <li>
                           <Link
-                            href="/riskcontribution"
+                            href="/risk-contribution"
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
@@ -393,7 +393,7 @@ const Header = () => {
                         </li>
                         <li>
                           <Link
-                            href="/forwardtext"
+                            href="/forward-test"
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
@@ -403,7 +403,7 @@ const Header = () => {
                         </li>
                         <li>
                           <Link
-                            href="/riskweather"
+                            href="/risk-weather"
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
@@ -416,7 +416,6 @@ const Header = () => {
                   </div>
                 </li>
 
-                {/* Other static links */}
                 <li>
                   <Link href="#">Pricing</Link>
                 </li>
