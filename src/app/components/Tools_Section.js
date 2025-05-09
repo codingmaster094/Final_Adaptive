@@ -4,12 +4,12 @@ import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 
 const Tools_Section = ({ toolsData }) => {
-  const [activeImage, setActiveImage] = useState();
+  const [activeImage, setActiveImage] = useState(toolsData[0]?.image?.url); // Set the first image by default
   const sectionsRef = useRef([]);
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const sections = sectionsRef.current.filter((section) => section); 
+    const sections = sectionsRef.current.filter((section) => section);
     const stickyImage = document.getElementById("stickyImage");
     const container = containerRef.current;
 
@@ -49,7 +49,6 @@ const Tools_Section = ({ toolsData }) => {
       window.removeEventListener("resize", adjustHeight);
     };
   }, []);
-
 
   return (
     <section
@@ -99,12 +98,10 @@ const Tools_Section = ({ toolsData }) => {
           </div>
 
           {/* Sticky Image Box */}
-          <div
-            className="stick-box w-full lg:w-1/2 sticky top-40 lg:block hidden"
-          >
+          <div className="stick-box w-full lg:w-1/2 sticky top-40 lg:block hidden">
             <Image
               id="stickyImage"
-              src={activeImage}
+              src={activeImage} // Will show the active image
               width={694}
               height={410}
               alt="Sticky Image"
