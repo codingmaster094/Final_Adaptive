@@ -14,18 +14,20 @@ const PortfolioRisk_tools_section = ({
         <div className="inner font-inter space-y-8">
           {/* Top Section */}
           <div className="top flex flex-col justify-center items-center text-center lg:gap-8 gap-4 mb-8">
-            <Image src={imageUrl1.url} alt="measure image" role="img" width={362} height={300} />
+            <Image
+              src={imageUrl1.url}
+              alt="measure image"
+              role="img"
+              width={362}
+              height={300}
+            />
             <div className="text space-y-2">
-              {/* <h2
-                className="text-h5"
-                dangerouslySetInnerHTML={{ __html: title }}
-              ></h2> */}
-              <h2 className="text-h5">
-                <b>
-                  {title.replace(/<\/?span[^>]*>/g, "")}{" "}
-                  <span className="text-green block">LOW</span>
-                </b>
-              </h2>
+              <h2
+                className="text-h5 font-bold *:text-green"
+                dangerouslySetInnerHTML={{
+                  __html: title,
+                }}
+              ></h2>
               <div dangerouslySetInnerHTML={{ __html: description }}></div>
             </div>
           </div>
@@ -36,7 +38,13 @@ const PortfolioRisk_tools_section = ({
               className="text-h3 font-semibold"
               dangerouslySetInnerHTML={{ __html: chart_title }}
             ></h3>
-            <Image src={imageUrl2.url} width={1488} height={528} alt="chart image" role="img" />
+            <Image
+              src={imageUrl2.url}
+              width={1488}
+              height={528}
+              alt="chart image"
+              role="img"
+            />
           </div>
         </div>
       </div>
