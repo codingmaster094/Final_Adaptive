@@ -12,7 +12,6 @@ const Page = async () => {
   let FactorAnalysis;
 
   try {
-    // Fetch data using the slug
     FactorAnalysis = await Alldata(`factor-analysis`);
   } catch (error) {
     console.error("Error fetching data:", error);

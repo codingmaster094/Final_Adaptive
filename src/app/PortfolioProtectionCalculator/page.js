@@ -6,15 +6,20 @@ import Projected_Risk_Projected_Value from "../components/Projected_Risk_Project
 import Category from "../components/Category";
 import Alldata from "../../../utile/AllDatafetch";
 
-const Page = async() => {
-   let portfolioprotectioncalculator;
-   portfolioprotectioncalculator = await Alldata("portfolioprotectioncalculator");
-   
-  
-   if (!portfolioprotectioncalculator) {
-     return <div>No data available.</div>;
-   }
-  
+const Page = async () => {
+  let portfolioprotectioncalculator = null;
+  try {
+    portfolioprotectioncalculator = await Alldata(
+      "portfolioprotectioncalculator"
+    );
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+
+  if (!portfolioprotectioncalculator) {
+    return <div>No data available.</div>;
+  }
+
   return (
     <>
       <Hero_without_img
@@ -59,7 +64,6 @@ const Page = async() => {
         description={portfolioprotectioncalculator?.portfolio_protection_desc}
         dots_bg={portfolioprotectioncalculator?.dots_bg}
       />
-
       <Market_Protection_Estimate
         title={portfolioprotectioncalculator?.model_portfolios_title}
         description={portfolioprotectioncalculator?.model_portfolios_desc}

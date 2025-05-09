@@ -8,9 +8,13 @@ import Alldata from '../../../utile/AllDatafetch';
 
 const page = async() => {
  let Callwritingcangenerate;
- Callwritingcangenerate = await Alldata("call-writing");
  
-
+ 
+ try {
+   Callwritingcangenerate = await Alldata("call-writing");
+ } catch (error) {
+   console.error("Error fetching data:", error);
+ }
  if (!Callwritingcangenerate) {
    return <div>No data available.</div>;
  }

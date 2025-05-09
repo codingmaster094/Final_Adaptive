@@ -10,8 +10,12 @@ import AllPostGet from "../../../utile/AllPostget";
 const page = async() => {
   let PortfolioRiskWeatherTool;
    let blogsdatas;
-     PortfolioRiskWeatherTool = await Alldata("portfolioriskweathertool");
-     blogsdatas = await AllPostGet();
+    try {
+       PortfolioRiskWeatherTool = await Alldata("portfolioriskweathertool");
+       blogsdatas = await AllPostGet();
+     } catch (error) {
+       console.error("Error fetching data:", error);
+     }
     
      if (!PortfolioRiskWeatherTool || !blogsdatas) {
        return <div>No data available.</div>;
