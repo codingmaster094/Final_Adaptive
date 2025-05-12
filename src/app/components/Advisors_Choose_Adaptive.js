@@ -63,7 +63,7 @@ const Advisors_Choose_Adaptive = ({ sections, title, subtitle , description }) =
                     src={section.image}
                     alt={`advisory image ${index + 1}`}
                     role="img"
-                    className="w-full rounded-l-md xmd:rounded-b-md rounded-b-none xmd:rounded-r-none rounded-r-md"
+                    className="w-full rounded-l-md xmd:rounded-b-md rounded-b-none xmd:rounded-r-none rounded-r-md h-full object-cover"
                   />
                 </div>
               </div>

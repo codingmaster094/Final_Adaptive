@@ -26,16 +26,16 @@ useEffect(() => {
     return () => titles.forEach((title) => observer.unobserve(title));
   }, []);
     return (
-      <section class="t-section work-section lg:py[150px] md:py-[80px] py-[50px] w-full border-b-[1px] border-b-black-200 border-b-solid">
-        <div class="container">
-          <div class="inner md:space-y-[48px] space-y-6">
-            <div class="top text-black text-left md:space-y-[48px] space-y-6">
-              <div class="title flex justify-start items-start">
-                <h2 class="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] xsm:before:left-[-16px] before:left-[0] before:opacity-20 before:z-0">
+      <section className="t-section work-section lg:py[150px] md:py-[80px] py-[50px] w-full border-b-[1px] border-b-black-200 border-b-solid">
+        <div className="container">
+          <div className="inner md:space-y-[48px] space-y-6">
+            <div className="top text-black text-left md:space-y-[48px] space-y-6">
+              <div className="title flex justify-start items-start">
+                <h2 className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] xsm:before:left-[-16px] before:left-[0] before:opacity-20 before:z-0">
                   Effortless Implementation for Maximum Efficiency
                 </h2>
               </div>
-              <div class="text text-body font-inter font-normal text-black-100">
+              <div className="text text-body font-inter font-normal text-black-100">
                 <p>
                   Why complicate risk management? Our one-click system
                   streamlines the implementation process, ensuring that advisors
@@ -49,23 +49,23 @@ useEffect(() => {
               </div>
             </div>
 
-            <div class="space-y-8">
-              <h3 class="title-head text-h3 font-normal relative after:content-[''] after:absolute after:bottom-[-12px] after:left-0 after:w-0 after:h-[20px] after:bg-bg_line2 after:bg-center after:bg-cover after:bg-no-repeat after:transition-all after:duration-500 transition-all duration-300 ease-in-out">
+            <div className="space-y-8">
+              <h3 className="title-head text-h3 font-normal relative after:content-[''] after:absolute after:bottom-[-12px] after:left-0 after:w-0 after:h-[20px] after:bg-bg_line2 after:bg-center after:bg-cover after:bg-no-repeat after:transition-all after:duration-500 transition-all duration-300 ease-in-out">
                 How Market Shield Works
               </h3>
-              <div class="work-area flex justify-start items-stretch sm:gap-8 gap-4 flex-wrap *:w-full *:sm:w-[calc(50%-16px)] *:xlg:w-[calc(33%-24px)] ">
-                <div class="work-block flex justify-start items-start gap-[10px]">
-                  <div class="indicator-icon mt-[5px] w-[5%]">
+              <div className="work-area flex justify-start items-stretch sm:gap-8 gap-4 flex-wrap *:w-full *:sm:w-[calc(50%-16px)] *:xlg:w-[calc(33%-24px)] ">
+                <div className="work-block flex justify-start items-start gap-[10px]">
+                  <div className="indicator-icon mt-[5px] w-[5%]">
                     <img
                       src="/img/greenicon.svg"
                       alt="indicator-icon"
                       role="img"
-                      class="w-4 h-4"
+                      className="w-4 h-4"
                     />
                   </div>
-                  <div class="content w-[95%]">
-                    <div class="title text">
-                      <h3 class="title text-h5 font-bold font-inter mb-[10px]">
+                  <div className="content w-[95%]">
+                    <div className="title text">
+                      <h3 className="title text-h5 font-bold font-inter mb-[10px]">
                         Protective Puts:
                       </h3>
                       <p>
@@ -76,18 +76,18 @@ useEffect(() => {
                   </div>
                 </div>
 
-                <div class="work-block flex justify-start items-start gap-[10px]">
-                  <div class="indicator-icon mt-[5px] w-[5%]">
+                <div className="work-block flex justify-start items-start gap-[10px]">
+                  <div className="indicator-icon mt-[5px] w-[5%]">
                     <img
                       src="/img/greenicon.svg"
                       alt="indicator-icon"
                       role="img"
-                      class="w-4 h-4"
+                      className="w-4 h-4"
                     />
                   </div>
-                  <div class="content w-[95%]">
-                    <div class="title text">
-                      <h3 class="title text-h5 font-bold font-inter mb-[10px]">
+                  <div className="content w-[95%]">
+                    <div className="title text">
+                      <h3 className="title text-h5 font-bold font-inter mb-[10px]">
                         Collars:
                       </h3>
                       <p>
@@ -98,18 +98,18 @@ useEffect(() => {
                   </div>
                 </div>
 
-                <div class="work-block flex justify-start items-start gap-[10px]">
-                  <div class="indicator-icon mt-[5px] w-[5%]">
+                <div className="work-block flex justify-start items-start gap-[10px]">
+                  <div className="indicator-icon mt-[5px] w-[5%]">
                     <img
                       src="/img/greenicon.svg"
                       alt="indicator-icon"
                       role="img"
-                      class="w-4 h-4"
+                      className="w-4 h-4"
                     />
                   </div>
-                  <div class="content w-[95%]">
-                    <div class="title text">
-                      <h3 class="title text-h5 font-bold font-inter mb-[10px]">
+                  <div className="content w-[95%]">
+                    <div className="title text">
+                      <h3 className="title text-h5 font-bold font-inter mb-[10px]">
                         Covered Calls & Cash-Secured Puts:
                       </h3>
                       <p>

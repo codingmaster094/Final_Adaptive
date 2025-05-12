@@ -260,7 +260,6 @@ const Header = () => {
                       </svg>
                     </span>
                   </Link>
-                  {/* Menu */}
                   <div
                     className="dropdown-content multi-column static lg:absolute left-1/2 top-full lg:bg-white bg-transparent rounded overflow-hidden transition-all duration-300 max-h-0 lg:max-h-0 z-10 lg:w-[40vw] w-full lg:-translate-x-[60%] lg:shadow-xl shadow-[0px_4px_10px_rgba(255,255,255,0.5)] border-t border-t-black-200 opacity-0 invisible"
                     ref={(el) => {
@@ -272,7 +271,6 @@ const Header = () => {
                     data-dropdown-menu
                   >
                     <div className="listing grid lg:grid-cols-3 grid-cols-1 gap-4 p-4">
-                      {/* Static list items for 'Our Services' */}
                       <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white w-full">
                         <li>
                           <Link
@@ -280,6 +278,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Market Shield
                           </Link>
@@ -290,6 +289,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Factor Analysis
                           </Link>
@@ -300,6 +300,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Protection Calculator
                           </Link>
@@ -312,6 +313,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Risk Weather
                           </Link>
@@ -322,6 +324,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Call Writing
                           </Link>
@@ -330,8 +333,6 @@ const Header = () => {
                     </div>
                   </div>
                 </li>
-
-                {/* Third Dropdown: Tools */}
                 <li className="relative w-full lg:w-auto">
                   {/* Button */}
                   <Link
@@ -369,7 +370,7 @@ const Header = () => {
                     data-dropdown-menu
                   >
                     <div className="listing grid grid-cols-1 gap-4 p-4">
-                      {/* Static list items for 'Tools' */}
+
                       <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white w-full">
                         <li>
                           <Link
@@ -377,6 +378,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Protection Calculator
                           </Link>
@@ -387,6 +389,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Risk Contribution
                           </Link>
@@ -397,6 +400,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Forward Test
                           </Link>
@@ -407,6 +411,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Risk Weather
                           </Link>
@@ -425,8 +430,20 @@ const Header = () => {
                     aria-label="nav-link"
                     role="link"
                     className="hover:lg:text-blue w-full"
+                    onClick={() => setIsSidebarOpen(false)}
                   >
                     Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/faq"
+                    aria-label="nav-link"
+                    role="link"
+                    className="hover:lg:text-blue w-full"
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
+                    Faq
                   </Link>
                 </li>
               </ul>

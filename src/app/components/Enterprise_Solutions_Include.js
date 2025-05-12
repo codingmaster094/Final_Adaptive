@@ -4,7 +4,7 @@ import React from "react";
 const Enterprise_Solutions_Include = ({ items }) => {
   return (
     <>
-      <section className="tools-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 w-full bg-dots_bg bg-cover bg-center bg-no-repeat  border-t-[1px] border-t-black-200 border-t-solid">
+      <section className="tools-section lg:py-[150px] md:py-[80px] sm:py-[50px] py-6 w-full bg-dots_bg bg-cover bg-center bg-no-repeat  border-t-[1px] border-t-black-200 border-t-solid">
         <div className="block-enterprice top container text-left">
           <div className="title flex flex-col justify-start items-start md:space-y-8 space-y-6 md:text-left text-center">
             <h2 className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] xsm:before:left-[-16px] before:left-[0] before:opacity-20 before:z-0 text-black">

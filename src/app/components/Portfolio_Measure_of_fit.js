@@ -31,8 +31,8 @@ const Portfolio_Measure_of_fit = ({
             )}
           </div>
 
-          <div className="btm-column flex md:gap-[48px] gap-8 md:flex-row flex-col-reverse">
-            <div className="btm-col-left flex flex-col justify-start items-start space-y-8 md:w-1/2 w-full">
+          <div className="btm-column flex md:gap-[48px] gap-8 xmd:flex-row flex-col-reverse">
+            <div className="btm-col-left flex flex-col justify-start items-start space-y-8 xmd:w-1/2 w-full">
               <div className="btm-col-main space-y-6">
                 {measures.map((measure, index) => (
                   <div key={index} className="measure-item space-y-2">
@@ -70,7 +70,7 @@ const Portfolio_Measure_of_fit = ({
             </div>
 
             <div
-              className={`btm-col-right md:w-1/2 w-full ${
+              className={`btm-col-right xmd:w-1/2 w-full ${
                 borderBlack && "border border-solid border-black"
               } p- h-full`}
             >

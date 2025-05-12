@@ -2,168 +2,32 @@
 import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
 
-const faqData = {
-  title: "Frequently Asked Questions",
-  description:
-    "Need something cleared up? Here are our most frequently asked questions.",
-  categories: [
-    {
-      name: "Account",
-      questions: [
-        {
-          question: "Is there a free trial available?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our customer acquisition cost and how has it changed over the past year?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current inventory level and how does it compare to our sales projections?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current customer lifetime value and how can we increase it?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current market share and how does it compare to our competitors?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current website traffic and how can we increase it?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-      ],
-    },
-    {
-      name: "Subscription and Billing",
-      questions: [
-        {
-          question: "Is there a free trial available?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our customer acquisition cost and how has it changed over the past year?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current inventory level and how does it compare to our sales projections?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current customer lifetime value and how can we increase it?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-      ],
-    },
-    {
-      name: "Data Privacy",
-      questions: [
-        {
-          question: "Is there a free trial available?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-      ],
-    },
-    {
-      name: "Technical Support",
-      questions: [
-        {
-          question: "Is there a free trial available?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our customer acquisition cost and how has it changed over the past year?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current inventory level and how does it compare to our sales projections?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current customer lifetime value and how can we increase it?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current market share and how does it compare to our competitors?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current website traffic and how can we increase it?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-      ],
-    },
-    {
-      name: "Return and Performance",
-      questions: [
-        {
-          question: "Is there a free trial available?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our customer acquisition cost and how has it changed over the past year?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-        {
-          question:
-            "What is our current inventory level and how does it compare to our sales projections?",
-          answer:
-            "Market Shield puts the power in your hands, letting you customize protection levels that align with your unique financial goals. From overall portfolio coverage to targeted hedges on concentrated positions, you decide the balance between risk and reward.",
-        },
-      ],
-    },
-  ],
-};
-const FAQ_section = () => {
+const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
+  // Prepare categories from FaqPostDeatil
+  const categories = FaqPostDeatil;
+
+  // State for active category tab
   const [activeTab, setActiveTab] = useState(0);
+
+  // Initialize activeQuestions state: default to first question per category
   const [activeQuestions, setActiveQuestions] = useState(
-    faqData.categories.map(() => 0)
+    categories.map(() => null) // or 0 if you want first question open by default
   );
 
+  // Refs for content heights
   const contentRefs = useRef([]);
   const tabsBoxRef = useRef(null);
   const leftArrowRef = useRef(null);
   const rightArrowRef = useRef(null);
   const isDraggingRef = useRef(false);
 
-  const toggleQuestion = (index) => {
+  // Toggle question open/close
+  const toggleQuestion = (categoryIndex, questionIndex) => {
     setActiveQuestions((prev) =>
-      prev.map((q, i) => (i === activeTab ? (q === index ? null : index) : q))
+      prev.map((q, i) => {
+        if (i !== categoryIndex) return q;
+        return q === questionIndex ? null : questionIndex; // toggle
+      })
     );
   };
 
@@ -171,21 +35,19 @@ const FAQ_section = () => {
   useEffect(() => {
     contentRefs.current = contentRefs.current.slice(
       0,
-      faqData.categories[activeTab].questions.length
+      categories[activeTab].posts.length
     );
-  }, [activeTab]);
+  }, [activeTab, categories]);
 
   // Handle scroll arrows and drag
   useEffect(() => {
     const tabsBox = tabsBoxRef.current;
-    const leftArrow = leftArrowRef.current;
-    const rightArrow = rightArrowRef.current;
-
     const handleIcons = (scrollVal) => {
       let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-      if (leftArrow) leftArrow.style.display = scrollVal <= 0 ? "none" : "flex";
-      if (rightArrow)
-        rightArrow.style.display =
+      if (leftArrowRef.current)
+        leftArrowRef.current.style.display = scrollVal <= 0 ? "none" : "flex";
+      if (rightArrowRef.current)
+        rightArrowRef.current.style.display =
           maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
     };
 
@@ -228,17 +90,21 @@ const FAQ_section = () => {
   return (
     <section className="banner pt-[100px] xl:pb-[100px] lg:pb-20 md:pb-14 sm:pb-10 pb-6 overflow-hidden">
       <div className="container">
+        {/* Header Section */}
         <div className="section-heading z-index-5 xl:py-[100px] lg:py-20 md:py-14 sm:py-10 py-8 flex flex-col justify-center items-center text-center gap-4">
-          <h1 className="text-h1 font-ivy font-bold">{faqData.title}</h1>
-          <p className="text-h5">{faqData.description}</p>
+          <h1 className="text-h1 font-ivy font-bold">{FaqDetail?.faq_title}</h1>
+          <p className="text-h5">
+            {FaqDetail?.faq_desc.replace(/<\/?p[^>]*>/g, "")}
+          </p>
         </div>
 
+        {/* Main Content */}
         <div className="relative flex xl:gap-[100px] lg:gap-16 md:gap-10 gap-8 xmd:flex-row flex-col">
           {/* Category Tabs */}
           <div className="xmd:w-[25%] w-full">
             <h3 className="text-h5 font-bold mb-4">Category</h3>
             <div className="relative">
-              {/* Scroll Arrows for small devices */}
+              {/* Scroll Arrows */}
               <div
                 ref={leftArrowRef}
                 onClick={() => iconClick("left")}
@@ -257,14 +123,23 @@ const FAQ_section = () => {
                 ></i>
               </div>
 
+              {/* Category Buttons */}
               <div
                 ref={tabsBoxRef}
                 className="tablink-main w-full flex xmd:flex-col flex-row overflow-x-auto scroll-smooth whitespace-nowrap no-scrollbar"
               >
-                {faqData.categories.map((category, index) => (
+                {categories.map((category, index) => (
                   <button
                     key={index}
-                    onClick={() => setActiveTab(index)}
+                    onClick={() => {
+                      setActiveTab(index);
+                      // Optionally reset active question for new tab
+                      setActiveQuestions((prev) => {
+                        const newState = [...prev];
+                        newState[index] = null;
+                        return newState;
+                      });
+                    }}
                     className={`tablinks block text-left font-inter py-4 px-4 whitespace-nowrap ${
                       activeTab === index
                         ? "bg-pink-50 font-bold"
@@ -278,9 +153,9 @@ const FAQ_section = () => {
             </div>
           </div>
 
-          {/* Accordion */}
+          {/* Accordion for Questions */}
           <div className="xmd:w-[75%] w-full">
-            {faqData.categories[activeTab].questions.map((item, index) => {
+            {categories[activeTab].posts.map((item, index) => {
               const isOpen = activeQuestions[activeTab] === index;
               const ref = contentRefs.current[index] || React.createRef();
               contentRefs.current[index] = ref;
@@ -299,10 +174,10 @@ const FAQ_section = () => {
                 >
                   <div
                     className="accordion-header flex justify-between items-center cursor-pointer"
-                    onClick={() => toggleQuestion(index)}
+                    onClick={() => toggleQuestion(activeTab, index)}
                   >
                     <h3 className="text-h5 font-semibold w-[90%]">
-                      {item.question}
+                      {item.title}
                     </h3>
                     <span className="icon w-6 h-6 border border-solid border-black rounded-full flex justify-center items-center">
                       {isOpen ? (
@@ -326,8 +201,9 @@ const FAQ_section = () => {
                     ref={ref}
                     className="accordion-content"
                     style={contentStyle}
+                    // dangerouslySetInnerHTML={{ __html: item.content}}
                   >
-                    <p>{item.answer}</p>
+                    <p>{item.content.replace(/<\/?p[^>]*>/g, "")}</p>
                   </div>
                 </div>
               );

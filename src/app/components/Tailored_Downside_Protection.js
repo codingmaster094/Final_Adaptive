@@ -2,16 +2,16 @@
 
 const Tailored_Downside_Protection = () => {
     return (
-      <section class="tools-section lg:py[150px] md:py-[80px] py-[50px] w-full bg-dots_bg bg-cover bg-center bg-no-repeat border-b-[1px] border-b-black-200 border-b-solid border-t-[1px] border-t-black-200 border-t-solid">
-        <div class="container">
-          <div class="inner lg:space-y-[100px] md:space-y-16 space-y-6">
-            <div class="top text-black text-left space-y-6">
-              <div class="title flex justify-start items-start">
-                <h2 class="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] xsm:before:left-[-16px] before:left-[0] before:opacity-20 before:z-0">
+      <section className="tools-section lg:py[150px] md:py-[80px] py-[50px] w-full bg-dots_bg bg-cover bg-center bg-no-repeat border-b-[1px] border-b-black-200 border-b-solid border-t-[1px] border-t-black-200 border-t-solid">
+        <div className="container">
+          <div className="inner lg:space-y-[100px] md:space-y-16 space-y-6">
+            <div className="top text-black text-left space-y-6">
+              <div className="title flex justify-start items-start">
+                <h2 className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] xsm:before:left-[-16px] before:left-[0] before:opacity-20 before:z-0">
                   Tailored Downside Protection
                 </h2>
               </div>
-              <div class="text text-body font-inter font-normal text-black-100">
+              <div className="text text-body font-inter font-normal text-black-100">
                 <p>
                   At Adaptive, we understand that navigating the stock market
                   can be complicated. Market Shield—your one-click solution that
@@ -24,13 +24,13 @@ const Tailored_Downside_Protection = () => {
                 </p>
               </div>
             </div>
-            <div class="top text-black text-left space-y-6">
-              <div class="title flex justify-start items-start">
-                <h2 class="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] xsm:before:left-[-16px] before:left-[0] before:opacity-20 before:z-0">
+            <div className="top text-black text-left space-y-6">
+              <div className="title flex justify-start items-start">
+                <h2 className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] xsm:before:left-[-16px] before:left-[0] before:opacity-20 before:z-0">
                   Cost-Effective Investment Protection
                 </h2>
               </div>
-              <div class="text text-body font-inter font-normal text-black-100 space-y-4">
+              <div className="text text-body font-inter font-normal text-black-100 space-y-4">
                 <p>
                   Worried about rising costs associated with traditional
                   downside protection solutions?{" "}

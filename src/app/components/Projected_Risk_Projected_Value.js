@@ -38,7 +38,7 @@ const Projected_Risk_Projected_Value = ({
           </div>
 
           <div className="definition space-y-8 font-inter font-normal">
-            <div className="lg:w-[60%] w-[500px]">
+            <div className="lg:w-[60%] w-full">
               <div className="overflow-x-auto w-full">
                 <table className="md:w-full md:max-w-none max-w-[600px] text-left">
                   <thead className="bg-[#EdEdEd]">
