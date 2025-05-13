@@ -11,8 +11,6 @@ const Page = async () => {
   try {
     postData = await AllPostGet();
     Categorys = await AllCategorys();
-    console.log("Fetched postData:", postData); // Log the fetched posts
-    console.log("Fetched Categorys:", Categorys); // Log the fetched categories
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>;

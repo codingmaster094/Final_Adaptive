@@ -28,7 +28,7 @@ const BlogCard = ({ blog }) => (
             })}
           </span>
         </span>
-        <h3 className="text-body font-bold font-inter md:min-h-[40px] min-h-auto">
+        <h3 className="text-body font-bold font-inter md:min-h-[20px] min-h-auto">
           {blog.title.rendered}
         </h3>
         <span

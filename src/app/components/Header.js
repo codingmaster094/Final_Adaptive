@@ -155,7 +155,7 @@ const Header = () => {
               </button>
 
               {/* Navigation list with static items */}
-              <ul className="flex lg:items-center items-start gap-4 2xl:gap-6 text-body lg:flex-row flex-col lg:text-black text-white font-inter font-medium lg:w-auto w-full">
+              <ul className="flex lg:items-center items-start gap-4 2xl:gap-3 text-body lg:flex-row flex-col lg:text-black text-white font-inter font-medium lg:w-auto w-full">
                 {/* First Dropdown: Services for */}
                 <li className="relative w-full lg:w-auto">
                   {/* Button */}
@@ -195,7 +195,7 @@ const Header = () => {
                   >
                     <div className="listing grid grid-cols-1 gap-4 p-4">
                       {/* Static list items for 'Services for' */}
-                      <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white w-full">
+                      <ul className="flex flex-col xmd:p-4 p-0  space-y-4 lg:text-black text-white w-full">
                         <li>
                           <Link
                             href="/advisor-wealth-manager"
@@ -261,7 +261,7 @@ const Header = () => {
                     </span>
                   </Link>
                   <div
-                    className="dropdown-content multi-column static lg:absolute left-1/2 top-full lg:bg-white bg-transparent rounded overflow-hidden transition-all duration-300 max-h-0 lg:max-h-0 z-10 lg:w-[40vw] w-full lg:-translate-x-[60%] lg:shadow-xl shadow-[0px_4px_10px_rgba(255,255,255,0.5)] border-t border-t-black-200 opacity-0 invisible"
+                    className="dropdown-content multi-column static lg:absolute left-1/2 top-full lg:bg-white bg-transparent rounded overflow-hidden transition-all duration-300 max-h-0 lg:max-h-0 z-10 lg:w-[25vw] w-full lg:-translate-x-[60%] lg:shadow-xl shadow-[0px_4px_10px_rgba(255,255,255,0.5)] border-t border-t-black-200 opacity-0 invisible"
                     ref={(el) => {
                       if (el) {
                         dropdownMenus.current[1] = el;
@@ -270,8 +270,8 @@ const Header = () => {
                     }}
                     data-dropdown-menu
                   >
-                    <div className="listing grid lg:grid-cols-3 grid-cols-1 gap-4 p-4">
-                      <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white w-full">
+                    <div className="listing grid lg:grid-cols-2 grid-cols-1 gap-4 p-4">
+                      <ul className="flex flex-col xmd:p-4 p-0 space-y-4 lg:text-black text-white w-full">
                         <li>
                           <Link
                             href="/market-shield"
@@ -306,7 +306,7 @@ const Header = () => {
                           </Link>
                         </li>
                       </ul>
-                      <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white">
+                      <ul className="flex flex-col xmd:p-4 p-0 space-y-4 lg:text-black text-white">
                         <li>
                           <Link
                             href="/portfolio-risk-Weather"
@@ -370,8 +370,7 @@ const Header = () => {
                     data-dropdown-menu
                   >
                     <div className="listing grid grid-cols-1 gap-4 p-4">
-
-                      <ul className="flex flex-col p-4 space-y-4 lg:text-black text-white w-full">
+                      <ul className="flex flex-col xmd:p-4 p-0  space-y-4 lg:text-black text-white w-full">
                         <li>
                           <Link
                             href="/protection-calculator"

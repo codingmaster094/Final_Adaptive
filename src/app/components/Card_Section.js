@@ -44,7 +44,6 @@ const Card_Section = ({ title, description, cards }) => {
 
   return (
     <section className="card-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 border-b-[1px] border-b-black-200 border-b-solid border-t-[1px] border-t-black-200 border-t-solid overflow-hidden">
-    
       <div className="container">
         <div className="top sm:w-[83%] w-full">
           <div className="title">
@@ -61,7 +60,7 @@ const Card_Section = ({ title, description, cards }) => {
 
         <div className="card-block relative">
           <Swiper
-            className="lg:!pt-[100px] md:!pt-20 !pt-14  !pb-12 md:mt-[-50px]"
+            className="lg:!pt-[100px] md:!pt-20 !pt-14 sm:!pb-12 !pb-16 md:mt-[-50px]"
             modules={[Navigation, Autoplay, Pagination]}
             pagination={{ el: ".swiper-pagination", clickable: true }}
             navigation={{
@@ -101,9 +100,9 @@ const Card_Section = ({ title, description, cards }) => {
                     </div>
                     <h3
                       className="text-body font-bold font-inter heading flex-1"
-                       dangerouslySetInnerHTML={{
+                      dangerouslySetInnerHTML={{
                         __html: card.title?.rendered,
-                       }}
+                      }}
                     ></h3>
                     <div
                       className="text text-black-100 font-inter font-normal paragraph line-clamp-2"

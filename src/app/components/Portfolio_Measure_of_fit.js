@@ -80,6 +80,7 @@ const Portfolio_Measure_of_fit = ({
                 width={712}
                 height={391}
                 role="img"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>

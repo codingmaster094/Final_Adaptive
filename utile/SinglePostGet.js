@@ -1,19 +1,18 @@
-export default async function SinglePostGet(params) {
+export default async function SinglePostGet(slug) {
+  const url = `https://adaptive.rocket-wp.com/wp-json/wp/v2/posts?slug=${slug}`;
+  console.log("Fetching URL:", url);
   try {
-    const response = await fetch(
-      `https://adaptive.rocket-wp.com/wp-json/wp/v2/posts?slug=${params}`,
-      {
-        cache: "no-store",
-      }
-    );
+    const response = await fetch(url, { cache: "no-store" });
+    console.log("Response status:", response.status);
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Error response:", errorText);
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
-
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error in Alldata:", error);
-    throw error; // Rethrow the error to be caught in the calling component
+    console.error("Error in fetch:", error);
+    throw error;
   }
 }

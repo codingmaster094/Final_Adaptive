@@ -1,132 +1,178 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+
+// Parse content and organize headers hierarchically
+const parseContentAndHeaders = (htmlString) => {
+  if (typeof window === "undefined") return { html: "", headers: [] };
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlString, "text/html");
+  const headers = Array.from(doc.querySelectorAll("h2, h3"));
+
+  const structuredHeaders = [];
+  let currentH2 = null;
+
+  headers.forEach((header, index) => {
+    if (!header.id) {
+      header.id = `header-${index}`;
+    }
+    // Style headers
+    if (header.tagName === "H2") {
+      header.className = "text-h2 font-bold mb-4";
+      currentH2 = {
+        id: header.id,
+        text: header.innerText,
+        subHeaders: [],
+      };
+      structuredHeaders.push(currentH2);
+    } else if (header.tagName === "H3" && currentH2) {
+      header.className = "text-h3 font-bold mb-4"; // optional indent
+      currentH2.subHeaders.push({
+        id: header.id,
+        text: header.innerText,
+      });
+    }
+  });
+
+  // Style paragraphs and list items
+  Array.from(doc.querySelectorAll("p")).forEach((para) => {
+    para.className =
+      "text text-body font-inter font-normal text-black-100 mb-4";
+  });
+  Array.from(doc.querySelectorAll("li")).forEach((li) => {
+    li.className = "text text-body font-inter font-normal text-black-100 mb-4";
+  });
+
+  return {
+    html: doc.body.innerHTML,
+    headers: structuredHeaders,
+  };
+};
 
 const BlogSingle = ({ SinglePost }) => {
+  const [tocItems, setTocItems] = useState([]);
+  const [contentHTML, setContentHTML] = useState("");
+  const [activeHeaderId, setActiveHeaderId] = useState("");
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+  const [isClickScrolling, setIsClickScrolling] = useState(false);
   const tocCollapseRef = useRef(null);
+  const previousScrollRef = useRef(0);
+  const progressRef = useRef(null); // ref for progress line
 
+  // Parse content and headers
+  useEffect(() => {
+    if (SinglePost[0]?.content?.rendered) {
+      const { html, headers } = parseContentAndHeaders(
+        SinglePost[0].content.rendered
+      );
+      setContentHTML(html);
+      setTocItems(headers);
+    }
+  }, [SinglePost]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Handle scroll to update active header and progress line
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const isLargeScreen = window.innerWidth >= 1070;
-    if (!isLargeScreen) return; // Stop all scroll-related logic on small devices
-
-    const tocCollapse = tocCollapseRef.current;
-    const toggleBtn = document.getElementById("toc-toggle");
-    const tocLinks = document.querySelectorAll(".toc-link");
-    const sections = Array.from(
-      document.querySelectorAll("main > div[id^='section']")
-    );
-    const progressLine = document.getElementById("toc-progress");
-    let isClickScrolling = false;
-    const offset = 80;
-
-    const handleToggle = () => {
-      tocCollapse.classList.toggle("expanded");
-      if (tocCollapse.classList.contains("expanded")) {
-        tocCollapse.style.maxHeight = `${tocCollapse.scrollHeight}px`;
-      } else {
-        tocCollapse.style.maxHeight = "150px";
-      }
-    };
-
-    const onScroll = () => {
+    const handleScroll = () => {
       if (isClickScrolling) return;
 
-      let currentIndex = 0;
+      const allHeaders = [...document.querySelectorAll("h2[id], h3[id]")];
+      const offset = 80; // header offset
       let minDistance = Infinity;
+      let currentId = "";
 
-      sections.forEach((section, i) => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top);
+      allHeaders.forEach((header) => {
+        const rect = header.getBoundingClientRect();
+        const distance = Math.abs(rect.top - offset);
         if (distance < minDistance) {
           minDistance = distance;
-          currentIndex = i;
+          currentId = header.id;
         }
       });
+      setActiveHeaderId(currentId);
 
-      updateTOC(currentIndex);
-      updateProgressBar(currentIndex);
-      updateSVGColor(currentIndex);
-    };
+      // Update progress line
+      if (progressRef.current) {
+        const container = progressRef.current.parentElement; // parent of progress line
+        const totalHeight = container.scrollHeight || 150; // fallback
+        const sections = allHeaders;
+        // Find the index of current header
+        const currentIndex = sections.findIndex((h) => h.id === currentId);
+        const totalSections = sections.length;
 
-    const updateTOC = (currentIndex) => {
-      tocLinks.forEach((link, i) => {
-        if (i === currentIndex) {
-          link.classList.remove("text-black");
-          link.classList.add("text-purple");
-
-          if (!tocCollapse.classList.contains("expanded")) {
-            link.scrollIntoView({ behavior: "smooth", block: "nearest" });
-          }
-        } else {
-          link.classList.remove("text-purple");
-          link.classList.add("text-black");
-        }
-      });
-    };
-
-    const updateProgressBar = (currentIndex) => {
-      const containerHeight = tocCollapse.scrollHeight;
-      const heightPerSection = containerHeight / sections.length;
-      const progressHeight = (currentIndex + 1) * heightPerSection;
-      progressLine.style.height = `${progressHeight}px`;
-    };
-
-    const updateSVGColor = (currentIndex) => {
-      const svgPath = document.querySelector(".d1");
-      if (svgPath) {
-        const containerHeight = tocCollapse.scrollHeight;
-        const heightPerSection = containerHeight / sections.length;
+        const heightPerSection = totalHeight / totalSections;
         const progressHeight = (currentIndex + 1) * heightPerSection;
-        const fullHeight = sections.length * heightPerSection;
 
-        svgPath.setAttribute(
-          "stroke",
-          progressHeight >= fullHeight ? "#960E79" : "#EEA7DF"
-        );
+        // Set height of progress line
+        progressRef.current.style.height = `${progressHeight}px`;
+
+        // Change stroke color based on progress
+        const svgPath = document.querySelector(".d1");
+        if (svgPath) {
+          const fullHeight = totalSections * heightPerSection;
+          svgPath.setAttribute(
+            "stroke",
+            progressHeight >= fullHeight ? "#960E79" : "#EEA7DF"
+          );
+        }
       }
     };
 
-    tocLinks.forEach((link, index) => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute("href").substring(1);
-        const targetEl = document.getElementById(targetId);
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-        if (targetEl) {
-          isClickScrolling = true;
-          const top =
-            targetEl.getBoundingClientRect().top + window.scrollY - offset;
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isClickScrolling, tocItems]);
 
-          window.scrollTo({ top, behavior: "smooth" });
+  // Toggle TOC collapse
+  useEffect(() => {
+    const tocCollapse = tocCollapseRef.current;
+    const toggleBtn = document.getElementById("toc-toggle");
+    if (!tocCollapse || !toggleBtn) return;
 
-          setTimeout(() => {
-            updateTOC(index);
-            updateProgressBar(index);
-            updateSVGColor(index);
-            isClickScrolling = false;
-          }, 600);
-        }
-      });
-    });
+    const handleToggle = () => {
+      if (!tocCollapse.classList.contains("expanded")) {
+        previousScrollRef.current = window.scrollY;
+        tocCollapse.classList.add("expanded");
+        tocCollapse.style.maxHeight = `${tocCollapse.scrollHeight}px`;
+      } else {
+        tocCollapse.classList.remove("expanded");
+        tocCollapse.style.maxHeight = "150px";
+        window.scrollTo({ top: previousScrollRef.current, behavior: "auto" });
+      }
+    };
 
     toggleBtn.addEventListener("click", handleToggle);
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-
-    return () => {
-      toggleBtn.removeEventListener("click", handleToggle);
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => toggleBtn.removeEventListener("click", handleToggle);
   }, []);
-  
 
+  // Handle click on TOC item
+  const handleTOCClick = (id) => {
+    const target = document.getElementById(id);
+    if (target) {
+      setIsClickScrolling(true);
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+      setTimeout(() => setIsClickScrolling(false), 600);
+    }
+  };
 
   return (
     <div className="container">
-      <div className="xl:pt-[150px] lg:pt-[180px] md:pt-[160px] pt-[140px]  xl:pb-[100px] lg:pb-20 md:pb-14 sm:pb-10 pb-6 ">
+      {/* Back Button */}
+      <div className="xl:pt-[150px] lg:pt-[180px] md:pt-[160px] pt-[140px] xl:pb-[100px] lg:pb-20 md:pb-14 sm:pb-10 pb-6">
         <div className="btn-green *:text-4 mb-8">
           <Link role="link" href="/blog" className="block rotate-180">
             <svg
@@ -142,25 +188,28 @@ const BlogSingle = ({ SinglePost }) => {
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-              ></path>
+              />
               <path
                 d="M14.5 17.1089L19.5 12.1089"
                 stroke="black"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-              ></path>
+              />
               <path
                 d="M14.5 7.10889L19.5 12.1089"
                 stroke="black"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-              ></path>
+              />
             </svg>
           </Link>
         </div>
+
+        {/* Main Content */}
         <div className="top lg:space-y-16 md:space-y-6 space-y-6">
+          {/* Title & Meta */}
           <div className="main-text space-y-6">
             <h1 className="text-h2 font-semibold w-[90%] font-ivy">
               {SinglePost[0].title.rendered}
@@ -179,13 +228,13 @@ const BlogSingle = ({ SinglePost }) => {
             </div>
           </div>
 
+          {/* Content and TOC */}
           <div className="scroll-section flex lg:gap-16 gap-8 lg:flex-row flex-col">
-            <aside
-              className="lg:w-[30%] w-full"
-              aria-label="Table of contents and sharing"
-            >
+            {/* Sidebar: Table of Contents */}
+            <aside className="lg:w-[30%] w-full" aria-label="Table of contents">
               <div className="sticky pb-6 top-[20%]">
                 <div className="bg-white overflow-hidden pt-6 relative border-2 rounded-xl border-black-100">
+                  {/* TOC Header */}
                   <div className="pb-4 px-6">
                     <button
                       id="toc-toggle"
@@ -194,6 +243,7 @@ const BlogSingle = ({ SinglePost }) => {
                       <h3 className="font-headings tracking-tight scroll-mt-[120px] text-xl-tight 2xl:2xl-tight font-medium wrap-balance">
                         Table of contents
                       </h3>
+                      {/* Toggle arrow */}
                       <svg
                         id="toc-arrow"
                         viewBox="0 0 24 24"
@@ -204,113 +254,103 @@ const BlogSingle = ({ SinglePost }) => {
                         <path
                           d="M7 11.25h-.75v1.5H7v-1.5Zm9.75 1.5h.75v-1.5h-.75v1.5Zm-3.22-5.78L13 6.44 11.94 7.5l.53.53 1.06-1.06ZM17.5 12l.53.53.53-.53-.53-.53-.53.53Zm-5.03 3.97-.53.53L13 17.56l.53-.53-1.06-1.06ZM7 12.75h9.75v-1.5H7v1.5Zm5.47-4.72 4.5 4.5 1.06-1.06-4.5-4.5-1.06 1.06Zm4.5 3.44-4.5 4.5 1.06 1.06 4.5-4.5-1.06-1.06Z"
                           fill="currentColor"
-                        ></path>
+                        />
                       </svg>
                     </button>
                   </div>
 
-                  <div className="main-bar relative">
-                    <div
-                      className="overflow-hidden transition-all duration-500 max-h-[150px]"
-                      id="toc-collapse"
-                      ref={tocCollapseRef}
-                    >
-                      <div className="relative" style={{ transform: "none" }}>
-                        <div className="w-1 bg-pink absolute top-0 left-10 bottom-2.5 hidden lg:block"></div>
-                        <div
-                          className="w-1 origin-top bg-purple absolute top-0 left-10 hidden lg:block"
-                          id="toc-progress"
-                        ></div>
-                        <div className="list px-6 flex flex-col lg:gap-5 gap-3">
-                          <div className="">
-                            <a
-                              href="#section1"
-                              data-target="section1"
-                              className="toc-link inline-block lg:ml-8 text-h5 font-medium text-black leading-6 px-2 relative transition-colors duration-200 pl-2 mb-3"
-                            >
-                              Stock market & investment
-                            </a>
-                          </div>
+                  {/* TOC Content with progress line */}
+                  <div
+                    className="overflow-hidden transition-all duration-500 max-h-[150px]"
+                    id="toc-collapse"
+                    ref={tocCollapseRef}
+                  >
+                    <div className="relative" style={{ transform: "none" }}>
+                      {/* Vertical line background */}
+                      <div className="w-1 bg-pink absolute top-0 left-10 bottom-2.5 hidden lg:block"></div>
+                      {/* Progress line overlay */}
+                      <div
+                        className="w-1 origin-top bg-purple absolute top-0 left-10 hidden lg:block"
+                        id="toc-progress"
+                        ref={progressRef} // attach ref here
+                      ></div>
 
-                          <div className="">
-                            <a
-                              href="#section2"
-                              data-target="section2"
-                              className="toc-link inline-block lg:ml-8 text-h5 font-medium text-black leading-6 px-2 relative transition-colors duration-200 pl-2 mb-3"
+                      {/* Hierarchical TOC Items */}
+                      <div className="list lg:pl-14 pl-6 pr-6 flex flex-col lg:gap-5 gap-3">
+                        {tocItems.map((h2Item) => (
+                          <div key={h2Item.id}>
+                            {/* H2 Main item */}
+                            <button
+                              className={`block mb-2 text-h5 font-medium leading-6 px-2 relative transition-colors duration-200 text-left ${
+                                activeHeaderId === h2Item.id
+                                  ? "text-purple"
+                                  : "text-black"
+                              }`}
+                              onClick={() => handleTOCClick(h2Item.id)}
                             >
-                              Parturient Venenatis Etiam
-                            </a>
+                              {h2Item.text}
+                            </button>
+                            {/* H3 Sub-items */}
+                            {h2Item.subHeaders.length > 0 && (
+                              <div className="ml-4">
+                                {h2Item.subHeaders.map((sub) => (
+                                  <button
+                                    key={sub.id}
+                                    className={`block mb-2 text-h5 font-medium leading-6 px-2 relative transition-colors duration-200 ${
+                                      activeHeaderId === sub.id
+                                        ? "text-purple"
+                                        : "text-black"
+                                    }`}
+                                    onClick={() => handleTOCClick(sub.id)}
+                                  >
+                                    {sub.text}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
                           </div>
-
-                          <div className="">
-                            <a
-                              href="#section3"
-                              data-target="section3"
-                              className="toc-link inline-block lg:ml-8 text-h5 font-medium text-black leading-6 px-2 relative transition-colors duration-200 pl-2 mb-3"
-                            >
-                              Graph
-                            </a>
-                          </div>
-
-                          <div className="">
-                            <a
-                              href="#section4"
-                              data-target="section4"
-                              className="toc-link inline-block lg:ml-8 text-h5 font-medium text-black  leading-6 px-2 relative transition-colors duration-200 pl-2 mb-3"
-                            >
-                              Tortor Nullam Fringilla
-                            </a>
-                          </div>
-                        </div>
-                        <div className="items-center bg-gray-F7 rounded-lg z-10 relative mx-2.5 -mt-1 hidden lg:flex bg-white">
-                          <svg
-                            width="64"
-                            height="64"
-                            viewBox="0 0 64 64"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className=""
-                          >
-                            <path
-                              className="d1"
-                              d="M32 0C32 0 32 7.92318 32 13C21 13 12 22 12 33C12 44 21 53 32 53C43 53 52 44 52 33C52 22 43 13 32.5 13"
-                              stroke="#eea7df"
-                              strokeWidth="4"
-                            ></path>
-                            <path
-                              d="M32 0C32 0 32 7.92318 32 13C21 13 12 22 12 33C12 44 21 53 32 53C43 53 52 44 52 33C52 22 43 13 32.5 13"
-                              stroke="#960E79"
-                              strokeWidth="4"
-                              pathLength="1"
-                              strokeDashoffset="0px"
-                              strokeDasharray="0px 1px"
-                            ></path>
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M25 30.5C24.4477 30.5 24 30.9477 24 31.5V39.5C24 40.0523 24.4477 40.5 25 40.5H39C39.5523 40.5 40 40.0523 40 39.5V31.5C40 30.9477 39.5523 30.5 39 30.5H25ZM31.5 33.5C30.9477 33.5 30.5 33.9477 30.5 34.5V37.5C30.5 38.0523 30.9477 38.5 31.5 38.5H32.5C33.0523 38.5 33.5 38.0523 33.5 37.5V34.5C33.5 33.9477 33.0523 33.5 32.5 33.5H31.5Z"
-                              fill="#960E79"
-                            ></path>
-                            <path
-                              d="M36.5 30.5V29C36.5 26.5147 34.4853 24.5 32 24.5V24.5C29.5147 24.5 27.5 26.5147 27.5 29V30.5"
-                              stroke="#960E79"
-                              strokeWidth="3"
-                              pathLength="1"
-                              strokeDashoffset="0px"
-                              strokeDasharray="[object Object]px 1px"
-                            ></path>
-                          </svg>
-                          {/* <div className="text-base-tight flex flex-col">
-                          <span className="font-bold">Congratulations!</span>
-                        </div> */}
-                        </div>
+                        ))}
                       </div>
+                      {/* <div className="items-center bg-gray-F7 rounded-lg z-10 relative mx-2.5 -mt-1 hidden lg:flex bg-white">
+                        <svg
+                          width="64"
+                          height="64"
+                          viewBox="0 0 64 64"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            className="d1"
+                            d="M32 0C32 0 32 7.92318 32 13C21 13 12 22 12 33C12 44 21 53 32 53C43 53 52 44 52 33C52 22 43 13 32.5 13"
+                            stroke="#eea7df"
+                            strokeWidth="4"
+                          />
+                          <path
+                            d="M32 0C32 0 32 7.92318 32 13C21 13 12 22 12 33C12 44 21 53 32 53C43 53 52 44 52 33C52 22 43 13 32.5 13"
+                            stroke="#960E79"
+                            strokeWidth="4"
+                            pathLength="1"
+                            strokeDashoffset="0px"
+                            strokeDasharray="0px 1px"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M25 30.5C24.4477 30.5 24 30.9477 24 31.5V39.5C24 40.0523 24.4477 40.5 25 40.5H39C39.5523 40.5 40 40.0523 40 39.5V31.5C40 30.9477 39.5523 30.5 39 30.5H25ZM31.5 33.5C30.9477 33.5 30.5 33.9477 30.5 34.5V37.5C30.5 38.0523 30.9477 38.5 31.5 38.5H32.5C33.0523 38.5 33.5 38.0523 33.5 37.5V34.5C33.5 33.9477 33.0523 33.5 32.5 33.5H31.5Z"
+                            fill="#960E79"
+                          />
+                          <path
+                            d="M36.5 30.5V29C36.5 26.5147 34.4853 24.5 32 24.5V24.5C29.5147 24.5 27.5 26.5147 27.5 29V30.5"
+                            stroke="#960E79"
+                            strokeWidth="3"
+                          />
+                        </svg>
+                      </div> */}
                     </div>
                   </div>
-                  <div className="relative bottom-10 left-10">
-                    <div style={{ position: "relative" }}></div>
-                  </div>
                 </div>
+
+                {/* Share Buttons */}
                 <div className="share text-h5 font-bold *:text-black flex justify-start items-center gap-6 mt-4">
                   <p>Share article: </p>
                   <div className="flex justify-start items-center gap-6">
@@ -375,153 +415,58 @@ const BlogSingle = ({ SinglePost }) => {
               </div>
             </aside>
 
+            {/* Main Content */}
             <main className="lg:w-[70%] w-full flex flex-col gap-6">
-              <div id="section1" className="">
-                <h2 className="text-h3 font-bold mb-4">
-                  Stock market & investment
-                </h2>
-                <div className="space-y-4">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu{" "}
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu{" "}
-                  </p>
-                </div>
-              </div>
-              <div id="section2" className="">
-                <h2 className="text-h3 font-semibold mb-4">
-                  Parturient Venenatis Etiam
-                </h2>
-                <div className="space-y-4">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu{" "}
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu{" "}
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu{" "}
-                  </p>
-                </div>
-              </div>
-              <div id="section3" className="">
-                <div>
-                  <img src="/img/chart.svg" alt="chart image" role="img" />
-                </div>
-              </div>
-              <div id="section4" className="">
-                <h2 className="text-h3 font-semibold mb-4">
-                  Tortor Nullam Fringilla
-                </h2>
-                <ul className="list-disc sapce-y-4 ml-6 marker:text-black-200 marker:text-lg">
-                  <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu{" "}
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu{" "}
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu{" "}
-                  </li>
-                </ul>
-              </div>
+              {/* Render parsed HTML content */}
+              <div dangerouslySetInnerHTML={{ __html: contentHTML }} />
             </main>
           </div>
 
           <div className="btm-block grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {SinglePost[0].related_posts?.map((item, i) => {
-              return (
-                <div
-                  key={i}
-                  className="right font-inter flex flex-col justify-between px-4 pb-6 space-y-8 border-b border-solid border-b-black-200"
-                >
-                  <div className="head space-y-5">
-                    <div className="con flex gap-3 justify-start items-center">
-                      <span className="bg-pink-50 block text-[11px] pl-[6px] pr-[6px] w-fit rounded-[4px]">
-                        {item.categories[0]}
-                      </span>
-                      <span className="text-[12px] font-semibold">
-                        {new Date(item.date).toLocaleDateString("en-GB", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        })}
-                      </span>
-                    </div>
-                    <div className="main space-y-4 text-body">
-                      <h3 className="font-semibold w-[90%]">{item.title}</h3>
-                      <div
-                        className="para line-clamp-4"
-                        dangerouslySetInnerHTML={{
-                          __html: item.excerpt,
-                        }}
-                      ></div>
-                    </div>
+            {SinglePost[0].related_posts?.map((item, i) => (
+              <div
+                key={i}
+                className="right font-inter flex flex-col justify-between px-4 pb-6 space-y-8 border-b border-solid border-b-black-200"
+              >
+                <div className="head space-y-5">
+                  <div className="con flex gap-3 justify-start items-center">
+                    <span className="bg-pink-50 block text-[11px] pl-[6px] pr-[6px] w-fit rounded-[4px]">
+                      {item.categories[0]}
+                    </span>
+                    <span className="text-[12px] font-semibold">
+                      {new Date(item.date).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
                   </div>
-
-                  <div className="view w-full flex justify-between items-center sm:flex-nowrap flex-wrap gap-3">
-                    <div className="left flex gap-3 justify-start items-center text-body">
-                      <img
-                        src={item.author_avatar}
-                        alt="author image"
-                        role="img"
-                        className="w-6 h-6 rounded-full"
-                      />
-                      <span className="font-semibold">
-                        By {item?.author_name}
-                      </span>
-                    </div>
-                    {/* <div className="right flex gap-3 justify-start items-center text-body">
-                    <div className="flex gap-2 justify-start items-center">
-                      <img src="/img/eye.svg" alt="eye image" role="img" />
-                      <span>388</span>
-                    </div>
-                  </div> */}
+                  <div className="main space-y-4 text-body">
+                    <h3 className="font-semibold w-[90%]">{item.title}</h3>
+                    <div
+                      className="para line-clamp-4"
+                      dangerouslySetInnerHTML={{
+                        __html: item.excerpt,
+                      }}
+                    />
                   </div>
                 </div>
-              );
-            })}
+
+                <div className="view w-full flex justify-between items-center sm:flex-nowrap flex-wrap gap-3">
+                  <div className="left flex gap-3 justify-start items-center text-body">
+                    <img
+                      src={item.author_avatar}
+                      alt="author image"
+                      role="img"
+                      className="w-6 h-6 rounded-full"
+                    />
+                    <span className="font-semibold">
+                      By {item?.author_name}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
