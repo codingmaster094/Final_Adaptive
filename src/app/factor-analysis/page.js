@@ -1,14 +1,14 @@
 import React from "react";
-import Hero_without_img from "../components/Hero_without_img";
-import Factor_about from "../components/Factor_about";
-import FactorUnderstandingAbout from "../components/FactorUnderstandingAbout";
-import Factor_Measures_of_risk from "../components/Factor_Measures_of_risk";
-import Portfolio_Measure_of_fit from "../components/Portfolio_Measure_of_fit";
-import Category from "../components/Category";
-import Downside_protection from "../components/Downside_protection";
+import Hero_without_img from "../components/Hero_without_img/Hero_without_img";
+import Factor_about from "../components/Factor-Analysis/Factor_about";
+import FactorUnderstandingAbout from "../components/Factor-Analysis/FactorUnderstandingAbout";
+import Factor_Measures_of_risk from "../components/Factor-Analysis/Factor_Measures_of_risk";
+import Portfolio_Measure_of_fit from "../components/Factor-Analysis/Portfolio_Measure_of_fit";
+import Category from "../components/Retail-Investors/Category";
+import Downside_protection from "../components/Factor-Analysis/Downside_protection";
 import Alldata from "../../../utile/AllDatafetch";
 
-const Page = async () => {
+export default async function Page(){
   let FactorAnalysis;
 
   try {
@@ -79,4 +79,3 @@ const Page = async () => {
   );
 };
 
-export default Page;

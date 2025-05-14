@@ -3,7 +3,7 @@ export default async function AllCategorys() {
     const response = await fetch(
       `https://adaptive.rocket-wp.com/wp-json/wp/v2/categories`,
       {
-        cache: "no-store",
+        next: { revalidate: 60 },
       }
     );
     if (!response.ok) {

@@ -8,7 +8,7 @@ export default async function AllPostGet() {
       const response = await fetch(
         `https://adaptive.rocket-wp.com/wp-json/wp/v2/posts?page=${page}&per_page=100`,
         {
-          cache: "no-store",
+          next: { revalidate: 60 }, 
         }
       );
 
@@ -19,7 +19,6 @@ export default async function AllPostGet() {
       const data = await response.json();
       allPosts.push(...data);
 
-      // Read total pages from response headers
       if (page === 1) {
         totalPages = parseInt(response.headers.get("X-WP-TotalPages")) || 1;
       }

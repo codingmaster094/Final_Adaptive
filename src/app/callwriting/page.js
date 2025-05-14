@@ -1,23 +1,24 @@
-import React from 'react'
-import Hero_without_img from '../components/Hero_without_img';
-import Callwritingcangenerate_tools from '../components/Callwritingcangenerate_tools';
-import Category from '../components/Category';
-import Portfolio_Measure_of_fit from '../components/Portfolio_Measure_of_fit';
-import Putbuyingtool from '../components/Putbuyingtool';
-import Alldata from '../../../utile/AllDatafetch';
+import React from "react";
+import Hero_without_img from "../components/Hero_without_img/Hero_without_img";
+import Callwritingcangenerate_tools from "../components/callwriting/Callwritingcangenerate_tools";
+import Category from "../components/Retail-Investors/Category";
+import Portfolio_Measure_of_fit from "../components/Factor-Analysis/Portfolio_Measure_of_fit";
+import Putbuyingtool from "../components/callwriting/Putbuyingtool";
+import Alldata from "../../../utile/AllDatafetch";
 
-const page = async() => {
- let Callwritingcangenerate;
- 
- 
- try {
-   Callwritingcangenerate = await Alldata("call-writing");
- } catch (error) {
-   console.error("Error fetching data:", error);
- }
- if (!Callwritingcangenerate) {
-   return <div>No data available.</div>;
- }
+export default async function Page(){
+  let Callwritingcangenerate;
+
+  try {
+    Callwritingcangenerate = await Alldata("call-writing");
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    Callwritingcangenerate = null; // Handle error case
+  }
+
+  if (!Callwritingcangenerate) {
+    return <div>No data available.</div>;
+  }
 
   return (
     <>
@@ -47,7 +48,6 @@ const page = async() => {
         imageSrc={Callwritingcangenerate?.risk_weather_right_image}
         borderBlack={Callwritingcangenerate?.borderblack}
       />
-
       <Putbuyingtool
         title={Callwritingcangenerate?.risk_weather_title}
         sections={Callwritingcangenerate?.risk_weather_items}
@@ -55,6 +55,5 @@ const page = async() => {
       />
     </>
   );
-}
+};
 
-export default page

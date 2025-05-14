@@ -1,13 +1,13 @@
 import React from "react";
-import Hero_Section2 from "../components/Hero_Section2";
-import PortfolioRisk_tools_section from "../components/PortfolioRisk_tools_section";
-import Forecast_section from "../components/Forecast_section";
-import PortfolioRisk_tools_market_section from "../components/PortfolioRisk_tools_market_section";
-import PortfolioRisk_tools_Personalize from "../components/PortfolioRisk_tools_Personalize";
-import Card_Section from "../components/Card_Section";
+import Hero_Section2 from "../components/Portfolio-Risk-Weather/Hero_Section2";
+import PortfolioRisk_tools_section from "../components/Portfolio-Risk-Weather/PortfolioRisk_tools_section";
+import Forecast_section from "../components/Portfolio-Risk-Weather/Forecast_section";
+import PortfolioRisk_tools_market_section from "../components/Portfolio-Risk-Weather/PortfolioRisk_tools_market_section";
+import PortfolioRisk_tools_Personalize from "../components/Portfolio-Risk-Weather/PortfolioRisk_tools_Personalize";
+import Card_Section from "../components/home/Card_Section";
 import Alldata from "../../../utile/AllDatafetch";
 import AllPostGet from "../../../utile/AllPostget";
-const page = async() => {
+export default async function Page(){
   let PortfolioRiskWeatherTool;
    let blogsdatas;
     try {
@@ -75,4 +75,3 @@ const page = async() => {
   );
 };
 
-export default page;

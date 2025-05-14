@@ -1,9 +1,9 @@
 import React from "react";
-import Hero_without_img from "../components/Hero_without_img";
-import Enterprice_image_box from "../components/Enterprice_image_box";
-import Category from "../components/Category";
+import Hero_without_img from "../components/Hero_without_img/Hero_without_img";
+import Enterprice_image_box from "../components/enterprise_images/Enterprice_image_box";
+import Category from "../components/Retail-Investors/Category";
 
-const page = () => {
+export default async function Page(){
      const data = {
        hero_title: "Enterprise - Scale Risk Management",
        hero_desc:
@@ -77,4 +77,3 @@ const page = () => {
   );
 };
 
-export default page;

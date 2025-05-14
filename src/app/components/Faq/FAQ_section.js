@@ -92,7 +92,7 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
   }, []);
 
   return (
-    <section className="banner pt-[100px] xl:pb-[100px] lg:pb-20 md:pb-14 sm:pb-10 pb-6 bg-white-100">
+    <section className="banner pt-[100px] xl:pb-[100px] lg:pb-20 md:pb-14 sm:pb-10 pb-6 bg-white-100 border-b-[1px] border-b-black-200 border-b-solid">
       <div className="relative">
         <div className="flex xmd:flex-row flex-col min-h-screen">
           {/* Sidebar Tabs */}

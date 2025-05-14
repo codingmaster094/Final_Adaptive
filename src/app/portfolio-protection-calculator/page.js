@@ -1,12 +1,12 @@
 import React from "react";
-import Hero_without_img from "../components/Hero_without_img";
-import PortfolioAbout from "../components/PortfolioAbout";
-import Market_Protection_Estimate from "../components/Market_Protection_Estimate";
-import Projected_Risk_Projected_Value from "../components/Projected_Risk_Projected_Value";
-import Category from "../components/Category";
+import Hero_without_img from "../components/Hero_without_img/Hero_without_img";
+import PortfolioAbout from "../components/Portfolio-Protection-Calculator/PortfolioAbout";
+import Market_Protection_Estimate from "../components/Portfolio-Protection-Calculator/Market_Protection_Estimate";
+import Projected_Risk_Projected_Value from "../components/Portfolio-Protection-Calculator/Projected_Risk_Projected_Value";
+import Category from "../components/Retail-Investors/Category";
 import Alldata from "../../../utile/AllDatafetch";
 
-const Page = async () => {
+export default async function Page(){
   let portfolioprotectioncalculator = null;
   try {
     portfolioprotectioncalculator = await Alldata(
@@ -77,5 +77,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
 

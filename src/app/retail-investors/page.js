@@ -1,9 +1,9 @@
 import React from "react";
-import Hero_without_img from "../components/Hero_without_img";
-import Category from "../components/Category";
-import Retailer_tools_section from "../components/Retailer_tools_section";
-import Key_feuture from "../components/Key_feuture";
-const page = () => {
+import Hero_without_img from "../components/Hero_without_img/Hero_without_img";
+import Category from "../components/Retail-Investors/Category";
+import Retailer_tools_section from "../components/Retail-Investors/Retailer_tools_section";
+import Key_feuture from "../components/Retail-Investors/Key_feuture";
+export default async function Page(){
   const data = {
     hero_title: "Protect What You’ve Built Stay Invested for Long Term Growth.",
     hero_desc:
@@ -80,4 +80,3 @@ const page = () => {
   );
 };
 
-export default page;

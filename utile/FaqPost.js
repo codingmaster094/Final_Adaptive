@@ -3,7 +3,7 @@ export default async function FaqPost() {
       const response = await fetch(
         `https://adaptive.rocket-wp.com/wp-json/custom/v1/combined-faq-categories-with-posts`,
         {
-          cache: "no-store",
+          next: { revalidate: 60 },
         }
       );
       if (!response.ok) {

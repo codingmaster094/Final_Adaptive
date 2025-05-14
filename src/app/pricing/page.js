@@ -1,7 +1,7 @@
 import React from 'react'
-import Hero_without_img from "../components/Hero_without_img";
-import PricingComponent from "../components/PricingComponent";
-const page = () => {
+import Hero_without_img from "../components/Hero_without_img/Hero_without_img";
+import PricingComponent from "../components/Pricing/PricingComponent";
+export default async function Page(){
     const data = {
         hero_title: "Invest with peace of mind",
         hero_desc: "<p>Adaptive is the right solution for individual investors, RIAs and the nation’s largest brokers</p>\n",
@@ -28,5 +28,3 @@ const page = () => {
     </>
   )
 }
-
-export default page

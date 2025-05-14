@@ -1,14 +1,14 @@
 import React from "react";
-import Hero_Section from "../components/Hero_Section";
-import Tools_Section from "../components/Tools_Section";
-import Timeline_Section from "../components/Timeline_Section";
-import Tab_section from "../components/Tab_section";
-import Testimonial_Section from "../components/Testimonial_Section";
-import Card_Section from "../components/Card_Section";
+import Hero_Section from "../components/home/Hero_Section";
+import Tools_Section from "../components/home/Tools_Section";
+import Timeline_Section from "../components/home/Timeline_Section";
+import Tab_section from "../components/home/Tab_section";
+import Testimonial_Section from "../components/home/Testimonial_Section";
+import Card_Section from "../components/home/Card_Section";
 import Alldata from "../../../utile/AllDatafetch";
 import AllPostGet from "../../../utile/AllPostget";
 
-const page = async () => {
+export default async function Page(){
   let Homepagedata;
   let blogsdatas;
   try {
@@ -65,4 +65,3 @@ const page = async () => {
   );
 };
 
-export default page;

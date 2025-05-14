@@ -1,7 +1,7 @@
 import React from 'react'
-import Hero_without_img from "../components/Hero_without_img";
-import ForadvisorandwealthmanagerAbout from '../components/ForadvisorandwealthmanagerAbout';
-import Advisors_Choose_Adaptive from '../components/Advisors_Choose_Adaptive';
+import Hero_without_img from "../components/Hero_without_img/Hero_without_img";
+import ForadvisorandwealthmanagerAbout from '../components/Advisor-Wealth-Manager/ForadvisorandwealthmanagerAbout';
+import Advisors_Choose_Adaptive from '../components/Advisor-Wealth-Manager/Advisors_Choose_Adaptive';
 const page = () => {
     const data = {
         hero_title: "Modern Risk Management for Modern Advisors",

@@ -1,11 +1,11 @@
 import React from "react";
-import Hero_Section from "../components/Hero_Section";
-import Tailored_Downside_Protection from "../components/Tailored_Downside_Protection";
-import MarkShieldBoxcomponent from "../components/MarkShieldBoxcomponent";
-import Effortless_Implementation from "../components/Effortless_Implementation";
+import Hero_Section from "../components/home/Hero_Section";
+import Tailored_Downside_Protection from "../components/Market-Shield/Tailored_Downside_Protection";
+import MarkShieldBoxcomponent from "../components/Market-Shield/MarkShieldBoxcomponent";
+import Effortless_Implementation from "../components/Market-Shield/Effortless_Implementation";
 
 
-const page = async () => {
+export default async function Page(){
 const Datas = {
     hero_title: "Secure Your Portfolio with Confidence.",
     hero_desc: "<p>Market Shield provides advanced risk management solutions designed to protect your investments through intelligent strategies and real-time insights.</p>\n",
@@ -66,4 +66,3 @@ const sectionData = [
   );
 };
 
-export default page;

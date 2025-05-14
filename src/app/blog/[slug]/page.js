@@ -1,14 +1,12 @@
 import React from "react";
-import BlogSingle from "../../components/BlogSingle";
+import BlogSingle from "../../components/blogs/BlogSingle";
 import SinglePostGet from "../../../../utile/SinglePostGet";
 
 
-const Page = async({params}) => {
+  export default async function Page({params}){
   let SinglepostData; 
   const { slug } = await params
   SinglepostData = await SinglePostGet(slug);
   console.log('SinglepostData', SinglepostData)
   return <BlogSingle SinglePost={SinglepostData} />;
 };
-
-export default Page;

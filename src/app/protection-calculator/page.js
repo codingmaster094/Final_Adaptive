@@ -1,6 +1,6 @@
 import React from 'react'
 
-const page = () => {
+export default async function Page(){
   return (
     <div className="h-screen flex justify-center items-center p-[100px] text-h1">
     <h1>Protection Calculator</h1>
@@ -8,5 +8,3 @@ const page = () => {
 
   )
 }
-
-export default page

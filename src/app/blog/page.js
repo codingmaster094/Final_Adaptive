@@ -1,9 +1,9 @@
-// app/blog/page.jsx
+export const dynamic = "force-dynamic"; // 👈 add this line at the top
 
 import React from "react";
 import AllPostGet from "../../../utile/AllPostget";
 import AllCategorys from "../../../utile/AllCategorys";
-import BlogTab from "../components/BlogTab";
+import BlogTab from "../components/blogs/BlogTab";
 
 export default async function Page() {
   let postData;
