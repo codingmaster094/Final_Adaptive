@@ -159,10 +159,10 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
     <section className="hero-section pt-[100px] border-b border-black-200 bg-white-100">
       <div className="flex justify-start items-start relative xmd:flex-row flex-col">
         {/* Sidebar for categories */}
-        <div className="flex items-center justify-center px-2 py-6 xmd:w-[20%] w-full xmd:sticky top-[120px] shadow-lg xmd:shadow-none">
+        <div className="flex items-center justify-center px-2 py-6 xl:w-[20%] xmd:w-[30%] w-full xmd:sticky top-[120px] shadow-lg xmd:shadow-none">
           <div className="container">
             <div className="relative flex items-center w-full">
-              <div className="main-btns flex xmd:flex-col flex-row sm:gap-2 gap-6 sm:overflow-x-visible overflow-x-auto sm:whitespace-pre-wrap whitespace-nowrap scroll-smooth no-scrollbar text-black w-full text-body font-medium font-inter xmd:justify-start sm:justify-center justify-start">
+              <div className="main-btns flex xmd:flex-col flex-row sm:gap-2 gap-6 sm:overflow-x-visible overflow-x-auto xmd:whitespace-pre-wrap whitespace-nowrap scroll-smooth no-scrollbar text-black w-full text-body font-medium font-inter xmd:justify-start sm:justify-center justify-start">
                 <button
                   className={`menut-btn p-2 w-full xmd:text-left text-center ${
                     activeTab === "All" ? "bg-pink-80 font-semibold" : ""
@@ -194,7 +194,7 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
         </div>
 
         {/* Blog Content */}
-        <div className="inner xmd:px-10 py-10 xmd:w-[80%]  px-2 w-full">
+        <div className="inner xmd:px-10 xmd:py-10 py-2 xl:w-[80%] xmd:w-[70%] px-2 w-full">
           {/* Sticky Search Bar Container */}
           <div
             className={`sticky xmd:top-[90px] top-[110px] xmd:px-0 px-2 z-50 py-4 ${
