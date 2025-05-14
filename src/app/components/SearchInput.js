@@ -9,7 +9,7 @@ const SearchInput = ({ searchTerm, setSearchTerm }) => (
       </button>
       <input
         type="text"
-        placeholder="Search Blog title or"
+        placeholder="Search Blog title"
         value={searchTerm}
         onChange={(e) => {
           setSearchTerm(e.target.value);

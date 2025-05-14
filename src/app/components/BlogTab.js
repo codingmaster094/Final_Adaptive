@@ -197,7 +197,7 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
         <div className="inner xmd:px-10 py-10 xmd:w-[80%]  px-2 w-full">
           {/* Sticky Search Bar Container */}
           <div
-            className={`sticky top-[90px] xmd:px-0 px-2 z-50 py-4 ${
+            className={`sticky xmd:top-[90px] top-[110px] xmd:px-0 px-2 z-50 py-4 ${
               isScrolled ? "bg-white-100" : "bg-transparent"
             }`}
           >
