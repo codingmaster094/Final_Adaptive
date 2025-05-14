@@ -1,10 +1,11 @@
+// app/blog/page.jsx
+
 import React from "react";
-import BlogTab from "../components/BlogTab";
 import AllPostGet from "../../../utile/AllPostget";
 import AllCategorys from "../../../utile/AllCategorys";
+import BlogTab from "../components/BlogTab";
 
-
-const Page = async () => {
+export default async function Page() {
   let postData;
   let Categorys;
 
@@ -21,7 +22,4 @@ const Page = async () => {
   }
 
   return <BlogTab AllpostData={postData} AllCategorys={Categorys} />;
-};
-
-
-export default Page;
+}
