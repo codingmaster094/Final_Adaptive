@@ -52,6 +52,15 @@
  .swiper-pagination-bullet-active {
     @apply !bg-pink;
 }
+.price-list li.not-active{
+    @apply relative before:content-[''] before:w-[18px] before:h-[18px] before:bg-notactive_svg before:bg-contain before:bg-center before:bg-no-repeat before:absolute before:top-[2px] before:left-[10px] -translate-x-[50%]
+}
+.price-list li.close{
+    @apply relative before:content-[''] before:w-[18px] before:h-[18px] before:bg-close_svg before:bg-contain before:bg-center before:bg-no-repeat before:absolute before:top-[2px] before:left-[10px] -translate-x-[50%]
+}
+.price-list li{
+    @apply relative before:content-[''] before:w-[18px] before:h-[18px] before:bg-tick_green before:bg-contain before:bg-center before:bg-no-repeat before:absolute before:top-[2px] before:left-[10px] -translate-x-[50%]
+}
 }
 @layer components{
     .btn-link{

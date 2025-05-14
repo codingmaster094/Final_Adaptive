@@ -72,6 +72,10 @@ export default {
         prev_left: "url('/img/prevarrow.svg')",
         next_arrow: "url('/img/Arrownext.svg')",
         tick_icon: "url('/img/tick-svggreen.svg')",
+         //pricing-list svg
+         close_svg: "url('/img/close.svg')",
+         notactive_svg: "url('/img/not-active.svg')",
+         tick_green: "url('/img/list-tick.svg')",
         // clipPath
         "clip-pink":
           "polygon(0% 25%, 42% 20%, 42% 5%, 100% 0%, 100% 95%, 51% 100%, 50% 94%, 3% 95%, 3% 95%, 3% 95%)",
