@@ -1,8 +1,39 @@
-"use client";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import BlogCard from "./BlogCard";
 
-const BlogSection = ({ title, description, blogs }) => {
+const BlogSection = ({
+  title,
+  description,
+  blogs,
+  loadMore,
+  hasMore,
+  loading,
+}) => {
+  const observerRef = useRef();
+
+  useEffect(() => {
+    if (!loadMore || !hasMore) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loading) {
+          loadMore();
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, [loadMore, hasMore, loading]);
+
   return (
     <div className="btm-content py-8 border-t border-black-200">
       <div className="">
@@ -24,6 +55,14 @@ const BlogSection = ({ title, description, blogs }) => {
               </div>
             ))}
           </div>
+          {/* Sentinel element to trigger loadMore */}
+          {hasMore && (
+            <div
+              ref={observerRef}
+              className="w-full h-8 flex justify-center items-center"
+            >
+            </div>
+          )}
         </div>
       </div>
     </div>

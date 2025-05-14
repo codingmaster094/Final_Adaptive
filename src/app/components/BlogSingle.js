@@ -88,7 +88,7 @@ const BlogSingle = ({ SinglePost }) => {
       if (isClickScrolling) return;
 
       const allHeaders = [...document.querySelectorAll("h2[id], h3[id]")];
-      const offset = 80; // header offset
+      const offset = 70; // header offset
       let minDistance = Infinity;
       let currentId = "";
 
@@ -107,26 +107,20 @@ const BlogSingle = ({ SinglePost }) => {
         const container = progressRef.current.parentElement; // parent of progress line
         const totalHeight = container.scrollHeight || 150; // fallback
         const sections = allHeaders;
-        // Find the index of current header
         const currentIndex = sections.findIndex((h) => h.id === currentId);
         const totalSections = sections.length;
 
         const heightPerSection = totalHeight / totalSections;
-        const progressHeight = (currentIndex + 1) * heightPerSection;
+        let progressHeight = (currentIndex + 1) * heightPerSection;
+
+        // Cap progress height to 95% of the container
+        const maxHeight = totalHeight * 0.95;
+        progressHeight = Math.min(progressHeight, maxHeight);
 
         // Set height of progress line
         progressRef.current.style.height = `${progressHeight}px`;
-
-        // Change stroke color based on progress
-        const svgPath = document.querySelector(".d1");
-        if (svgPath) {
-          const fullHeight = totalSections * heightPerSection;
-          svgPath.setAttribute(
-            "stroke",
-            progressHeight >= fullHeight ? "#960E79" : "#EEA7DF"
-          );
-        }
       }
+      
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -233,7 +227,7 @@ const BlogSingle = ({ SinglePost }) => {
             {/* Sidebar: Table of Contents */}
             <aside className="lg:w-[30%] w-full" aria-label="Table of contents">
               <div className="sticky pb-6 top-[20%]">
-                <div className="bg-white overflow-hidden pt-6 relative border-2 rounded-xl border-black-100">
+                <div className="bg-white overflow-hidden py-6 relative border-2 rounded-xl border-black-100">
                   {/* TOC Header */}
                   <div className="pb-4 px-6">
                     <button
@@ -261,11 +255,11 @@ const BlogSingle = ({ SinglePost }) => {
 
                   {/* TOC Content with progress line */}
                   <div
-                    className="overflow-hidden transition-all duration-500 max-h-[150px]"
+                    className="overflow-hidden transition-all duration-500 max-h-full"
                     id="toc-collapse"
                     ref={tocCollapseRef}
                   >
-                    <div className="relative" style={{ transform: "none" }}>
+                    <div className="relative overflow-hidden" style={{ transform: "none" }}>
                       {/* Vertical line background */}
                       <div className="w-1 bg-pink absolute top-0 left-10 bottom-2.5 hidden lg:block"></div>
                       {/* Progress line overlay */}

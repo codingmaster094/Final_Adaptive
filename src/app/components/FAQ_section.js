@@ -6,8 +6,9 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
   const categories = FaqPostDeatil;
   const [activeTab, setActiveTab] = useState(0);
   const [activeQuestions, setActiveQuestions] = useState(
-    categories.map(() => 0) 
+    categories.map(() => 0)
   );
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const contentRefs = useRef([]);
   const tabsBoxRef = useRef(null);
@@ -19,10 +20,22 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
     setActiveQuestions((prev) =>
       prev.map((q, i) => {
         if (i !== categoryIndex) return q;
-        return q === questionIndex ? null : questionIndex; 
+        return q === questionIndex ? null : questionIndex;
       })
     );
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 130) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     contentRefs.current = contentRefs.current.slice(
@@ -33,8 +46,9 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
 
   useEffect(() => {
     const tabsBox = tabsBoxRef.current;
+
     const handleIcons = (scrollVal) => {
-      let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
+      const maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
       if (leftArrowRef.current)
         leftArrowRef.current.style.display = scrollVal <= 0 ? "none" : "flex";
       if (rightArrowRef.current)
@@ -68,7 +82,6 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
     tabsBox.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
 
-    // Initial icon display
     handleIcons(tabsBox.scrollLeft);
 
     return () => {
@@ -79,63 +92,46 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
   }, []);
 
   return (
-    <section className="banner pt-[100px] xl:pb-[100px] lg:pb-20 md:pb-14 sm:pb-10 pb-6 overflow-hidden bg-white-100">
-      <div className="">
-        {/* Header Section */}
-        <div className="section-heading z-index-5 xl:py-[100px] lg:py-20 md:py-14 sm:py-10 py-8 flex flex-col justify-center items-center text-center gap-4">
-          <h1 className="text-h1 font-ivy font-bold">{FaqDetail?.faq_title}</h1>
-          <p className="text-h5">
-            {FaqDetail?.faq_desc.replace(/<\/?p[^>]*>/g, "")}
-          </p>
-        </div>
-
-        {/* Main Content */}
-        <div className="relative flex xmd:flex-row flex-col">
-          {/* Category Tabs */}
-          <div className="xmd:w-[25%] w-full p-6 xmd:sticky top-[120px]">
-            <div className="">
-              <h3 className="text-h5 font-bold mb-4">Category</h3>
-              <div className="relative">
+    <section className="banner pt-[100px] xl:pb-[100px] lg:pb-20 md:pb-14 sm:pb-10 pb-6 bg-white-100">
+      <div className="relative">
+        <div className="flex xmd:flex-row flex-col min-h-screen">
+          {/* Sidebar Tabs */}
+          <div className="xl:w-[20%] xmd:w-[30%] w-full xmd:pt-14 pt-10 pb-6 px-2 xmd:shadow-none shadow-lg xmd:relative sticky xmd:top-0 top-[100px] xmd:bg-transparent bg-white-100 z-30">
+            <div className="sticky top-[160px] z-20">
+              <div className="container relative">
                 {/* Scroll Arrows */}
                 <div
                   ref={leftArrowRef}
                   onClick={() => iconClick("left")}
                   className="icon absolute left-0 top-1/2 transform -translate-y-1/2 bg-white z-10 px-2 cursor-pointer hidden sm:flex"
                 >
-                  <i
-                    id="left"
-                    className="fas fa-chevron-left text-gray-600"
-                  ></i>
+                  <i className="fas fa-chevron-left text-gray-600"></i>
                 </div>
                 <div
                   ref={rightArrowRef}
                   onClick={() => iconClick("right")}
                   className="icon absolute right-0 top-1/2 transform -translate-y-1/2 bg-white z-10 px-2 cursor-pointer hidden sm:flex"
                 >
-                  <i
-                    id="right"
-                    className="fas fa-chevron-right text-gray-600"
-                  ></i>
+                  <i className="fas fa-chevron-right text-gray-600"></i>
                 </div>
 
                 {/* Category Buttons */}
                 <div
                   ref={tabsBoxRef}
-                  className="tablink-main w-full flex xmd:flex-col flex-row overflow-x-auto scroll-smooth whitespace-nowrap no-scrollbar"
+                  className="tablink-main w-full flex xmd:flex-col flex-row gap-2 scroll-smooth xmd:whitespace-pre-wrap whitespace-nowrap no-scrollbar overflow-x-auto"
                 >
                   {categories.map((category, index) => (
                     <button
                       key={index}
                       onClick={() => {
                         setActiveTab(index);
-                        // Optionally reset active question for new tab
                         setActiveQuestions((prev) => {
                           const newState = [...prev];
                           newState[index] = 0;
                           return newState;
                         });
                       }}
-                      className={`tablinks block text-left font-inter py-4 px-4 whitespace-nowrap ${
+                      className={`tablinks block text-left font-inter py-2 px-2 ${
                         activeTab === index
                           ? "bg-pink-50 font-bold"
                           : "font-bold text-[#343434]"
@@ -149,8 +145,16 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
             </div>
           </div>
 
-          {/* Accordion for Questions */}
-          <div className="xmd:w-[75%] w-full p-14">
+          {/* FAQ Content */}
+          <div className="xl:w-[80%] xmd:w-[70%] w-full xmd:p-14 p-8">
+            <div className="section-heading z-index-5 flex flex-col justify-start items-start text-left gap-4 pb-8  border-b border-solid border-b-black-200">
+              <h1 className="text-h2 font-ivy font-semibold relative before:content-[''] before:w-[67px] before:h-[67px] before:rounded-full before:bg-pink before:absolute before:top-[-12px] xsm:before:left-[-24px] before:left-[-14px] before:opacity-20 before:z-0 xsm:text-left text-left">
+                {FaqDetail?.faq_title}
+              </h1>
+              <p className="text-p">
+                {FaqDetail?.faq_desc.replace(/<\/?p[^>]*>/g, "")}
+              </p>
+            </div>
             {categories[activeTab].posts.map((item, index) => {
               const isOpen = activeQuestions[activeTab] === index;
               const ref = contentRefs.current[index] || React.createRef();
@@ -166,7 +170,7 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
               return (
                 <div
                   key={index}
-                  className="accordion-item border-b py-6 space-y-2"
+                  className="accordion-item border-b py-6 space-y-2 max-w-[1024px] w-full"
                 >
                   <div
                     className="accordion-header flex justify-between items-center cursor-pointer"
@@ -197,7 +201,6 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
                     ref={ref}
                     className="accordion-content"
                     style={contentStyle}
-                    // dangerouslySetInnerHTML={{ __html: item.content}}
                   >
                     <p>{item.content.replace(/<\/?p[^>]*>/g, "")}</p>
                   </div>

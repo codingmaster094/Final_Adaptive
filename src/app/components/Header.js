@@ -202,6 +202,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Advisors & Wealth Managers
                           </Link>
@@ -212,6 +213,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Retail Investors
                           </Link>
@@ -222,6 +224,7 @@ const Header = () => {
                             aria-label="nav-link"
                             role="link"
                             className="hover:lg:text-blue w-full"
+                            onClick={() => setIsSidebarOpen(false)}
                           >
                             Enterprises
                           </Link>

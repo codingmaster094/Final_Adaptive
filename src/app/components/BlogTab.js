@@ -145,10 +145,12 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
 
     return (
       <BlogSection
-        key={activeTab}
-        blogs={postsToDisplay}
         title={activeTab === "All" ? null : categoryNameFromSlug}
-        activeTab={activeTab}
+        description={null}
+        blogs={postsToDisplay}
+        loadMore={loadMore}
+        loading={loadingMore}
+        hasMore={searchedBlogs.length > visibleCount}
       />
     );
   };
@@ -192,7 +194,7 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
         </div>
 
         {/* Blog Content */}
-        <div className="inner xmd:px-10 py-10 xmd:w-[80%] xmd:px-0 px-2 w-full">
+        <div className="inner xmd:px-10 py-10 xmd:w-[80%]  px-2 w-full">
           {/* Sticky Search Bar Container */}
           <div
             className={`sticky top-[90px] xmd:px-0 px-2 z-50 py-4 ${
