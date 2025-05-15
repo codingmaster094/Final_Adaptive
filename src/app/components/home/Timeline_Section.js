@@ -108,21 +108,23 @@ const Timeline_Section = ({
                       </div>
 
                       <ul className="list-none ml-[32px] p-0">
-                        <h3 className="title text-h5 font-bold font-inter mb-[10px]">
-                          {feature.title}
-                        </h3>
-                        <li
-                          className={`menu-content ${
-                            activeIndex === index ? "block" : "hidden"
-                          }`}
-                          data-target={index}
-                        >
+                        <li>
+                          <h3 className="title text-h5 font-bold font-inter mb-[10px]">
+                            {feature.title}
+                          </h3>
                           <div
-                            className="text text-black-100"
-                            dangerouslySetInnerHTML={{
-                              __html: feature.description,
-                            }}
-                          ></div>
+                            className={`menu-content ${
+                              activeIndex === index ? "block" : "hidden"
+                            }`}
+                            data-target={index}
+                          >
+                            <div
+                              className="text text-black-100"
+                              dangerouslySetInnerHTML={{
+                                __html: feature.description,
+                              }}
+                            ></div>
+                          </div>
                         </li>
                       </ul>
                     </div>
