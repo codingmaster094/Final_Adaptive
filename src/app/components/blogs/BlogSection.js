@@ -35,7 +35,7 @@ const BlogSection = ({
   }, [loadMore, hasMore, loading]);
 
   return (
-    <div className="btm-content py-8 border-t border-black-200">
+    <div className="btm-content py-8 border-t border-black-200 xmd:px-0 px-4">
       <div className="">
         <div className="space-y-10">
           {title && (

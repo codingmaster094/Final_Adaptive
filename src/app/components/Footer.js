@@ -3,14 +3,12 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer
-      className="footer lg:py[100px] md:py-[80px] py-[50px] bg-white-100"
-    >
+    <footer className="footer lg:py[100px] md:py-[80px] py-[50px] bg-white-100">
       <div className="container">
-        <div className="inner flex justify-start items-start gap-8 xlg:gap-[48px] xl:gap-[64px]  flex-wrap *:xl:w-[calc(25%-126px)] *:xlg:w-[calc(25%-93px)] *:md:w-[calc(33%-20px)] *:w-full" >
+        <div className="inner flex justify-start items-start gap-8 xlg:gap-[48px] xl:gap-[64px]  flex-wrap *:xl:w-[calc(25%-126px)] *:xlg:w-[calc(25%-93px)] *:md:w-[calc(33%-20px)] *:w-full">
           <div className="foot-col">
             <div className="footlogo">
-              <Link href="" role="link">
+              <Link href="/" role="link">
                 <Image
                   src="/img/Logo.svg"
                   width={159}
@@ -28,19 +26,19 @@ const Footer = () => {
             <div className="foot-menu">
               <ul className="list-none p-0 space-y-4 font-inter text-black-100 font-normal">
                 <li>
-                  <a href="#" role="link">
+                  <Link href="/advisor-wealth-manager" role="link">
                     Advisors & Wealth Managers
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" role="link">
+                  <Link href="/retail-investors" role="link">
                     Retail Investors
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" role="link">
+                  <Link href="/enterprise-Illustration" role="link">
                     Enterprises
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -52,14 +50,14 @@ const Footer = () => {
             <div className="foot-menu">
               <ul className="list-none p-0 space-y-4 font-inter text-black-100 font-normal">
                 <li>
-                  <a href="#" role="link">
+                  <Link href="/" role="link">
                     About Adaptive
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" role="link">
+                  <Link href="/" role="link">
                     Resources
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -71,9 +69,9 @@ const Footer = () => {
             <div className="foot-menu">
               <ul className="list-none p-0 space-y-4 font-inter text-black-100 font-normal">
                 <li>
-                  <a href="#" role="link">
+                  <Link href="/" role="link">
                     Adaptive Shield
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -85,22 +83,22 @@ const Footer = () => {
             <div className="foot-menu">
               <ul className="list-none p-0 space-y-4 font-inter text-black-100 font-normal">
                 <li>
-                  <Link href="/PortfolioProtectionCalculator" role="link">
+                  <Link href="/protection-calculator" role="link">
                     Protection Calculator
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" role="link">
+                  <Link href="/risk-contribution" role="link">
                     Risk Contribution
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" role="link">
+                  <Link href="/forward-test" role="link">
                     Forward Test
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" role="link">
+                  <Link href="/risk-weather" role="link">
                     Risk Weather
                   </Link>
                 </li>

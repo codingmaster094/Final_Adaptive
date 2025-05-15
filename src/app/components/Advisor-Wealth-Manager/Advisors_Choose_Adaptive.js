@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 
 
-const Advisors_Choose_Adaptive = ({ sections, title, subtitle , description }) => {
+const Advisors_Choose_Adaptive = ({ title, subtitle , description,content }) => {
   useEffect(() => {
       const titles = document.querySelectorAll(".title-head");
       const observer = new IntersectionObserver(
@@ -37,7 +37,7 @@ const Advisors_Choose_Adaptive = ({ sections, title, subtitle , description }) =
           </div>
 
           <div className="inner flex lg:gap-16 gap-8 flex-col">
-            {sections.map((section, index) => (
+            {content.map((item, index) => (
               <div
                 key={index}
                 className="box1 bg-white-100 xmd:pb-6 pb-0 pt-6 xmd:pl-8 pl-6 xmd:pr-0 pr-6 flex justify-start lg:gap-16 gap-8 w-full xmd:flex-row flex-col"
@@ -47,20 +47,21 @@ const Advisors_Choose_Adaptive = ({ sections, title, subtitle , description }) =
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <div className="content font-inter flex flex-col gap-2">
-                    <span className="text-h5 font-semibold">
-                      {section.heading}
-                    </span>
-                    <span>{section.description}</span>
-                    <span className="font-semibold">
-                      {section.additionalInfo}
-                    </span>
+                    <span
+                      className="text-h5 font-semibold"
+                      dangerouslySetInnerHTML={{ __html: item.item_title }}
+                    ></span>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: item.item_desc }}
+                    ></span>
+                    <span className="font-semibold">{item.additionalInfo}</span>
                   </div>
                 </div>
                 <div className="right xmd:w-1/2 w-full">
                   <Image
-                  width={696}
-                  height={390}
-                    src={section.image}
+                    width={696}
+                    height={390}
+                    src={item.item_image.url}
                     alt={`advisory image ${index + 1}`}
                     role="img"
                     className="w-full rounded-l-md xmd:rounded-b-md rounded-b-none xmd:rounded-r-none rounded-r-md h-full object-cover"

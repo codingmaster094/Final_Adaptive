@@ -5,23 +5,16 @@ import Logo from "./Logo";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  // Refs for all dropdown buttons and menus
   const dropdownRefs = useRef([]);
-
-  // For storing menu elements separately
   const dropdownMenus = useRef([]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
-
-  // Helper to assign refs for each dropdown
   const setDropdownRef = (index, button, menu) => {
     dropdownRefs.current[index] = { button, menu };
   };
 
-  // Detect mobile
   const isMobile = () =>
     typeof window !== "undefined" && window.innerWidth <= 1024;
 
@@ -424,7 +417,15 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <Link href="/pricing">Pricing</Link>
+                  <Link
+                    href="/pricing"
+                    aria-label="nav-link"
+                    role="link"
+                    className="hover:lg:text-blue w-full"
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
+                    Pricing
+                  </Link>
                 </li>
                 <li>
                   <Link

@@ -28,7 +28,7 @@ const Category = ({ title, description, dots_bg, BTN }) => {
             {BTN && (
               <div className="btn-link border-green hover:border-black mx-auto">
                 <Link
-                  href={BTN.title}
+                  href={BTN.url}
                   role="link"
                   className="flex gap-3 items-center justify-center"
                   target={BTN.target}

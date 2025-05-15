@@ -9,7 +9,7 @@
         @apply font-inter;
     }
     p{
-        @apply text-black-100;
+        @apply text-black-300;
     }
     svg{
         @apply flex-none;

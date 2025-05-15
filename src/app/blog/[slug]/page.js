@@ -7,6 +7,5 @@ import SinglePostGet from "../../../../utile/SinglePostGet";
   let SinglepostData; 
   const { slug } = await params
   SinglepostData = await SinglePostGet(slug);
-  console.log('SinglepostData', SinglepostData)
   return <BlogSingle SinglePost={SinglepostData} />;
 };
