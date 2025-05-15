@@ -6,7 +6,6 @@ const Logo = () => {
     <Image
       src="/img/Logo.svg" 
       alt="company logo"
-      role="image"
       aria-label="logo image"
       layout="responsive"
       width={159} 
