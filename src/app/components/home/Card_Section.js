@@ -124,6 +124,7 @@ const Card_Section = ({ title, description, cards }) => {
           </Swiper>
 
           <button
+            aria-label="swiper button"
             className="custom-swiper-button-prev absolute top-3 z-10 xl:left-[93%] lg:left-[92%] xmd:left-[90%] sm:left-[84%] xsm:left-[80%] left-[70%] -translate-x-[50%]"
             onClick={prevSlide}
           >
@@ -137,6 +138,7 @@ const Card_Section = ({ title, description, cards }) => {
           </button>
 
           <button
+            aria-label="swiper button"
             className="custom-swiper-button-next z-10 absolute top-3 right-5"
             onClick={nextSlide}
           >

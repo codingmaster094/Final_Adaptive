@@ -122,6 +122,7 @@ const FAQ_section = ({ FaqDetail, FaqPostDeatil }) => {
                 >
                   {categories.map((category, index) => (
                     <button
+                      aria-label="tab button"
                       key={index}
                       onClick={() => {
                         setActiveTab(index);

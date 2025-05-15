@@ -130,7 +130,9 @@ const Header = () => {
             >
               {/* Sidebar toggle button */}
               <button
-                className="lg:hidden vs-menu-toggle w-5 h-5 absolute top-3 right-3"
+                className="lg:hidden vs-menu-toggle w-5 h-5 absolute 
+                top-3 right-3"
+                aria-label="Toggle button"
                 onClick={toggleSidebar}
               >
                 {/* Hamburger icon */}

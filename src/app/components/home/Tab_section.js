@@ -110,6 +110,7 @@ const Tab_section = ({
           >
             {free_tools.map((tool, index) => (
               <button
+                aria-label="tab button"
                 key={index}
                 id={`tab-${index + 1}`}
                 className={`tab-button1 p-2 text-lg font-inter font-medium text-black transition-all duration-300 ease-in-out md:flex-shrink flex-shrink-0 flex-grow-0 ${

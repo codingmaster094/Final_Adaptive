@@ -164,6 +164,7 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
             <div className="relative flex items-center w-full">
               <div className="main-btns flex xmd:flex-col flex-row sm:gap-2 gap-6 sm:overflow-x-visible overflow-x-auto xmd:whitespace-pre-wrap whitespace-nowrap scroll-smooth no-scrollbar text-black w-full text-body font-medium font-inter xmd:justify-start sm:justify-center justify-start">
                 <button
+                  aria-label="tab button"
                   className={`menut-btn p-2 w-full xmd:text-left text-center ${
                     activeTab === "All" ? "bg-pink-80 font-semibold" : ""
                   }`}
@@ -176,6 +177,7 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
                 </button>
                 {displayCategories?.map((tab) => (
                   <button
+                    aria-label="tab list button"
                     key={tab.slug}
                     className={`menut-btn p-2 w-full xmd:text-left text-center ${
                       activeTab === tab.slug ? "bg-pink-80 font-semibold" : ""

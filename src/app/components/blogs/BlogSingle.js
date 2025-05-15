@@ -235,6 +235,7 @@ const BlogSingle = ({ SinglePost }) => {
                     <div className="pb-4 px-6">
                       <button
                         id="toc-toggle"
+                        aria-label="toggle button"
                         className="flex justify-between items-center w-full"
                       >
                         <h3 className="font-headings tracking-tight scroll-mt-[120px] text-xl-tight 2xl:2xl-tight font-medium wrap-balance">
@@ -281,6 +282,7 @@ const BlogSingle = ({ SinglePost }) => {
                             <div key={h2Item.id}>
                               {/* H2 Main item */}
                               <button
+                                aria-label="list item"
                                 className={`block mb-2 text-h5 font-medium leading-6 px-2 relative transition-colors duration-200 text-left ${
                                   activeHeaderId === h2Item.id
                                     ? "text-purple"
@@ -295,6 +297,7 @@ const BlogSingle = ({ SinglePost }) => {
                                 <div className="ml-4">
                                   {h2Item.subHeaders.map((sub) => (
                                     <button
+                                      aria-label="list item"
                                       key={sub.id}
                                       className={`block mb-2 text-h5 font-medium leading-6 px-2 relative transition-colors duration-200 ${
                                         activeHeaderId === sub.id

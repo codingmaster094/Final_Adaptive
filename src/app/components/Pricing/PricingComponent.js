@@ -92,6 +92,7 @@ const PricingComponent = ({
                     ></span>
                   </span>
                   <button
+                    aria-label="toggle button"
                     id="yearlyBtn"
                     onClick={() => setIsAnnual(true)}
                     className={`relative flex-1 text-p font-medium p-4 text-center transition-colors duration-150 ease-in-out border-[2px] border-solid border-black ${
@@ -101,6 +102,7 @@ const PricingComponent = ({
                     Monthly
                   </button>
                   <button
+                    aria-label="toggle button"
                     id="monthlyBtn"
                     onClick={() => setIsAnnual(false)}
                     className={`relative flex-1 font-medium p-4 text-center transition-colors duration-150 ease-in-out border-[2px] border-solid border-black ${
