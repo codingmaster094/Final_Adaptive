@@ -50,7 +50,7 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                   width={818}
                   height={483}
                   alt="Hero image"
-                  className="xxl:w-fit w-full lg:h-auto h-full"
+                  className="w-full sm:max-w-[400px] md:max-w-[600px] h-auto object-cover mx-auto"
                   quality={75}
                   priority={true}
                   loading="eager"
