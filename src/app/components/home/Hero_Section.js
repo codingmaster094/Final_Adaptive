@@ -51,7 +51,7 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                   height={483}
                   alt="Hero image"
                   role="img"
-                  className="w-fit h-auto"
+                  className="w-full h-auto object-cover"
                   quality={75}
                   priority={true}
                 />
