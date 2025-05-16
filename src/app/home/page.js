@@ -18,13 +18,10 @@ export default async function Page() {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>;
   }
-
-  // Show a loading indicator if data isn't loaded yet
   if (!Homepagedata || !blogsdatas) {
     return <div>Loading...</div>;
   }
 
-  // Render your page with the fetched data
   return (
     <>
       <Hero_Section

@@ -16,9 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Header />
-        <TransitionProvider>
+        {/* <TransitionProvider> */}
           <main>{children}</main>
-        </TransitionProvider>
+        {/* </TransitionProvider> */}
         <Footer />
       </body>
     </html>
