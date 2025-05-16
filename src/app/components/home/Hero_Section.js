@@ -44,7 +44,7 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
               </div>
 
               {/* Right Section (Image) */}
-              <div className="hero-right xxl:w-[55%] w-full flex xxl:justify-end justify-start  items-end">
+              <div className="hero-right xxl:w-[55%] w-full flex xxl:justify-end justify-start relative items-end">
                 <Image
                   src={image.url}
                   width={818}
@@ -53,7 +53,8 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                   className="xxl:w-fit w-full lg:h-auto h-full"
                   quality={75}
                   priority={true}
-                  loading='eager'
+                  loading="eager"
+                  unoptimized
                   // sizes="(max-width: 768px) 100vw, (min-width: 1200px) 100vw, 100vw"
                 />
               </div>

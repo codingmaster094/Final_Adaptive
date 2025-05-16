@@ -2,6 +2,11 @@
 const nextConfig = {
   images: {
     domains: ["adaptive.rocket-wp.com"],
+    unoptimized: true,
+  },
+  experimental: {
+    scrollRestoration: true,
+    turbopack: false,
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {
