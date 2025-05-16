@@ -19,7 +19,7 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                     dangerouslySetInnerHTML={{ __html: hero_peragraph }}
                   ></div>
                 </div>
-                <div className="button-area flex flex-wrap items-center lg:gap-[48px] gap-4 lg:mt-[64px] mt-8"> 
+                <div className="button-area flex flex-wrap items-center lg:gap-[48px] gap-4 lg:mt-[64px] mt-8">
                   {button1 && (
                     <div className={`btn-link *:text-4`}>
                       <Link href={button1.url} role="link">
@@ -43,7 +43,17 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                   height={483}
                   alt="Hero image"
                   role="img"
-                  className="xxl:w-fit w-full lg:h-auto h-full"
+                  className="xxl:w-fit w-full lg:h-auto h-full lg:block hidden"
+                  quality={75}
+                  priority={true}
+                />
+                <Image
+                  src={"/img/mobile_image.jpg"}
+                  width={540}
+                  height={300}
+                  alt="Hero image"
+                  role="img"
+                  className="xxl:w-fit w-full lg:h-auto h-full lg:hidden block"
                   quality={75}
                   priority={true}
                 />
