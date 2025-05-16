@@ -8,9 +8,9 @@ import Card_Section from "../components/home/Card_Section";
 import Alldata from "../../../utile/AllDatafetch";
 import AllPostGet from "../../../utile/AllPostget";
 
-export default async function Page(){
-  let Homepagedata;
-  let blogsdatas;
+export default async function Page() {
+  let Homepagedata = null;
+  let blogsdatas = null;
   try {
     Homepagedata = await Alldata(`home`);
     blogsdatas = await AllPostGet();
@@ -19,20 +19,21 @@ export default async function Page(){
     return <div>Error loading data.</div>;
   }
 
+  // Show a loading indicator if data isn't loaded yet
   if (!Homepagedata || !blogsdatas) {
-    return <div>No data available.</div>;
+    return <div>Loading...</div>;
   }
 
+  // Render your page with the fetched data
   return (
     <>
-{/* 
       <Hero_Section
         hero_text={Homepagedata?.hero_title}
         hero_peragraph={Homepagedata?.hero_desc}
         button1={Homepagedata?.hero_button_left}
         button2={Homepagedata?.hero_button_right}
         image={Homepagedata?.hero_image}
-      /> */}
+      />
       <Tools_Section toolsData={Homepagedata?.solutions} />
 
       <Timeline_Section
@@ -56,6 +57,7 @@ export default async function Page(){
         testimonial_desc={Homepagedata?.testimonial_desc}
         testimonial_items={Homepagedata?.testimonial_items}
       />
+
       <Card_Section
         title={Homepagedata?.blog_title}
         description={Homepagedata?.blog_desc}
@@ -63,5 +65,4 @@ export default async function Page(){
       />
     </>
   );
-};
-
+}
