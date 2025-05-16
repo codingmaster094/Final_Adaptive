@@ -44,7 +44,7 @@ export default {
         xlg: "991px",
         lg: "1025px",
         xxl:"1152px",
-        xl: "1280px",
+        xl: "1281px",
         "2xl": "1440px",
       },
       boxShadow: {
