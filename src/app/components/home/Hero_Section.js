@@ -45,10 +45,10 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
 
               {/* Right Section (Image) */}
               <div className="hero-right xxl:w-[55%] w-full flex xxl:justify-end justify-start relative items-end">
-                <Image
+                <img
                   src={image.url}
-                  width={818}
-                  height={483}
+                  // width={818}
+                  // height={483}
                   alt="Hero image"
                   className="w-full sm:max-w-[400px] md:max-w-[600px] h-auto object-cover mx-auto"
                   quality={75}
