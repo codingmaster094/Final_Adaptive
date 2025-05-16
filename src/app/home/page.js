@@ -7,8 +7,7 @@ import Testimonial_Section from "../components/home/Testimonial_Section";
 import Card_Section from "../components/home/Card_Section";
 import Alldata from "../../../utile/AllDatafetch";
 import AllPostGet from "../../../utile/AllPostget";
-
-export default async function Page(){
+export default async function Page() {
   let Homepagedata;
   let blogsdatas;
   try {
@@ -18,14 +17,21 @@ export default async function Page(){
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>;
   }
-
   if (!Homepagedata || !blogsdatas) {
     return <div>No data available.</div>;
   }
-
   return (
     <>
-
+      {/* Preload the hero image */}
+      {Homepagedata?.hero_image && (
+        <link
+          rel="preload"
+          href={Homepagedata.hero_image.url}
+          as="image"
+          type="image/webp" // Adjust the type based on your image format
+          fetchPriority="high"
+        />
+      )}
       <Hero_Section
         hero_text={Homepagedata?.hero_title}
         hero_peragraph={Homepagedata?.hero_desc}
@@ -63,5 +69,4 @@ export default async function Page(){
       />
     </>
   );
-};
-
+}
