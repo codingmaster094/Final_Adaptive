@@ -4,7 +4,7 @@ import "../../public/fonts/overpassfont.css";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { TransitionProvider } from "../../utile/transition-provider";
+// import { TransitionProvider } from "../../utile/transition-provider";
 
 export const metadata = {
   title: "Adaptive",

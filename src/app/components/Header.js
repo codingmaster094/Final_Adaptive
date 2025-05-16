@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import Logo from "./Logo";
@@ -11,6 +12,7 @@ const Header = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
+
   const setDropdownRef = (index, button, menu) => {
     dropdownRefs.current[index] = { button, menu };
   };
@@ -45,9 +47,76 @@ const Header = () => {
     }
   };
 
-  // Attach event listeners to all dropdowns
+  // Sample dynamic menu data
+  const menuItems = [
+    {
+      label: "Services for",
+      type: "dropdown",
+      items: [
+        {
+          label: "Advisors & Wealth Managers",
+          href: "/advisor-wealth-manager",
+        },
+        {
+          label: "Retail Investors",
+          href: "/retail-investors",
+        },
+        {
+          label: "Enterprises",
+          href: "/enterprise-Illustration",
+        },
+      ],
+    },
+    {
+      label: "Our Services",
+      type: "dropdown",
+      multiColumn: true,
+      items: [
+        [
+          { label: "Market Shield", href: "/market-shield" },
+          { label: "Factor Analysis", href: "/factor-analysis" },
+          {
+            label: "Protection Calculator",
+            href: "/portfolio-protection-calculator",
+          },
+        ],
+        [
+          { label: "Risk Weather", href: "/portfolio-risk-Weather" },
+          { label: "Call Writing", href: "/callwriting" },
+        ],
+      ],
+    },
+    {
+      label: "Tools",
+      type: "dropdown",
+      items: [
+        { label: "Protection Calculator", href: "/protection-calculator" },
+        { label: "Risk Contribution", href: "/risk-contribution" },
+        { label: "Forward Test", href: "/forward-test" },
+        { label: "Risk Weather", href: "/risk-weather" },
+      ],
+    },
+    {
+      label: "Pricing",
+      type: "link",
+      href: "/pricing",
+    },
+    {
+      label: "Blog",
+      type: "link",
+      href: "/blog",
+    },
+    {
+      label: "Faq",
+      type: "link",
+      href: "/faq",
+    },
+ 
+  ];
+
+  // Attach event listeners for dropdowns
   useEffect(() => {
-    dropdownRefs.current.forEach(({ button, menu }) => {
+    dropdownRefs.current.forEach(({ button, menu }, index) => {
       let hideTimeout;
 
       if (!button || !menu) return;
@@ -85,14 +154,12 @@ const Header = () => {
         }
       };
 
-      // Attach listeners
       button.addEventListener("mouseenter", handleMouseEnterButton);
       button.addEventListener("mouseleave", handleMouseLeaveButton);
       menu.addEventListener("mouseenter", handleMouseEnterMenu);
       menu.addEventListener("mouseleave", handleMouseLeaveMenu);
       button.addEventListener("click", handleClickButton);
 
-      // Cleanup
       return () => {
         button.removeEventListener("mouseenter", handleMouseEnterButton);
         button.removeEventListener("mouseleave", handleMouseLeaveButton);
@@ -108,14 +175,12 @@ const Header = () => {
     <header className="header fixed lg:py-0 py-[34px] border-b-black-200 border-b-solid border-b-[1px] w-full left-0 top-0 z-[99] bg-white">
       <div className="container">
         <div className="w-full flex justify-between items-center gap-3 2xl:gap-8">
-          {/* Logo */}
           <div className="logo max-w-[170px]">
             <Link href="/" role="link">
               <Logo />
             </Link>
           </div>
 
-          {/* Navigation */}
           <div
             className={`curtain lg:static fixed left-0 top-0 lg:w-auto w-full lg:h-auto h-full lg:bg-transparent bg-[rgba(0,0,0,0.5)] lg:opacity-1 lg:visible transition duration-300 z-[9999] ${
               isSidebarOpen
@@ -128,14 +193,11 @@ const Header = () => {
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
               }`}
             >
-              {/* Sidebar toggle button */}
               <button
-                className="lg:hidden vs-menu-toggle w-5 h-5 absolute 
-                top-3 right-3"
+                className="lg:hidden vs-menu-toggle w-5 h-5 absolute top-3 right-3"
                 aria-label="Toggle button"
                 onClick={toggleSidebar}
               >
-                {/* Hamburger icon */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -149,312 +211,113 @@ const Header = () => {
                 </svg>
               </button>
 
-              {/* Navigation list with static items */}
               <ul className="flex lg:items-center items-start gap-4 2xl:gap-3 text-body lg:flex-row flex-col lg:text-black text-white font-inter font-medium lg:w-auto w-full">
-                {/* First Dropdown: Services for */}
-                <li className="relative w-full lg:w-auto">
-                  {/* Button */}
-                  <Link
-                    href="#"
-                    role="button"
-                    className="group flex items-center justify-between lg:text-black text-white hover:lg:text-blue cursor-pointer w-full lg:w-auto"
-                    ref={(el) => {
+                {menuItems.map((item, index) => {
+                  if (item.type === "link") {
+                    return (
+                      <li key={index} className="w-full lg:w-auto">
+                        <Link
+                          href={item.href}
+                          role="link"
+                          className="hover:lg:text-blue w-full"
+                          onClick={() => setIsSidebarOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    );
+                  } else if (item.type === "dropdown") {
+                    const refButton = (el) => {
                       if (el) {
-                        setDropdownRef(0, el, dropdownMenus.current[0]);
+                        setDropdownRef(index, el, dropdownMenus.current[index]);
                       }
-                    }}
-                  >
-                    Services for
-                    <span className="down-arrow ml-2">
-                      <svg
-                        className="transition-colors duration-300 !fill-white lg:!fill-black group-hover:fill-blue"
-                        height="14"
-                        width="14"
-                        viewBox="0 0 330 330"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
-                      </svg>
-                    </span>
-                  </Link>
-                  {/* Menu */}
-                  <div
-                    className="dropdown-content single-column static lg:absolute left-1/2 top-full lg:bg-white bg-transparent rounded overflow-hidden transition-all duration-300 max-h-0 lg:max-h-0 z-10 lg:w-[20vw] w-full lg:-translate-x-[60%] lg:shadow-xl shadow-[0px_4px_10px_rgba(255,255,255,0.5)] border-t border-t-black-200 opacity-0 invisible"
-                    ref={(el) => {
-                      if (el) {
-                        dropdownMenus.current[0] = el;
-                        setDropdownRef(0, dropdownRefs.current[0]?.button, el);
-                      }
-                    }}
-                    data-dropdown-menu
-                  >
-                    <div className="listing grid grid-cols-1 gap-4 p-4">
-                      {/* Static list items for 'Services for' */}
-                      <ul className="flex flex-col xmd:p-4 !p-0 space-y-4 lg:text-black text-white w-full">
-                        <li>
-                          <Link
-                            href="/advisor-wealth-manager"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Advisors & Wealth Managers
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/retail-investors "
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Retail Investors
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/enterprise-Illustration"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Enterprises
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-
-                {/* Second Dropdown: Our Services */}
-                <li className="relative w-full lg:w-auto">
-                  {/* Button */}
-                  <Link
-                    href="#"
-                    role="button"
-                    className="group flex items-center justify-between lg:text-black text-white hover:lg:text-blue cursor-pointer w-full lg:w-auto"
-                    ref={(el) => {
-                      if (el) {
-                        setDropdownRef(1, el, dropdownMenus.current[1]);
-                      }
-                    }}
-                  >
-                    Our Services
-                    <span className="down-arrow ml-2">
-                      <svg
-                        className="transition-colors duration-300 !fill-white lg:!fill-black group-hover:fill-blue"
-                        height="14"
-                        width="14"
-                        viewBox="0 0 330 330"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
-                          fill=""
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                  <div
-                    className="dropdown-content multi-column static lg:absolute left-1/2 top-full lg:bg-white bg-transparent rounded overflow-hidden transition-all duration-300 max-h-0 lg:max-h-0 z-10 xl:w-[25vw] lg:w-[30vw] w-full lg:-translate-x-[60%] lg:shadow-xl shadow-[0px_4px_10px_rgba(255,255,255,0.5)] border-t border-t-black-200 opacity-0 invisible"
-                    ref={(el) => {
-                      if (el) {
-                        dropdownMenus.current[1] = el;
-                        setDropdownRef(1, dropdownRefs.current[1]?.button, el);
-                      }
-                    }}
-                    data-dropdown-menu
-                  >
-                    <div className="listing grid lg:grid-cols-2 grid-cols-1 gap-4 p-4">
-                      <ul className="flex flex-col xmd:p-4 !p-0  space-y-4 lg:text-black text-white w-full">
-                        <li>
-                          <Link
-                            href="/market-shield"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Market Shield
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/factor-analysis"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Factor Analysis
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/portfolio-protection-calculator"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Protection Calculator
-                          </Link>
-                        </li>
-                      </ul>
-                      <ul className="flex flex-col xmd:p-4 !p-0 space-y-4 lg:text-black text-white">
-                        <li>
-                          <Link
-                            href="/portfolio-risk-Weather"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Risk Weather
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/callwriting"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Call Writing
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li className="relative w-full lg:w-auto">
-                  {/* Button */}
-                  <Link
-                    href="#"
-                    role="button"
-                    className="group flex items-center justify-between lg:text-black text-white hover:lg:text-blue cursor-pointer w-full lg:w-auto"
-                    ref={(el) => {
-                      if (el) {
-                        setDropdownRef(2, el, dropdownMenus.current[2]);
-                      }
-                    }}
-                  >
-                    Tools
-                    <span className="down-arrow ml-2">
-                      <svg
-                        className="transition-colors duration-300 !fill-white lg:!fill-black group-hover:fill-blue"
-                        height="14"
-                        width="14"
-                        viewBox="0 0 330 330"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
-                      </svg>
-                    </span>
-                  </Link>
-                  {/* Menu */}
-                  <div
-                    className="dropdown-content single-column static lg:absolute left-1/2 top-full lg:bg-white bg-transparent rounded overflow-hidden transition-all duration-300 max-h-0 lg:max-h-0 z-10 lg:w-[20vw] w-full lg:-translate-x-[60%] lg:shadow-xl shadow-[0px_4px_10px_rgba(255,255,255,0.5)] border-t border-t-black-200 opacity-0 invisible"
-                    ref={(el) => {
-                      if (el) {
-                        dropdownMenus.current[2] = el;
-                        setDropdownRef(2, dropdownRefs.current[2]?.button, el);
-                      }
-                    }}
-                    data-dropdown-menu
-                  >
-                    <div className="listing grid grid-cols-1 gap-4 p-4">
-                      <ul className="flex flex-col xmd:p-4 !p-0 space-y-4 lg:text-black text-white w-full">
-                        <li>
-                          <Link
-                            href="/protection-calculator"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Protection Calculator
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/risk-contribution"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Risk Contribution
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/forward-test"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Forward Test
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="/risk-weather"
-                            aria-label="nav-link"
-                            role="link"
-                            className="hover:lg:text-blue w-full"
-                            onClick={() => setIsSidebarOpen(false)}
-                          >
-                            Risk Weather
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <Link
-                    href="/pricing"
-                    aria-label="nav-link"
-                    role="link"
-                    className="hover:lg:text-blue w-full"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/blog"
-                    aria-label="nav-link"
-                    role="link"
-                    className="hover:lg:text-blue w-full"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/faq"
-                    aria-label="nav-link"
-                    role="link"
-                    className="hover:lg:text-blue w-full"
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
-                    Faq
-                  </Link>
-                </li>
+                    };
+                    return (
+                      <li key={index} className="relative w-full lg:w-auto">
+                        <Link
+                          href="#"
+                          role="button"
+                          className="group flex items-center justify-between lg:text-black text-white hover:lg:text-blue cursor-pointer w-full lg:w-auto"
+                          ref={refButton}
+                        >
+                          {item.label}
+                          <span className="down-arrow ml-2">
+                            <svg
+                              className="transition-colors duration-300 !fill-white lg:!fill-black group-hover:fill-blue"
+                              height="14"
+                              width="14"
+                              viewBox="0 0 330 330"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" />
+                            </svg>
+                          </span>
+                        </Link>
+                        <div
+                          className={`dropdown-content static lg:absolute left-1/2 top-full lg:bg-white bg-transparent rounded overflow-hidden transition-all duration-300 max-h-0 lg:max-h-0 z-10 lg:w-[20vw] w-full lg:-translate-x-[60%] lg:shadow-xl shadow-[0px_4px_10px_rgba(255,255,255,0.5)] border-t border-t-black-200 opacity-0 invisible`}
+                          ref={(el) => {
+                            if (el) {
+                              dropdownMenus.current[index] = el;
+                              setDropdownRef(
+                                index,
+                                dropdownRefs.current[index]?.button,
+                                el
+                              );
+                            }
+                          }}
+                          data-dropdown-menu
+                        >
+                          {item.multiColumn ? (
+                            <div className="listing grid lg:grid-cols-2 grid-cols-1 gap-4 p-4">
+                              {item.items.map((columnItems, colIdx) => (
+                                <ul
+                                  key={colIdx}
+                                  className="flex flex-col xmd:p-4 !p-0 space-y-4 lg:text-black text-white w-full"
+                                >
+                                  {columnItems.map((subItem, subIdx) => (
+                                    <li key={subIdx}>
+                                      <Link
+                                        href={subItem.href}
+                                        aria-label="nav-link"
+                                        role="link"
+                                        className="hover:lg:text-blue w-full"
+                                        onClick={() => setIsSidebarOpen(false)}
+                                      >
+                                        {subItem.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="listing p-4">
+                              <ul className="flex flex-col space-y-4 lg:text-black text-white w-full">
+                                {item.items.map((subItem, subIdx) => (
+                                  <li key={subIdx}>
+                                    <Link
+                                      href={subItem.href}
+                                      aria-label="nav-link"
+                                      role="link"
+                                      className="hover:lg:text-blue w-full"
+                                      onClick={() => setIsSidebarOpen(false)}
+                                    >
+                                      {subItem.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      </li>
+                    );
+                  }
+                  return null;
+                })}
               </ul>
 
-              {/* Buttons */}
-              <div className="button-area flex items-center">
+              <div className="button-area flex items-center space-x-4 mt-4">
                 <div className="btn-link *:text-4 border-green hover:border-black cursor-pointer">
                   <Link href="#" role="link">
                     Sign In
@@ -469,7 +332,6 @@ const Header = () => {
             </nav>
           </div>
 
-          {/* Hamburger menu for mobile */}
           <div
             className="menu w-10 h-10 p-1 flex flex-col justify-center items-center gap-1 border-blue border-[1px] border-solid cursor-pointer lg:hidden"
             onClick={toggleSidebar}
