@@ -25,14 +25,14 @@ export default async function Page(){
 
   return (
     <>
-
+{/* 
       <Hero_Section
         hero_text={Homepagedata?.hero_title}
         hero_peragraph={Homepagedata?.hero_desc}
         button1={Homepagedata?.hero_button_left}
         button2={Homepagedata?.hero_button_right}
         image={Homepagedata?.hero_image}
-      />
+      /> */}
       <Tools_Section toolsData={Homepagedata?.solutions} />
 
       <Timeline_Section
