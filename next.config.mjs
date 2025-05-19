@@ -1,17 +1,14 @@
-/** @type {import('next').NextConfig} */
+import { withSentryConfig } from '@sentry/nextjs';
+
 const nextConfig = {
   images: {
     domains: ["adaptive.rocket-wp.com"],
-    unoptimized: true,
-  },
-  experimental: {
-    scrollRestoration: true,
-    turbopack: false,
   },
   webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.alias["lodash"] = "lodash-es";
-    }
+    config.resolve.fallback = {
+      fs: false,
+      path: false,
+    };
 
     config.optimization.splitChunks = {
       chunks: "all",
@@ -23,4 +20,8 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const sentryWebpackPluginOptions = {
+  silent: true,
+  hideSourcemaps: true,
+};
+export default withSentryConfig(nextConfig, sentryWebpackPluginOptions);

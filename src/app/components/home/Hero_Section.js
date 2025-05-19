@@ -9,6 +9,7 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
         <div className="container">
           <div className="inner pt-[48px] lg:pt-0">
             <div className="inner-content flex flex-col xxl:flex-row xxl:space-y-0 space-y-[56px]">
+              {/* Left Section */}
               <div className="hero-left py-0 md:py-8 xxl:py-[100px] xl:py-[130px] xxl:w-[45%] w-full pr-0 xxl:pr-[50px] xl:pr-[100px] flex justify-center flex-col">
                 <div className="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
                   <h1
@@ -19,7 +20,10 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                     dangerouslySetInnerHTML={{ __html: hero_peragraph }}
                   ></div>
                 </div>
+
+                {/* Buttons Section */}
                 <div className="button-area flex flex-wrap items-center lg:gap-[48px] gap-4 lg:mt-[64px] mt-8">
+                  {/* Button 1 */}
                   {button1 && (
                     <div className={`btn-link *:text-4`}>
                       <Link href={button1.url} role="link">
@@ -27,6 +31,8 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                       </Link>
                     </div>
                   )}
+
+                  {/* Button 2 with Dynamic Color */}
                   {button2 && (
                     <div className={`btn-green *:text-4`}>
                       <Link href={button2.url} role="link">
@@ -36,6 +42,8 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                   )}
                 </div>
               </div>
+
+              {/* Right Section (Image) */}
               <div className="hero-right xxl:w-[55%] w-full flex xxl:justify-end justify-start  items-end">
                 <Image
                   src={image.url}
@@ -43,17 +51,7 @@ const Hero_Section = ({ hero_text, hero_peragraph, button1, button2, image }) =>
                   height={483}
                   alt="Hero image"
                   role="img"
-                  className="xxl:w-fit w-full lg:h-auto h-full lg:block hidden"
-                  quality={75}
-                  priority={true}
-                />
-                <Image
-                  src={"/img/mobile_image.jpg"}
-                  width={540}
-                  height={300}
-                  alt="Hero image"
-                  role="img"
-                  className="xxl:w-fit w-full lg:h-auto h-full lg:hidden block"
+                  className="xxl:w-fit w-full lg:h-auto h-full"
                   quality={75}
                   priority={true}
                 />

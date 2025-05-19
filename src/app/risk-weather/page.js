@@ -1,9 +1,24 @@
-import React from 'react'
+"use client";
 
-export default async function Page(){
-  return (
-    <div className="h-screen flex justify-center items-center p-[100px] text-h1">
-    <h1>Risk Weather</h1>
-    </div>
-  )
+import React, { useState, useEffect } from "react";
+import RiskWeather from "@/app/components/Tools/RiskWeather/RiskWeather";
+import { FetchRiskData } from "@/app/api/FetchRiskData";
+import ToolsTabsection from "@/app/components/ToolsTabsection";
+export default function RiskWeatherScreen() {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const fetchedData = await FetchRiskData();
+            setData(fetchedData);
+        };
+        fetchData();
+    }, []);
+
+    return (
+        <>
+        <ToolsTabsection/>
+        <RiskWeather data={data} />
+        </>
+    )
 }
