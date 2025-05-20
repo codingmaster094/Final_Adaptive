@@ -469,6 +469,12 @@ const BlogSingle = ({ SinglePost }) => {
                     </span>
                   </div>
                 </div>
+                <Link
+                href={`/blog/${item.slug}`}
+                className="block underline underline-offset-4 text-black font-semibold font-overpass"
+              >
+                Read More
+              </Link>
               </div>
             ))}
           </div>
