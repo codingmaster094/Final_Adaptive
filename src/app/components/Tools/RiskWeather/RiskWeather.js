@@ -131,7 +131,7 @@ function RiskWeather({ data }) {
                 <div className="container">
                     <div className="banner bg-dots_bg bg-cover bg-center bg-no-repeat ">
                     <div className="container">
-                        <div class="inner pt-[18px] lg:pt-0">
+                        <div class="inner">
                             <div class="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
                                 <div class="hero-left w-full flex justify-start flex-col items-start text-left">
                                     <div class="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">

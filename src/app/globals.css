@@ -123,16 +123,16 @@
     @apply text-purple;
   }
   .chartlbl.left {
-    @apply sm:left-[-55px] left-[-85px];
+    @apply sm:left-[-55px] xsm:left-[-85px] left-[-100px];
   }
   .chartlbl.right {
-    @apply sm:right-[-25px] right-[-50px];
+    @apply sm:right-[-25px] xsm:right-[-50px] right-[-80px];
   }
   .riskstate:nth-of-type(1) {
     @apply pr-3;
   }
   .riskhead {
-    @apply flex flex-wrap w-full gap-4 pt-8 pb-0 px-8;
+    @apply flex flex-wrap w-full gap-4 md:pt-8 pt-0 pb-0 md:px-8 px-0;
   }
   .lblrisk {
     @apply flex items-center gap-1;

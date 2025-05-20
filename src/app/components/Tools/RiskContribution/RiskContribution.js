@@ -171,7 +171,7 @@ function RiskContribution({ initPortfolio, initPortfolioValue }) {
                 <div className="container">
                      <div className="banner bg-dots_bg bg-cover bg-center bg-no-repeat py-6 sm:py-[50px] lg:py-[64px]">
                     <div className="container">
-                        <div class="inner pt-[18px] lg:pt-0">
+                        <div class="inner">
                             <div class="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
                                 <div class="hero-left w-full flex justify-start flex-col items-start text-left">
                                     <div class="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
@@ -213,7 +213,7 @@ function RiskContribution({ initPortfolio, initPortfolioValue }) {
                     </div>
                     <div className="sectiondivide pb0 sectioncol pt0i">
                         <div className="riskhead p0i">
-                            <h2 className='text-blue text-h3 font-bold flex justify-start items-center flex-1'>Top 10 Risk Contribution</h2>
+                            <h2 className='text-blue text-h3 font-bold flex justify-start items-center md:flex-1 flex-[100%]'>Top 10 Risk Contribution</h2>
                             <div className="riskstate">
                                 <h3 id="portfoliorisk" className="text-green text-h2 font-medium">{PortfolioRisk.toFixed(2)}</h3>
                                 <div className="lblrisk">Portfolio Volatility
