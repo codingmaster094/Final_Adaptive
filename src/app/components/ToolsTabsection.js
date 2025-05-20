@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 export default function ToolsTabsection() {
   const pathname = usePathname();
 
@@ -12,19 +12,24 @@ export default function ToolsTabsection() {
   ];
 
   return (
-    <div className="tabs-container mx-auto mt-[150px]">
-      <div className="tab-list flex md:justify-center justify-start items-center xlg:gap-[100px] lg:gap-[48px] gap-4 md:overflow-x-hidden overflow-x-auto no-scrollbar">
-        {tabs.map((tab, index) => (
-          <Link
-            href={tab.path}
-            key={index}
-            className={`tab-button1 p-2 text-lg font-inter font-medium text-black transition-all duration-300 ease-in-out ${
-              pathname === tab.path ? "bg-[#eea7df4d]" : ""
-            }`}
-          >
-            {tab.label}
-          </Link>
-        ))}
+    <div className="tab-main bg-dots_bg xxl:pt-[193px] md:pt-[170px] pt-[150px]">
+      <div className="container">
+        <div className="tabs-container mx-auto">
+          <div className="tab-list flex justify-start items-center xl:gap-[100px] lg:gap-[60px] md:gap-8 gap-4 lg:overflow-x-hidden overflow-x-auto no-scrollbar lg:whitespace-pre-wrap whitespace-nowrap">
+            {tabs.map((tab, index) => (
+              <Link
+                href={tab.path}
+                prefetch={true}
+                key={index}
+                className={`tab-button1 p-4 text-lg font-inter font-medium text-black transition-all duration-300 ease-in-out ${
+                  pathname === tab.path ? "bg-[#eea7df4d]" : ""
+                }`}
+              >
+                {tab.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

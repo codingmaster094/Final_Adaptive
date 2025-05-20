@@ -8,7 +8,7 @@ export default function TooltipComponent(props) {
         const tooltipId = `tooltip-${props.id.replace(/[\s()%]/g, "")}`;
         return (
             <>
-                &nbsp;<img id={tooltipId} src="/app/Assets/risk-info.png"></img>
+                &nbsp;<img id={tooltipId} src="/img/risk-info.png"></img>
                 <Tooltip anchorSelect={`#${tooltipId}`} place="top" variant="dark" clickable={true} html={tooltipValue}>
                     
                 </Tooltip>

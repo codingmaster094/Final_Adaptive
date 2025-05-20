@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect, useRef } from "react";
 import { addZeroes } from "@/app/utilites/AddZeros";
 import { portfoliosWithManual } from "@/app/utilites/Constants";
@@ -12,6 +13,7 @@ import { FetchMarketShield } from "@/app/api/FetchMarketShield";
 import PortfolioDetailsTable from "@/app/components/PortfolioDetailsTable/PortfolioDetailsTable";
 import Image from "next/image";
 import CustomDatePicker from "./CustomDatepicker";
+
 function Ppcnew({ initPortfolio, initPortfolioValue, initTickerData }) {
 
     var currObj = {
@@ -707,7 +709,7 @@ function Ppcnew({ initPortfolio, initPortfolioValue, initTickerData }) {
 
     return (
       <>
-        <PageLoader bdopen={bdopen} />
+        {/* <PageLoader bdop  en={bdopen} /> */}
         <CustomPopup
           trigger={popupState}
           setTrigger={setPopupState}
@@ -715,158 +717,234 @@ function Ppcnew({ initPortfolio, initPortfolioValue, initTickerData }) {
           content={popupMessage}
           alertType={alertType}
         />
-        <div className="sectiondivide pb0 section-col ovv">
-          <div className="duration inputs">
-            <div className="big">
-              <label>Explore Market Shield Today</label>
-              <select
-                type="text"
-                value={portfolio}
-                className="input-mui-lg"
-                onChange={changePortfolio}
-              >
-                {portfoliosWithManual.map((value, i) => (
-                  <option key={i} value={value.name}>
-                    {value.value}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label>Portfolio Value</label>
-              <div className="input-container">
-                <input
-                  type="text"
-                  className="input-gray"
-                  placeholder=""
-                  required
-                  onChange={handleChangeValue}
-                  value={PortfolioTotalValue}
-                  disabled={portfolio === "Manual Portfolio" ? true : false}
-                  onKeyUp={(event) => changeValue(event, event.target.value)}
-                />
-                {showTooltip && (
-                  <div className="custom-tooltip">
-                    Please hit Enter to proceed
+        <div className="py-6 sm:pb-16 lg:pb-[100px]  sm:pt-16 lg:space-y-16 space-y-8 bg-dots_bg bg-cover bg-center bg-no-repeat">
+          <div className="banner lg:px-8">
+            <div className="container">
+              <div class="inner pt-[18px] lg:pt-0">
+                <div class="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
+                  <div class="hero-left w-full flex justify-start flex-col items-start text-left">
+                    <div class="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
+                      <h1 class="text-h1 text-black font-ivy font-semibold">
+                        Portfolio Price calculator
+                      </h1>
+                      <p>
+                        Market Shield provides advanced risk management
+                        solutions designed to protect your investments through
+                        intelligent strategies and real-time insights.{" "}
+                      </p>
+                    </div>
+                    <div class="button-area flex flex-wrap justify-start items-start lg:gap-12 gap-4 lg:mt-16 md:mt-8 mt-4">
+                      <div class="btn-link">
+                        <a href="#" role="link">
+                          Explore Market Shield Today
+                        </a>
+                      </div>
+                      <div class="btn-green">
+                        <a href="#" role="link">
+                          Sign up Today!
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                )}
-              </div>
-            </div>
-            <div>
-              <label>Protection Period</label>
-              <div className="input-container">
-                <CustomDatePicker
-                  defaultDate={protectionPeriodDate}
-                  onDateSelect={handleDateChange}
-                />
-              </div>
-            </div>
-            <div>
-              <label>SELECT LEVEL</label>
-              <select
-                value={selectedMetric}
-                onChange={handleMetricChange}
-                className="input-mui-lg"
-              >
-                <option value="Protection Level">Protection Level</option>
-                <option value="Standard Deviation">Standard Deviation</option>
-                <option value="Asset Allocation">Asset Allocation</option>
-              </select>
-            </div>
-            <div className="slidegroup">
-              <div className="custom-slider-container">
-                <input
-                  type="range"
-                  min={sliderMin}
-                  max={sliderMax}
-                  step="0.01"
-                  value={sliderValue}
-                  onChange={handleSliderChange}
-                  className="custom-slider"
-                />
-                <div
-                  className="movable-tooltip"
-                  style={{ left: tooltipPosition }}
-                >
-                  <div className="tooltip-content">{getTooltipValue()}</div>
                 </div>
-                {renderSliderTicksForIntervals()}
               </div>
+            </div>
+          </div>
 
-              {/* {renderSliderTicksForIntervals()} */}
-            </div>
-          </div>
-        </div>
-        <div className="sectiondivide pb0 pt0 section-col">
-          <div className="weatherstat part3">
-            {dataLoaded && (
-              <h4>
-                Risk Weather is <span style={headerColor}>{MesgHeader}</span>.
-                {MesgDscUp}
-                <br></br>
-                {MesgDscDown}{" "}
-                <a className="ai-link" href="#faq1">
-                  Learn more.
-                </a>
-              </h4>
-            )}
-          </div>
-        </div>
-        <div className="sectiondivide pb0 section-col">
-          <div className="sumstates">
-            <div className="sumvalue">
-              <label>Beta / R-sq</label>
-              <div>
-                {shieldData?.Beta || "-"} /{" "}
-                {shieldData?.RSq ? parseInt(shieldData.RSq, 10) : "-"}%
+          {/*  */}
+          <div className="bg-dots_bg bg-cover bg-center bg-no-repeat">
+            <div className="container">
+              <div className="border-[1.5px] border-solid border-black-200 rounded-[20px] bg-white p-6 lg:p-8 space-y-6">
+                <div className="sectiondivide pb0 section-col ovv">
+                  <div className="duration inputs flex justify-start 2xl:gap-8 gap-4 flex-wrap">
+                    <div className="big 2xl:w-[calc(20%-25px)] lg:w-[calc(33%-8px)] sm:w-[calc(50%-8px)] w-full border border-solid border-black-200 rounded-md p-4">
+                      <label>Explore Market Shield Today</label>
+                      <select
+                        type="text"
+                        value={portfolio}
+                        className="input-mui-lg w-[90%]"
+                        onChange={changePortfolio}
+                      >
+                        {portfoliosWithManual.map((value, i) => (
+                          <option key={i} value={value.name}>
+                            {value.value}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="2xl:w-[calc(15%-25px)]  lg:w-[calc(33%-8px)] sm:w-[calc(50%-8px)] w-full border border-solid border-black-200 rounded-md p-4">
+                      <label>Portfolio Value</label>
+                      <div className="input-container">
+                        <input
+                          type="text"
+                          className="input-gray w-[80%]"
+                          placeholder=""
+                          required
+                          onChange={handleChangeValue}
+                          value={PortfolioTotalValue}
+                          disabled={
+                            portfolio === "Manual Portfolio" ? true : false
+                          }
+                          onKeyUp={(event) =>
+                            changeValue(event, event.target.value)
+                          }
+                        />
+                        {showTooltip && (
+                          <div className="custom-tooltip">
+                            Please hit Enter to proceed
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="2xl:w-[calc(15%-25px)] lg:w-[calc(33%-8px)] sm:w-[calc(50%-8px)] w-full border border-solid border-black-200 rounded-md p-4">
+                      <label>Protection Period</label>
+                      <div className="input-container w-[80%]">
+                        <CustomDatePicker
+                          defaultDate={protectionPeriodDate}
+                          onDateSelect={handleDateChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="2xl:w-[calc(50%-25px)] sm:w-[calc(50%-8px)] w-full lg:flex-row flex-col border border-solid border-black-200 rounded-md p-4 bg-white-100 flex gap-4">
+                      <div className="lg:w-[28%] w-full">
+                        <label>SELECT LEVEL</label>
+                        <select
+                          value={selectedMetric}
+                          onChange={handleMetricChange}
+                          className="input-mui-lg bg-transparent"
+                        >
+                          <option value="Protection Level">
+                            Protection Level
+                          </option>
+                          <option value="Standard Deviation">
+                            Standard Deviation
+                          </option>
+                          <option value="Asset Allocation">
+                            Asset Allocation
+                          </option>
+                        </select>
+                      </div>
+                      <div className="slidegroup lg:w-[72%] w-full">
+                        <div className="custom-slider-container">
+                          <input
+                            type="range"
+                            min={sliderMin}
+                            max={sliderMax}
+                            step="0.01"
+                            value={sliderValue}
+                            onChange={handleSliderChange}
+                            className="custom-slider w-full bg-white"
+                          />
+                          <div
+                            className="movable-tooltip w-fit float-left"
+                            style={{ left: tooltipPosition }}
+                          >
+                            <div className="tooltip-content">
+                              {getTooltipValue()}
+                            </div>
+                          </div>
+                          {renderSliderTicksForIntervals()}
+                        </div>
+
+                        {/* {renderSliderTicksForIntervals()} */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="sectiondivide pb0 pt0 section-col">
+                  <div className="weatherstat part3">
+                    {dataLoaded && (
+                      <h4>
+                        Risk Weather is{" "}
+                        <span style={headerColor}>{MesgHeader}</span>.
+                        {MesgDscUp}
+                        <br></br>
+                        {MesgDscDown}{" "}
+                        <a className="ai-link" href="#faq1">
+                          Learn more.
+                        </a>
+                      </h4>
+                    )}
+                  </div>
+                </div>
+                <div className="sectiondivide pb0 section-col">
+                  <div className="sumstates flex justify-stretch items-stretch rounded-md flex-wrap">
+                    <div className="sumvalue px-8 py-4 border border-solid border-black-200 md:w-max sm:w-1/2 w-full">
+                      <label className="text-p font-semibold uppercase">
+                        Beta / R-sq
+                      </label>
+                      <div className="value xl:text-[36px] md:text-[30px] sm:text-[28px] text-smtitle font-medium">
+                        {shieldData?.Beta || "-"} /{" "}
+                        {shieldData?.RSq ? parseInt(shieldData.RSq, 10) : "-"}%
+                      </div>
+                    </div>
+                    <div className="sumvalue px-8 py-4 border border-solid border-black-200 md:w-max sm:w-1/2 w-full">
+                      <label className="text-p font-semibold uppercase">
+                        Asset Allocation Equiv (Stock-Bond)
+                      </label>
+                      <div className="value xl:text-[36px] md:text-[30px] sm:text-[28px] text-smtitle font-medium">
+                        {shield.assetAllocation}
+                      </div>
+                    </div>
+                    <div className="sumvalue px-8 py-4 border border-solid border-black-200 md:w-max sm:w-1/2 w-full">
+                      <label className="text-p font-semibold uppercase">
+                        Protection Level
+                      </label>
+                      <div className="value xl:text-[36px] md:text-[30px] sm:text-[28px] text-smtitle font-medium">
+                        {(shield.protectionLevelPercent * 100).toFixed(0)}%
+                      </div>
+                    </div>
+                    <div className="sumvalue px-8 py-4 border border-solid border-black-200 md:w-max sm:w-1/2 w-full">
+                      <label className="text-p font-semibold uppercase">
+                        Downside Vol
+                      </label>
+                      <div className="value xl:text-[36px] md:text-[30px] sm:text-[28px] text-smtitle font-medium">
+                        {parseFloat(shield?.downsideVolatility).toFixed(2) ||
+                          "-"}
+                      </div>
+                    </div>
+                    <div className="sumvalue px-8 py-4 bg-white-100 md:w-max sm:w-1/2 w-full">
+                      <label className="text-p font-semibold uppercase text-purple">
+                        Price
+                      </label>
+                      <div className="value xl:text-h2 md:text-[30px] sm:text-[28px] text-smtitle font-medium text-purple">
+                        {price !== "-"
+                          ? ` ${formatCurrency(price)}`
+                          : "No Price Available"}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="sectiondivide pb0 section-col">
+                  <div class="collapse">
+                    <h4 className="font-p font-semibold uppercase mb-2">
+                      Market Shield
+                    </h4>
+                    <div className="tablecon portfolioinp overflow-x-auto">
+                      <table className="tikerdata table-fixed min-w-full">
+                        <thead className="text-left bg-white-100">
+                          <tr className=" *:px-4 *:py-2">
+                            <th>Ticker</th>
+                            <th>Quantity</th>
+                            <th>Strike Price</th>
+                            <th>Expiration Date</th>
+                            <th>Ask Price / Bid Price</th>
+                            <th>Market Shield Cost</th>
+                          </tr>
+                        </thead>
+                        <tbody className="text-left pt-2">
+                          {renderMarketShieldTable()}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div className="sectiondivide pt0 pb0 section-col">
+                  <PortfolioDetailsTable PortfolioRows={PortfolioRows} />
+                </div>
               </div>
             </div>
-            <div className="sumvalue">
-              <label>Asset Allocation Equiv (Stock-Bond)</label>
-              <div>{shield.assetAllocation}</div>
-            </div>
-            <div className="sumvalue">
-              <label>Protection Level</label>
-              <div>{(shield.protectionLevelPercent * 100).toFixed(0)}%</div>
-            </div>
-            <div className="sumvalue">
-              <label>Downside Vol</label>
-              <div>
-                {parseFloat(shield?.downsideVolatility).toFixed(2) || "-"}
-              </div>
-            </div>
-            <div className="sumvalue">
-              <label>Price</label>
-              <div>
-                {price !== "-"
-                  ? ` ${formatCurrency(price)}`
-                  : "No Price Available"}
-              </div>
-            </div>
           </div>
-        </div>
-        <div className="sectiondivide pb0 section-col">
-          <div class="collapse">
-            <h4>Market Shield</h4>
-            <div className="tablecon portfolioinp">
-              <table className="tikerdata">
-                <thead>
-                  <tr>
-                    <th>Ticker</th>
-                    <th>Quantity</th>
-                    <th>Strike Price</th>
-                    <th>Expiration Date</th>
-                    <th>Ask Price / Bid Price</th>
-                    <th>Market Shield Cost</th>
-                  </tr>
-                </thead>
-                <tbody>{renderMarketShieldTable()}</tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div className="sectiondivide pt0 pb0 section-col">
-          <PortfolioDetailsTable PortfolioRows={PortfolioRows} />
         </div>
       </>
     );

@@ -1,36 +1,29 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import RiskContribution from "@/app/components/Tools/RiskContribution/RiskContribution";
 import HaloRiskContribution from "@/app/components/Tools/RiskContribution/HaloRiskContribution";
 import { portfolios } from "@/app/utilites/Constants";
 import { FetchTickerData } from "@/app/api/FetchTickerData";
 import { withHostname } from "@/app/hocs/withHostname";
 import ToolsTabsection from "@/app/components/ToolsTabsection";
-function RiskContributionScreen({ hostLabel, ...otherProps }) {
-    const [tickerData, setTickerData] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+
+export default async function RiskContributionScreen({ hostLabel, ...otherProps }) {
     const initPortfolio = portfolios[0]["name"];
     const initPortfolioValue = 100000.00;
-
-    useEffect(() => {
-        const fetchTickerData = async () => {
-            setIsLoading(true);
-            const fetchedTickerData = await FetchTickerData();
-            setTickerData(fetchedTickerData);
-            setIsLoading(false);
-        };
-
-        fetchTickerData();
-    }, []);
-
-    if (!hostLabel) {
-        return <div className="blank-screen"></div>;
+    
+    // Fetch data during server rendering
+    let tickerData = null;
+    try {
+        tickerData = await FetchTickerData();
+    } catch (error) {   
+        console.error("Error fetching ticker data:", error);
     }
 
+    if (tickerData !== 0 ) {
+        return <div>No data available.</div>;
+      }
     return (
         <>
-        <ToolsTabsection/>
+            <ToolsTabsection />
             {hostLabel === "halo" ? (
                 <HaloRiskContribution
                     initPortfolio={initPortfolio}
@@ -50,5 +43,3 @@ function RiskContributionScreen({ hostLabel, ...otherProps }) {
         </>
     );
 }
-
-export default withHostname(RiskContributionScreen);

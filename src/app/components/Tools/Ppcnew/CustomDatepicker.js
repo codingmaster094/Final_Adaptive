@@ -112,15 +112,15 @@ const CustomDatePicker = ({ defaultDate, onDateSelect }) => {
     };
 
     return (
-        <DatePicker
-            selected={selectedDate}
-            onChange={handleDateChange}
-            minDate={minDate}
-            filterDate={isFriday}
-            dateFormat="yyyy-MM-dd"
-            placeholderText="Select a date"
-
-        />
+      <DatePicker
+        selected={selectedDate}
+        onChange={handleDateChange}
+        minDate={minDate}
+        filterDate={isFriday}
+        dateFormat="yyyy-MM-dd"
+        placeholderText="Select a date"
+        className="w-[80%]"
+      />
     );
 };
 

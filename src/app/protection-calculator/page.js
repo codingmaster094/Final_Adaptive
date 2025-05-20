@@ -1,32 +1,31 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Ppcnew from "@/app/components/Tools/Ppcnew/Ppcnew";
 import ToolsTabsection from "@/app/components/ToolsTabsection";
 import { portfoliosWithManual } from "@/app/utilites/Constants";
 import { FetchTickerData } from "@/app/api/FetchTickerData";
 
-export default function ProtectionCalculatorScreen() {
-    const [tickerData, setTickerData] = useState(null);
-    const initPortfolio = portfoliosWithManual[0]['name'];
-    const initPortfolioValue = 100000.00;
+export default async function ProtectionCalculatorScreen() {
+  const initPortfolio = portfoliosWithManual[0]['name'];
+  const initPortfolioValue = 100000.00;
 
-    useEffect(() => {
-        const fetchTickerData = async () => {
-            const fetchedTickerData = await FetchTickerData();
-            setTickerData(fetchedTickerData);
-        };
-        fetchTickerData();
-    }, []);
+  let tickerData = null;
+  try {
+    tickerData = await FetchTickerData();
 
-   return (
+  } catch (error) {
+    console.log("Error fetching ticker data:", error);
+  }
+  if (tickerData !== 0 ) {
+    return <div>No data available.</div>;
+  }
+  return (
     <>
-    <ToolsTabsection />
-        <Ppcnew 
-            initPortfolio={initPortfolio} 
-            initPortfolioValue={initPortfolioValue} 
-            initTickerData={tickerData} 
-        />
-        </>
-    );
+      <ToolsTabsection />
+      <Ppcnew
+        initPortfolio={initPortfolio}
+        initPortfolioValue={initPortfolioValue}
+        initTickerData={tickerData}
+      />
+    </>
+  );
 }

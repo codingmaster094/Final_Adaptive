@@ -13,7 +13,7 @@ export default function Popup(props) {
 
   const colors = alertColor[alertType];
   return props.trigger ? (
-    <div className="popup">
+    <div className="popup hidden">
       <div className={alertType}>
         <div className="popup-object">
           <div className="heading">

@@ -2,9 +2,9 @@ import React from "react";
 
 export default function VixDial({VixClosePrice, MesgHeader, headerColor, DialColor}) {
     return (
-        <div className="sectiondivide sectioncol ptsec">
-            <div className="dialcenter">
-                <div className="vixdail">
+        <div className="sectiondivide sectioncol ptsec pt-16">
+            <div className="dialcenter flex justify-center items-center">
+                <div className="vixdail relative md:w-[400px] w-[300px] inline-block">
                     <svg width="361" height="300" viewBox="0 0 361 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_2073_3665)">
                             <path d="M237.196 0.130797C237.457 0.261573 237.588 0.392349 237.719 0.653901C237.85 0.915452 237.85 1.177 237.719 1.43856L234.577 9.93899C234.447 10.2005 234.316 10.3313 234.054 10.4621C233.792 10.5929 233.53 10.5929 233.268 10.4621C233.007 10.3313 232.745 10.2005 232.745 9.93899C232.745 9.67744 232.614 9.41589 232.745 9.15434L235.887 0.653901C236.017 0.392349 236.148 0.261573 236.41 0.130797C236.672 2.08616e-05 236.934 2.08616e-05 237.196 0.130797ZM235.625 4.31563L242.17 6.66959L241.516 8.36968L234.97 6.01571L235.625 4.31563ZM243.741 2.48476C244.003 2.61554 244.265 2.74632 244.265 3.00787C244.396 3.26942 244.396 3.53097 244.265 3.79252L241.123 12.293C240.992 12.5545 240.861 12.6853 240.599 12.8161C240.337 12.9468 240.076 12.9468 239.814 12.8161C239.552 12.6853 239.421 12.5545 239.29 12.293C239.159 12.0314 239.159 11.7699 239.29 11.5083L242.432 3.00787C242.563 2.74632 242.694 2.61554 242.956 2.48476C243.217 2.35399 243.479 2.35399 243.741 2.48476Z" fill="#EC6763" />
@@ -209,7 +209,7 @@ export default function VixDial({VixClosePrice, MesgHeader, headerColor, DialCol
                             </clipPath>
                         </defs>                        
                     </svg>
-                    <svg height="350" width="350" className="dailcircle">
+                    <svg height="350" width="350" className="dailcircle absolute -translate-x-2/4 -translate-y-2/4 rotate-[127deg] md:-ml-10 -ml-[30px] mt-[22px] left-2/4 top-2/4">
                         <circle cx="150" cy="150" r="133" stroke-width="25" className={MesgHeader} stroke={DialColor} fill="none"  pathLength="114" stroke-linecap="round"
                         stroke-dasharray={
                             VixClosePrice <= 15

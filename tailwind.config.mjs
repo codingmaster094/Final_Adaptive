@@ -39,7 +39,7 @@ export default {
       screens: {
         xsm: "450px",
         sm: "640px",
-        md: "768px",
+        md: "769px",
         xmd: "860px",
         xlg: "991px",
         lg: "1025px",

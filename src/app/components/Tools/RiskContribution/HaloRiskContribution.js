@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -745,7 +746,7 @@ function HaloRiskContribution({ initPortfolio, initPortfolioValue, initTickerDat
 
     return (
         <>
-            <PageLoader bdopen={bdopen} hostname={hostname} />
+            {/* <PageLoader bdopen={bdopen} hostname={hostname} /> */}
             <CustomPopup
                 trigger={popupState}
                 setTrigger={setPopupState}
