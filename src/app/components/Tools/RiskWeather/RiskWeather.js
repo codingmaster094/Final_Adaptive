@@ -172,8 +172,8 @@ function RiskWeather({ data }) {
                 </div>
 
                 <div className="sectiondivide sectioncol ptsec pb0">
-                    <div className="sec-title flex justify-between items-center font-bold gap-6">
-                        <h3 class="sec-head small left text-h3 text-blue flex-1 mb-4">CBOE Volatility Index (VIX) Chart</h3>
+                    <div className="sec-title flex justify-between items-center font-bold gap-6 md:flex-row flex-col mb-4">
+                        <h3 class="sec-head small left text-h3 text-blue md:flex-1 flex-[100%]">CBOE Volatility Index (VIX) Chart</h3>
                         <span className="indicator text-h3 text-blue">{addZeroes(Number(parseFloat(VixClosePrice).toFixed(2)))}</span>
                     </div>
                 </div>

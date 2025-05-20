@@ -3,7 +3,7 @@ import React from "react";
 export default function VixDial({VixClosePrice, MesgHeader, headerColor, DialColor}) {
     return (
       <div className="sectiondivide sectioncol ptsec pt-16">
-        <div className="dialcenter flex justify-center items-center">
+        <div className="dialcenter flex justify-center items-center overflow-hidden">
           <div className="vixdail relative md:w-[400px] w-[300px] inline-block">
             <svg
               width="361"
@@ -791,9 +791,9 @@ export default function VixDial({VixClosePrice, MesgHeader, headerColor, DialCol
               </defs>
             </svg>
             <svg
-              height="350"
-              width="350"
-              className="dailcircle absolute -translate-x-2/4 -translate-y-2/4 rotate-[127deg] md:-ml-10 -ml-[30px] mt-[22px] left-2/4 top-2/4"
+              // height="350"
+              // width="350"
+              className="dailcircle absolute -translate-x-2/4 -translate-y-2/4 rotate-[127deg] md:-ml-10 -ml-[30px] mt-[22px] left-2/4 top-2/4 w-[300px] h-[300px] md:w-[350px] md:h-[350px]"
             >
               <circle
                 cx="150"
