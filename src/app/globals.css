@@ -147,6 +147,9 @@
 .vixdail svg{
   @apply !w-full;
 }
+.vixdail span h5 {
+  @apply text-[28px] font-bold m-0;
+}
 
 .signupalert h3 span {
   @apply mt-[-300px] block pb-[300px];
