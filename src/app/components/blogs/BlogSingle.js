@@ -88,7 +88,7 @@ const BlogSingle = ({ SinglePost }) => {
       if (isClickScrolling) return;
 
       const allHeaders = [...document.querySelectorAll("h2[id], h3[id]")];
-      const offset = 70; // header offset
+      const offset = 70;
       let minDistance = Infinity;
       let currentId = "";
 
@@ -238,9 +238,9 @@ const BlogSingle = ({ SinglePost }) => {
                         aria-label="toggle button"
                         className="flex justify-between items-center w-full"
                       >
-                        <h3 className="font-headings tracking-tight scroll-mt-[120px] text-xl-tight 2xl:2xl-tight font-medium wrap-balance">
+                        <h2 className="font-headings tracking-tight scroll-mt-[120px] text-xl-tight 2xl:2xl-tight font-medium wrap-balance">
                           Table of contents
-                        </h3>
+                        </h2>
                         {/* Toggle arrow */}
                         <svg
                           id="toc-arrow"
@@ -446,7 +446,7 @@ const BlogSingle = ({ SinglePost }) => {
                     </span>
                   </div>
                   <div className="main space-y-4 text-body">
-                    <h3 className="font-semibold w-[90%]">{item.title}</h3>
+                    <h3 className="font-semibold w-[90%]" dangerouslySetInnerHTML={{__html: item.title}}></h3>
                     <div
                       className="para line-clamp-4"
                       dangerouslySetInnerHTML={{
