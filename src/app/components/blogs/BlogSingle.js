@@ -233,15 +233,15 @@ const BlogSingle = ({ SinglePost }) => {
                   <div className="bg-white overflow-hidden py-6 relative border-2 rounded-xl border-black-100">
                     {/* TOC Header */}
                     <div className="pb-4 px-6">
-                      <button
+                        <h2 className="font-headings tracking-tight scroll-mt-[120px] text-xl-tight 2xl:2xl-tight font-medium wrap-balance">
+                          Table of contents
+                        </h2>
+                      {/* <button
                         id="toc-toggle"
                         aria-label="toggle button"
                         className="flex justify-between items-center w-full"
                       >
-                        <h2 className="font-headings tracking-tight scroll-mt-[120px] text-xl-tight 2xl:2xl-tight font-medium wrap-balance">
-                          Table of contents
-                        </h2>
-                        {/* Toggle arrow */}
+                       
                         <svg
                           id="toc-arrow"
                           viewBox="0 0 24 24"
@@ -254,7 +254,7 @@ const BlogSingle = ({ SinglePost }) => {
                             fill="currentColor"
                           />
                         </svg>
-                      </button>
+                      </button> */}
                     </div>
 
                     {/* TOC Content with progress line */}
