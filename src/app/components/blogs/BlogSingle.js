@@ -257,7 +257,7 @@ const BlogSingle = ({ SinglePost }) => {
                       </button> */}
                     </div>
 
-                    {/* TOC Content with progress line */}
+                    {/* TOC Content with progress line */}  
                     <div
                       className="overflow-hidden transition-all duration-500 max-h-full"
                       id="toc-collapse"
@@ -290,7 +290,7 @@ const BlogSingle = ({ SinglePost }) => {
                                 }`}
                                 onClick={() => handleTOCClick(h2Item.id)}
                               >
-                                {h2Item.text}
+                                {h2Item.text} 
                               </button>
                               {/* H3 Sub-items */}
                               {h2Item.subHeaders.length > 0 && (
@@ -427,7 +427,7 @@ const BlogSingle = ({ SinglePost }) => {
           )}
 
           <div className="btm-block grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {SinglePost[0].related_posts?.map((item, i) => (
+            {SinglePost[0]?.related_posts?.map((item, i) => (
               <div
                 key={i}
                 className="right font-inter flex flex-col justify-between px-4 pb-6 space-y-8 border-b border-solid border-b-black-200"

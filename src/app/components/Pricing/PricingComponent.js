@@ -115,7 +115,7 @@ const PricingComponent = ({
               </div>
 
               {/* Plans Grid */}
-              <div className="grid xl:grid-cols-4 xsm:grid-cols-2 grid-cols-1 items-stretch gap-y-4 xmd:gap-x-0 gap-x-4">
+              <div className="grid xl:grid-cols-3 xsm:grid-cols-2 grid-cols-1 items-stretch gap-y-4 xmd:gap-x-0 gap-x-4">
                 {(isAnnual ? Month_plan_Card : year_plan_Card).map(
                   (plan, i) => (
                     <div
