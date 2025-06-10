@@ -24,6 +24,7 @@ export default async function Page(){
       />
       <PricingComponent
         pricing_main_title={PricingData?.title}
+        pricing_description={PricingData?.plans_description}
         Month_plan_Card={PricingData?.monthly_plan}
         year_plan_Card={PricingData?.Yearly_plan}
       />

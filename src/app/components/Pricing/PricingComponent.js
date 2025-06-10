@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import  Link  from 'next/link';
 
 const PricingComponent = ({
   pricing_main_title,
+  pricing_description,
   Month_plan_Card,
   year_plan_Card,
 }) => {
-  console.log('year_plan_Card', year_plan_Card)
   const [isAnnual, setIsAnnual] = useState(true);
 
   useEffect(() => {
@@ -73,6 +74,10 @@ const PricingComponent = ({
                 dangerouslySetInnerHTML={{ __html: pricing_main_title }}
               ></h2>
             </div>
+            <p
+              className="text-h3"
+              dangerouslySetInnerHTML={{ __html: pricing_description }}
+            ></p>
           </div>
 
           {/* Toggle Switch */}
@@ -122,15 +127,27 @@ const PricingComponent = ({
                       key={i}
                       className="hover:bg-white hover:shadow-[2px_10px_40px_0px_#00000040] transition-all duration-500 linear xmd:bg-transparent bg-white xmd:shadow-none shadow-[2px_10px_40px_0px_#00000040]"
                     >
+                      {console.log("plan", plan)}
                       <div className="top-list flex flex-col h-full">
                         <div className="p-6 flex flex-col top-head">
-                          <h3 className="text-h2 font-semibold font-ivy text-black mb-8">
-                            {plan.plan_title}
-                          </h3>
+                          <div className="mb-3 space-y-2">
+                            <h3
+                              className="text-h2 font-semibold font-ivy text-black"
+                              dangerouslySetInnerHTML={{
+                                __html: plan.plan_title,
+                              }}
+                            ></h3>
+                            <span
+                              className="inline-block text-h4"
+                              dangerouslySetInnerHTML={{
+                                __html: plan.sub_title,
+                              }}
+                            ></span>
+                          </div>
                           {plan.plan_desc && (
                             <span className="font-bold text-h5 text-black mb-6 flex items-center flex-1">
                               {plan.currency_symbol != "" ? (
-                                <span className="font-semibold 2xl:text-h1 text-h2 text-black mb-6 flex-1">
+                                <span className="font-semibold 2xl:text-h1 text-h2 text-black  flex-1">
                                   {plan.currency_symbol}
                                   {plan.plan_desc && plan.plan_desc}
                                   <span className="text-black-300 font-medium text-p ml-2">
@@ -143,7 +160,7 @@ const PricingComponent = ({
                             </span>
                           )}
                           {plan.plan_button && (
-                            <a
+                            <Link
                               href={plan.plan_button.url}
                               className={`${
                                 plan.currency_symbol != ""
@@ -152,19 +169,23 @@ const PricingComponent = ({
                               } block w-full text-center mt-auto`}
                             >
                               {plan.plan_button.title}
-                            </a>
+                            </Link>
                           )}
                         </div>
                         <ul className="price-list my-6 [&_li]:pl-10 [&_li]:pr-6 [&_li]:pb-4 [&_li]:border-b [&_li]:border-b-solid [&_li]:border-b-black-200 flex flex-col flex-1 [&_li]:flex [&_li]:items-stretch space-y-4 [&>li:last-child]:border-b-0">
                           {plan.plan_list.map((feature, index) => (
-                            <li key={index} className={feature.plan_status}>
-                              {feature.plan_sub_title}
-                            </li>
+                            <li
+                              key={index}
+                              className={feature.plan_status}
+                              dangerouslySetInnerHTML={{
+                                __html: feature.plan_sub_title,
+                              }}
+                            ></li>
                           ))}
                         </ul>
                         <span className="block px-6 pb-4 mt-auto">
                           {plan.plan_button && (
-                            <a
+                            <Link
                               href={plan.plan_button.url}
                               className={`${
                                 plan.currency_symbol != ""
@@ -173,7 +194,7 @@ const PricingComponent = ({
                               } block w-full text-center mt-auto`}
                             >
                               {plan.plan_button.title}
-                            </a>
+                            </Link>
                           )}
                         </span>
                       </div>
