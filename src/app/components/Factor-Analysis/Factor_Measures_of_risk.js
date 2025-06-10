@@ -28,7 +28,7 @@ const Factor_Measures_of_risk = ({ sectionTitle, description, measures }) => {
                   src={measure.image.url}
                   alt="measure card image"
                   role="img"
-                  className="mb-8"
+                  className="mb-8 lg:aspect-[2/1] aspect-auto inset-0"
                 />
                 <h3
                   className="text-h3 font-bold mb-4"

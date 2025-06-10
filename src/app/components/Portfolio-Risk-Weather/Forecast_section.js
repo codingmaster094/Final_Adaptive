@@ -81,7 +81,7 @@ const Forecast_section = ({
                 src={forecast_tool_right_image.url}
                 alt="forecast image"
                 role="img"
-                className="w-full h-auto"
+                className="w-full h-auto lg:aspect-[2/1] inset-0 aspect-auto object-cover"
                 width={712}
                 height={420}
               />

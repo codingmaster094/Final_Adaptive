@@ -32,7 +32,7 @@ const Downside_protection = ({ title, full_manage_protection_desc, second_manage
                 height={258}
                 alt="protection market Image"
                 role="img"
-                className="w-full h-auto"
+                className="w-full h-auto lg:aspect-[2/1] inset-0 aspect-auto"
               />
             </div>
           </div>

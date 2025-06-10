@@ -55,7 +55,7 @@ const Market_Protection_Estimate = ({
                 height={294}
                 alt="protection market image"
                 role="img"
-                className="w-full h-auto"
+                className="w-full h-auto lg:aspect-[2/1] inset-0 aspect-auto object-cover"
               />
             </div>
           </div>

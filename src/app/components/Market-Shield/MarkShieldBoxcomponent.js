@@ -38,7 +38,7 @@ const MarkShieldBoxcomponent = ({items}) => {
                         src={item.image.url}
                         alt={item.imageAlt || "Description of the image"}
                         role="img"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover inset lg:aspect-[2/1] aspect-auto"
                       />
                     </div>
                   </div>

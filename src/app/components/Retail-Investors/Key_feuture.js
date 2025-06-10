@@ -36,7 +36,7 @@ const Key_feuture = ({ Main_titel,  Main_des,  keyFeatures }) => {
                     src={feature.key_feature_item_image.url}
                     alt={`key-feature image ${index + 1}`}
                     role="img"
-                    className="w-full rounded-md xsm:h-full h-[200px] object-cover"
+                    className="w-full rounded-md xsm:h-full h-[200px] aspect-[2/1] inset-0 object-cover"
                   />
                 </div>
                 <div className="xmd:w-1/2 w-full xmd:space-y-8 space-y-6">

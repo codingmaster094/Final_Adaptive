@@ -24,6 +24,7 @@ content}) => {
                 src={image.url}
                 alt="advisory image 1"
                 role="img"
+                className='w-full h-full object-cover'
               />
             </div>
             <div className="right font-inter">
