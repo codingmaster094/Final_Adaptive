@@ -2,7 +2,7 @@ import { withSentryConfig } from '@sentry/nextjs';
 
 const nextConfig = {
   images: {
-    domains: ["adaptive.rocket-wp.com"],
+    domains: ["app.dev.adaptive-investments.com"],
   },
   webpack: (config, { isServer }) => {
     config.resolve.fallback = {

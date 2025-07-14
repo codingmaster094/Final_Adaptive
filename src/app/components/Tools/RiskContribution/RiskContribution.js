@@ -171,20 +171,20 @@ function RiskContribution({ initPortfolio, initPortfolioValue }) {
                 <div className="container">
                      <div className="banner bg-dots_bg bg-cover bg-center bg-no-repeat py-6 sm:py-[50px] lg:py-[64px]">
                     <div className="container">
-                        <div class="inner">
-                            <div class="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
-                                <div class="hero-left w-full flex justify-start flex-col items-start text-left">
-                                    <div class="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
-                                        <h1 class="text-h1 text-black font-ivy font-semibold">
+                        <div className="inner">
+                            <div className="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
+                                <div className="hero-left w-full flex justify-start flex-col items-start text-left">
+                                    <div className="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
+                                        <h1 className="text-h1 text-black font-ivy font-semibold">
                                            Secure Your Portfolio with Confidence. 
                                         </h1>
                                         <p>Market Shield provides advanced risk management solutions designed to protect your investments through intelligent strategies and real-time insights. </p>
                                     </div>
-                                    <div class="button-area flex flex-wrap justify-start items-start lg:gap-12 gap-4 lg:mt-16 md:mt-8 mt-4">
-                                        <div class="btn-link">
+                                    <div className="button-area flex flex-wrap justify-start items-start lg:gap-12 gap-4 lg:mt-16 md:mt-8 mt-4">
+                                        <div className="btn-link">
                                             <a href="#" role="link">Explore Market Shield Today</a>
                                         </div>
-                                        <div class="btn-green">
+                                        <div className="btn-green">
                                             <a href="#" role="link">Sign up Today!</a>
                                         </div>
                                     </div>

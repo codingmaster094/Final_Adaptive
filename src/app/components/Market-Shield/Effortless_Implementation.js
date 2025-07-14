@@ -86,7 +86,7 @@ const Effortless_Implementation = ({
           </div>
 
           <div
-            class="text text-body font-inter font-normal text-black-100"
+            className="text text-body font-inter font-normal text-black-100"
             dangerouslySetInnerHTML={{ __html: shield_work_description }}
           ></div>
         </div>

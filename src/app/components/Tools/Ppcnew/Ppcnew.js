@@ -720,11 +720,11 @@ function Ppcnew({ initPortfolio, initPortfolioValue, initTickerData }) {
         <div className="py-6 sm:pb-16 lg:pb-[100px]  sm:pt-16 lg:space-y-16 space-y-8 bg-dots_bg bg-cover bg-center bg-no-repeat">
           <div className="banner lg:px-8">
             <div className="container">
-              <div class="inner">
-                <div class="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
-                  <div class="hero-left w-full flex justify-start flex-col items-start text-left">
-                    <div class="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
-                      <h1 class="text-h1 text-black font-ivy font-semibold">
+              <div className="inner">
+                <div className="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
+                  <div className="hero-left w-full flex justify-start flex-col items-start text-left">
+                    <div className="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
+                      <h1 className="text-h1 text-black font-ivy font-semibold">
                         Portfolio Price calculator
                       </h1>
                       <p>
@@ -733,13 +733,13 @@ function Ppcnew({ initPortfolio, initPortfolioValue, initTickerData }) {
                         intelligent strategies and real-time insights.{" "}
                       </p>
                     </div>
-                    <div class="button-area flex flex-wrap justify-start items-start lg:gap-12 gap-4 lg:mt-16 md:mt-8 mt-4">
-                      <div class="btn-link">
+                    <div className="button-area flex flex-wrap justify-start items-start lg:gap-12 gap-4 lg:mt-16 md:mt-8 mt-4">
+                      <div className="btn-link">
                         <a href="#" role="link">
                           Explore Market Shield Today
                         </a>
                       </div>
-                      <div class="btn-green">
+                      <div className="btn-green">
                         <a href="#" role="link">
                           Sign up Today!
                         </a>
@@ -916,7 +916,7 @@ function Ppcnew({ initPortfolio, initPortfolioValue, initTickerData }) {
                   </div>
                 </div>
                 <div className="sectiondivide pb0 section-col">
-                  <div class="collapse">
+                  <div className="collapse">
                     <h4 className="font-p font-semibold uppercase mb-2">
                       Market Shield
                     </h4>

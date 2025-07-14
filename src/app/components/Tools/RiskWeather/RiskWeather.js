@@ -131,20 +131,20 @@ function RiskWeather({ data }) {
                 <div className="container">
                     <div className="banner bg-dots_bg bg-cover bg-center bg-no-repeat ">
                     <div className="container">
-                        <div class="inner">
-                            <div class="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
-                                <div class="hero-left w-full flex justify-start flex-col items-start text-left">
-                                    <div class="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
-                                        <h1 class="text-h1 text-black font-ivy font-semibold">
+                        <div className="inner">
+                            <div className="inner-content flex flex-col lg:flex-row lg:space-y-0 space-y-[56px]">
+                                <div className="hero-left w-full flex justify-start flex-col items-start text-left">
+                                    <div className="hero-text sm:space-y-8 space-y-4 text-h5 font-inter text-black-100">
+                                        <h1 className="text-h1 text-black font-ivy font-semibold">
                                            Secure Your Portfolio with Confidence. 
                                         </h1>
                                         <p>Market Shield provides advanced risk management solutions designed to protect your investments through intelligent strategies and real-time insights. </p>
                                     </div>
-                                    <div class="button-area flex flex-wrap justify-start items-start lg:gap-12 gap-4 lg:mt-16 md:mt-8 mt-4">
-                                        <div class="btn-link">
+                                    <div className="button-area flex flex-wrap justify-start items-start lg:gap-12 gap-4 lg:mt-16 md:mt-8 mt-4">
+                                        <div className="btn-link">
                                             <a href="#" role="link">Explore Market Shield Today</a>
                                         </div>
-                                        <div class="btn-green">
+                                        <div className="btn-green">
                                             <a href="#" role="link">Sign up Today!</a>
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@ function RiskWeather({ data }) {
 
                 <div className="sectiondivide sectioncol ptsec pb0">
                     <div className="sec-title flex justify-between items-center font-bold gap-6 md:flex-row flex-col mb-4">
-                        <h3 class="sec-head small left text-h3 text-blue md:flex-1 flex-[100%]">CBOE Volatility Index (VIX) Chart</h3>
+                        <h3 className="sec-head small left text-h3 text-blue md:flex-1 flex-[100%]">CBOE Volatility Index (VIX) Chart</h3>
                         <span className="indicator text-h3 text-blue">{addZeroes(Number(parseFloat(VixClosePrice).toFixed(2)))}</span>
                     </div>
                 </div>
@@ -207,17 +207,17 @@ function RiskWeather({ data }) {
                         <div className="reminder my-3 md:flex-row flex-col">
                             <h4 className="font-bold">Daily Updates</h4>
                             <p>Receive daily email about VIX movement and its effect on protection costs</p>
-                            <label class="checkcon">
+                            <label className="checkcon">
                                 <input type="checkbox" name="dailyUpdates" defaultChecked={updates.dailyUpdates} onChange={(e) => handleUpdatesChange(e)} />
-                                <span class="checkmark absolute top-0 left-0 h-6 w-6 box-border rounded-md border border-solid border-black-100"></span>
+                                <span className="checkmark absolute top-0 left-0 h-6 w-6 box-border rounded-md border border-solid border-black-100"></span>
                             </label>
                         </div>
                         <div className="reminder md:flex-row flex-col">
                             <h4 className="font-bold">Status UPDATES</h4>
                             <p>Receive an email when the Risk Weather status changes</p>
-                            <label class="checkcon">
+                            <label className="checkcon">
                                 <input type="checkbox" name="statusUpdates" defaultChecked={updates.statusUpdates} onChange={(e) => handleUpdatesChange(e)} />
-                                <span class="checkmark absolute top-0 left-0 h-6 w-6 box-border rounded-md border border-solid border-black-100"></span>
+                                <span className="checkmark absolute top-0 left-0 h-6 w-6 box-border rounded-md border border-solid border-black-100"></span>
                             </label>
                         </div>
                         <AddUser singupFor="risk" updates={updates} onChange={changePropsStatus} buttonText="Get Risk Alerts" />

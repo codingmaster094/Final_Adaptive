@@ -44,14 +44,14 @@ export default function RiskDial({
   }
 
   return (
-    <div class="screen">
+    <div className="screen">
       <div id="app">
         {/* <div>{marketRiskValue}</div>
         <div>{portfolioRiskValue}</div>
         <div>{shieldRiskValue}</div> */}
-        <svg class="ActivityRings" viewBox="0 0 50 50">
+        <svg className="ActivityRings" viewBox="0 0 50 50">
           <g
-            class={"ring ring3" + "-" + returnRingColor(marketRiskValue)}
+            className={"ring ring3" + "-" + returnRingColor(marketRiskValue)}
             style={{ transform: "scale(1) rotate(-226deg)" }}
           >
             <circle
@@ -59,14 +59,14 @@ export default function RiskDial({
               r="18"
               cx="50%"
               cy="50%"
-              class="background"
+              className="background"
             />
             <circle
               stroke-width="1"
               r="18"
               cx="50%"
               cy="50%"
-              class="completed"
+              className="completed"
               // stroke-dasharray={marketRiskValue + ",113.04"}
               // stroke-dasharray={
               //   marketRiskValue >= 42.5
@@ -85,7 +85,7 @@ export default function RiskDial({
             />
           </g>
           <g
-            class={"ring ring2" + "-" + returnRingColor(portfolioRiskValue)}
+            className={"ring ring2" + "-" + returnRingColor(portfolioRiskValue)}
             style={{ transform: "scale(0.83) rotate(-226deg)" }}
           >
             <circle
@@ -93,14 +93,14 @@ export default function RiskDial({
               r="18"
               cx="50%"
               cy="50%"
-              class="background"
+              className="background"
             />
             <circle
               stroke-width="1.2"
               r="18"
               cx="50%"
               cy="50%"
-              class="completed"
+              className="completed"
               // stroke-dasharray={
               //   portfolioRiskValue >= 42.5
               //     ? "85,125.6"
@@ -118,7 +118,7 @@ export default function RiskDial({
             />
           </g>
           <g
-            class={"ring ring1" + "-" + returnRingColor(shieldRiskValue)}
+            className={"ring ring1" + "-" + returnRingColor(shieldRiskValue)}
             style={{ transform: "scale(0.65) rotate(-226deg)" }}
           >
             <circle
@@ -126,7 +126,7 @@ export default function RiskDial({
               r="18"
               cx="50%"
               cy="50%"
-              class="background"
+              className="background"
             />
             <circle
               stroke-width="1.5"
@@ -134,7 +134,7 @@ export default function RiskDial({
               r="18"
               cx="50%"
               cy="50%"
-              class="completed"
+              className="completed"
               // stroke-dasharray={shieldRiskValue * 2 + ",150.72"}
               // stroke-dasharray={
               //   shieldRiskValue >= 42.5
@@ -153,10 +153,10 @@ export default function RiskDial({
             />
           </g>
         </svg>
-        <div class="dial">
+        <div className="dial">
           <svg className="dial_holder" viewBox="0 0 40 40">
             <circle cx="20" cy="25" r="18" />
-            <g class="marks">
+            <g className="marks">
               <line x1="15" y1="0" x2="16" y2="0" />
               <line x1="15" y1="0" x2="16" y2="0" />
               <line x1="15" y1="0" x2="16" y2="0" />

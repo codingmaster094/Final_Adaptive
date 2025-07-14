@@ -10,57 +10,57 @@ const PricingComponent = ({
 }) => {
   const [isAnnual, setIsAnnual] = useState(true);
 
-  useEffect(() => {
-    const equalizeHeights = () => {
-      document
-        .querySelectorAll(".top-head")
-        .forEach((el) => (el.style.height = "auto"));
-      document
-        .querySelectorAll(".price-list li")
-        .forEach((el) => (el.style.height = "auto"));
+    useEffect(() => {
+      const equalizeHeights = () => {
+        document
+          .querySelectorAll(".top-head")
+          .forEach((el) => (el.style.height = "auto"));
+        document
+          .querySelectorAll(".price-list li")
+          .forEach((el) => (el.style.height = "auto"));
 
-      const topHeads = document.querySelectorAll(".top-head");
-      let maxTopHeadHeight = 0;
-      topHeads.forEach((el) => {
-        maxTopHeadHeight = Math.max(maxTopHeadHeight, el.offsetHeight);
-      });
-      topHeads.forEach((el) => {
-        el.style.height = `${maxTopHeadHeight}px`;
-      });
-
-      const allPriceLists = document.querySelectorAll(".price-list");
-      const maxItems = Math.max(
-        ...Array.from(allPriceLists).map((ul) => ul.children.length)
-      );
-
-      for (let i = 0; i < maxItems; i++) {
-        let maxLiHeight = 0;
-        const liGroup = [];
-
-        allPriceLists.forEach((ul) => {
-          const li = ul.children[i];
-          if (li) {
-            li.style.height = "auto";
-            liGroup.push(li);
-            maxLiHeight = Math.max(maxLiHeight, li.offsetHeight);
-          }
+        const topHeads = document.querySelectorAll(".top-head");
+        let maxTopHeadHeight = 0;
+        topHeads.forEach((el) => {
+          maxTopHeadHeight = Math.max(maxTopHeadHeight, el.offsetHeight);
+        });
+        topHeads.forEach((el) => {
+          el.style.height = `${maxTopHeadHeight}px`;
         });
 
-        liGroup.forEach((li) => {
-          li.style.height = `${maxLiHeight}px`;
-        });
-      }
-    };
+        const allPriceLists = document.querySelectorAll(".price-list");
+        const maxItems = Math.max(
+          ...Array.from(allPriceLists).map((ul) => ul.children.length)
+        );
 
-    setTimeout(equalizeHeights, 100);
-    window.addEventListener("resize", () => setTimeout(equalizeHeights, 100));
+        for (let i = 0; i < maxItems; i++) {
+          let maxLiHeight = 0;
+          const liGroup = [];
 
-    return () => {
-      window.removeEventListener("resize", () =>
-        setTimeout(equalizeHeights, 100)
-      );
-    };
-  }, []);
+          allPriceLists.forEach((ul) => {
+            const li = ul.children[i];
+            if (li) {
+              li.style.height = "auto";
+              liGroup.push(li);
+              maxLiHeight = Math.max(maxLiHeight, li.offsetHeight);
+            }
+          });
+
+          liGroup.forEach((li) => {
+            li.style.height = `${maxLiHeight}px`;
+          });
+        }
+      };
+
+      setTimeout(equalizeHeights, 100);
+      window.addEventListener("resize", () => setTimeout(equalizeHeights, 100));
+
+      return () => {
+        window.removeEventListener("resize", () =>
+          setTimeout(equalizeHeights, 100)
+        );
+      };
+    }, []);
 
   return (
     <section className="tools-section lg:py-[150px] md:py-[80px] sm:py-[50px] py-6 w-full bg-dots_bg bg-cover bg-center bg-no-repeat border-b-[1px] border-b-black-200 border-b-solid border-t-[1px] border-t-black-200 border-t-solid">

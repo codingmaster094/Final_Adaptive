@@ -831,7 +831,7 @@ function HaloRiskContribution({ initPortfolio, initPortfolioValue, initTickerDat
                         onChange={onFileChange}
                         style={{ display: 'none' }}
                     />
-                    <div class="text-container">
+                    <div className="text-container">
                         <label className="full-label" htmlFor="file-upload">
                             <img src="/app/Assets/documents-file-excel.svg" alt="Click here to Upload Csv or Drag & Drop file here" />
                             <p> Drag & Drop portfolio CSV here <a href="#" onClick={downloadCSVFile}>(example CSV)</a> or click to upload.<br></br>
