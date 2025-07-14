@@ -2,7 +2,10 @@ import { withSentryConfig } from '@sentry/nextjs';
 
 const nextConfig = {
   images: {
-    domains: ["app.dev.adaptive-investments.com"],
+    domains: [
+      "app.dev.adaptive-investments.com",
+      "corporate-seven-wine.vercel.app",
+    ],
   },
   webpack: (config, { isServer }) => {
     config.resolve.fallback = {

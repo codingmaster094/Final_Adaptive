@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image"
+import Link from "next/link";
 const Page = async() => {
   return (
    <section className="tools-section lg:py[150px] py-[80px] w-full bg-dots_bg bg-cover bg-center bg-no-repeat ">
@@ -7,9 +8,9 @@ const Page = async() => {
                          <div className="md:space-y-8 space-y-4">      
                             <div className="top w-full flex justify-center items-center xmd:mb-16 mb-10">
                                 <div className="logo">
-                                    <a href="./index.html" role="link">
+                                    <Link href="/" role="link">
                                         <Image src="/img/logo.svg" width={310} height={85} alt="Adaptive logo" role="img" className="w-[150px] md:w-[200px] lg:w-[310px] h-auto"/>
-                                    </a>
+                                    </Link>
                                 </div>
                              </div>
                            
@@ -97,7 +98,7 @@ const Page = async() => {
                                 <div className="sub-box py-8 space-y-8 flex flex-col justify-center items-center">
                                     <h2 className="text-h2 font-ivy font-semibold relative text-center">Just $500 per month. Cancel Anytime.</h2>
                                     <div className="btn-green *:text-4">
-                                    <a href="#" role="link">Subscribe Now!</a>
+                                    <Link href="/" role="link">Subscribe Now!</Link>
                                 </div>
                                 </div>
                             </div>
