@@ -2,12 +2,15 @@
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import Logo from "./Logo";
-
+import { usePathname } from "next/navigation";
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const dropdownRefs = useRef([]);
   const dropdownMenus = useRef([]);
+const pathname = usePathname();
+const hideRoutes = ["/client-portfolios-unlock-hidden-income"];
 
+const shouldHide = hideRoutes.includes(pathname);
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
@@ -105,6 +108,7 @@ const Header = () => {
   }, []);
 
   return (
+    !shouldHide &&
     <header className="header fixed lg:py-0 py-[34px] border-b-black-200 border-b-solid border-b-[1px] w-full left-0 top-0 z-[99] bg-white">
       <div className="container">
         <div className="w-full flex justify-between items-center gap-3 2xl:gap-8">

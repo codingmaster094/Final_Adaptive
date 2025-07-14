@@ -1,8 +1,14 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 const Footer = () => {
+  const pathname = usePathname();
+  const hideRoutes = ["/client-portfolios-unlock-hidden-income"];
+
+  const shouldHide = hideRoutes.includes(pathname);
   return (
+    !shouldHide &&
     <footer className="footer lg:py[100px] md:py-[80px] py-[50px] bg-white-100">
       <div className="container">
         <div className="inner flex justify-start items-start gap-8 xlg:gap-[48px] xl:gap-[64px]  flex-wrap *:xl:w-[calc(25%-126px)] *:xlg:w-[calc(25%-93px)] *:md:w-[calc(33%-20px)] *:w-full">
