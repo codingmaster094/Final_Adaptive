@@ -1,7 +1,7 @@
 export default async function AllCategorys() {
   try {
     const response = await fetch(
-      `https://app.dev.adaptive-investments.com/wp-json/wp/v2/categories`,
+      `https://adaptive.rocket-wp.com/wp-json/wp/v2/categories`,
       {
         next: { revalidate: 60 },
       }

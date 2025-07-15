@@ -3,7 +3,7 @@ import { withSentryConfig } from '@sentry/nextjs';
 const nextConfig = {
   images: {
     domains: [
-      "app.dev.adaptive-investments.com",
+      "adaptive.rocket-wp.com",
       "corporate-seven-wine.vercel.app",
     ],
   },

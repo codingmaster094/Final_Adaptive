@@ -2,7 +2,7 @@ export default async function CategoriesPost(params) {
   console.log("params", params);
   try {
     const response = await fetch(
-      `https://app.dev.adaptive-investments.com/wp-json/custom/v1/posts-by-category/${params}`,
+      `https://adaptive.rocket-wp.com/wp-json/custom/v1/posts-by-category/${params}`,
       {
         next: { revalidate: 60 },
       }

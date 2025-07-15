@@ -1,7 +1,7 @@
 export default async function Alldata(params) {
   try {
     const response = await fetch(
-      `https://app.dev.adaptive-investments.com/wp-json/custom/v1/page-acf-data?slug=${params}`,
+      `https://adaptive.rocket-wp.com/wp-json/custom/v1/page-acf-data?slug=${params}`,
       {
         next: { revalidate: 60 },
       }
