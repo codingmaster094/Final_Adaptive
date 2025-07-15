@@ -17,10 +17,6 @@ const Page = async () => {
     return <div>No data available.</div>;
   }
 
-  console.log(
-    "client_portfolios_unlock_hidden_income",
-    client_portfolios_unlock_hidden_income
-  );
   return (
     <section className="tools-section lg:py[150px] py-[80px] w-full bg-dots_bg bg-cover bg-center bg-no-repeat ">
       <div className="container">
