@@ -331,6 +331,7 @@ sup {
     content: "";
     position: absolute;
 }
+
 @media (max-width: 768px) {
   .vixdail {
       width: 300px;

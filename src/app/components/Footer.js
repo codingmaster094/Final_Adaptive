@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 const Footer = () => {
   const pathname = usePathname();
-  const hideRoutes = ["/client-portfolios-unlock-hidden-income"];
+  const hideRoutes = ["/protect-your-client-portfolios-unlock-hidden-income"];
 
   const shouldHide = hideRoutes.includes(pathname);
   return (

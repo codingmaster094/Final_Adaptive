@@ -15,7 +15,7 @@ export default async function InfinityPost(page = 1, activeTab = "All") {
     }
 
     const response = await fetch(
-      `https://adaptive.rocket-wp.com/wp-json/wp/v2/posts?page=${page}&per_page=3${categoryParam}`,
+      `https://app.dev.adaptive-investments.com/wp-json/wp/v2/posts?page=${page}&per_page=3${categoryParam}`,
       { cache: "no-store" }
     );
 

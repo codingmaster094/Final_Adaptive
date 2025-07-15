@@ -16,7 +16,6 @@ const Page = async () => {
   if (!client_portfolios_unlock_hidden_income) {
     return <div>No data available.</div>;
   }
-
   return (
     <section className="tools-section lg:py[150px] py-[80px] w-full bg-dots_bg bg-cover bg-center bg-no-repeat ">
       <div className="container">
@@ -25,7 +24,9 @@ const Page = async () => {
             <div className="logo">
               <Link href="/" role="link">
                 <Image
-                  src="/img/logo.svg"
+                  src={
+                    client_portfolios_unlock_hidden_income?.adaptive_header_logo.url
+                  }
                   width={310}
                   height={85}
                   alt="Adaptive logo"
@@ -63,51 +64,40 @@ const Page = async () => {
                 />
               </div>
               <div className="right font-inter flex flex-col xmd:flex-row xmd:gap-8 gap-4">
-                {(() => {
-                  const items =
-                    client_portfolios_unlock_hidden_income?.portfolio_options ||
-                    [];
-                  const mid = Math.ceil(items.length / 2); // Split point
-
-                  const leftItems = items.slice(0, mid);
-                  const rightItems = items.slice(mid);
-
-                  return (
-                    <>
-                      {/* Left Block */}
-                      <div className="left-block xmd:space-y-8 space-y-4">
-                        {leftItems.map((val, i) => (
-                          <div
-                            key={i}
-                            className="flex justify-start items-start bg-white border border-solid border-black-200 md:p-6 p-4 gap-3"
-                          >
-                            <div className="icon w-[18px] h-[28px] flex-shrink-0">
-                              <Image
-                                src="/img/tick-svggreen.svg"
-                                width={18}
-                                height={28}
-                                alt="tick icon"
-                                role="img"
-                                className="w-[18px] h-[28px] flex-shrink-0"
-                              />
-                            </div>
-                            <div className="content space-y-2">
-                              <h3
-                                className="text-h5 font-semibold"
-                                dangerouslySetInnerHTML={{
-                                  __html: val?.titile,
-                                }}
-                              />
-                              <p
-                                dangerouslySetInnerHTML={{ __html: val.desc }}
-                              />
-                            </div>
-                          </div>
-                        ))}
+                {/* Left Block */}
+                <div className="left-block grid grid-cols-1 sm:grid-cols-2 md:gap-8 gap-4 w-full">
+                  {client_portfolios_unlock_hidden_income?.portfolio_options.map(
+                    (val, i) => (
+                      <div
+                        key={i}
+                        className="flex justify-start items-start bg-white border border-solid border-black-200 md:p-6 p-4 gap-3"
+                      >
+                        <div className="icon w-[18px] h-[28px] flex-shrink-0">
+                          <Image
+                            src="/img/tick-svggreen.svg"
+                            width={18}
+                            height={28}
+                            alt="tick icon"
+                            role="img"
+                            className="w-[18px] h-[28px] flex-shrink-0"
+                          />
+                        </div>
+                        <div className="content space-y-2">
+                          <h3
+                            className="text-h5 font-semibold"
+                            dangerouslySetInnerHTML={{
+                              __html: val?.titile,
+                            }}
+                          />
+                          <p dangerouslySetInnerHTML={{ __html: val.desc }} />
+                        </div>
                       </div>
+                    )
+                  )}
+                </div>
 
-                      {/* Right Block */}
-                      <div className="right-block xmd:space-y-8 space-y-4">
+                {/* Right Block */}
+                {/* <div className="right-block xmd:space-y-8 space-y-4">
                         {rightItems.map((val, i) => (
                           <div
                             key={i + mid} // Ensure unique key
@@ -136,10 +126,7 @@ const Page = async () => {
                             </div>
                           </div>
                         ))}
-                      </div>
-                    </>
-                  );
-                })()}
+                      </div> */}
               </div>
             </div>
           </div>

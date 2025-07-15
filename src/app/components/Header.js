@@ -8,7 +8,7 @@ const Header = () => {
   const dropdownRefs = useRef([]);
   const dropdownMenus = useRef([]);
 const pathname = usePathname();
-const hideRoutes = ["/client-portfolios-unlock-hidden-income"];
+const hideRoutes = ["/protect-your-client-portfolios-unlock-hidden-income"];
 
 const shouldHide = hideRoutes.includes(pathname);
   const toggleSidebar = () => {
