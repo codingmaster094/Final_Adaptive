@@ -3,21 +3,15 @@ import Ppcnew from "@/app/components/Tools/Ppcnew/Ppcnew";
 import ToolsTabsection from "@/app/components/ToolsTabsection";
 import { portfoliosWithManual } from "@/app/utilites/Constants";
 import { FetchTickerData } from "@/app/api/FetchTickerData";
-import MetaDataAPIS from "../../../utile/metadataAPI";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../Schema-Markup/SchemaInjector"));
+
 export default async function ProtectionCalculatorScreen() {
   const initPortfolio = portfoliosWithManual[0]['name'];
   const initPortfolioValue = 100000.00;
-  let schemaJSON;
+
   let tickerData = null;
   try {
     tickerData = await FetchTickerData();
- const metadata = await MetaDataAPIS("/portfolioriskweathertool");
-         const schemaMatch = metadata.head.match(
-           /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-         );
-         schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+ 
   } catch (error) {
     console.log("Error fetching ticker data:", error);
   }

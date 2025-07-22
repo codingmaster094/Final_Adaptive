@@ -6,10 +6,7 @@ export default async function AllPostGet() {
   try {
     while (page <= totalPages) {
       const response = await fetch(
-        `https://app.dev.adaptive-investments.com/wp-json/wp/v2/posts?page=${page}&per_page=100`,
-        {
-          next: { revalidate: 60 },
-        }
+        `https://app.dev.adaptive-investments.com/wp-json/wp/v2/posts?page=${page}&per_page=100`
       );
 
       if (!response.ok) {

@@ -1,10 +1,7 @@
 export default async function FaqPost() {
     try {
       const response = await fetch(
-        `https://app.dev.adaptive-investments.com/wp-json/custom/v1/combined-faq-categories-with-posts`,
-        {
-          next: { revalidate: 60 },
-        }
+        `https://app.dev.adaptive-investments.com/wp-json/custom/v1/combined-faq-categories-with-posts`
       );
       if (!response.ok) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);

@@ -1,10 +1,7 @@
 export default async function AllCategorys() {
   try {
     const response = await fetch(
-      `https://app.dev.adaptive-investments.com/wp-json/wp/v2/categories`,
-      {
-        next: { revalidate: 60 },
-      }
+      `https://app.dev.adaptive-investments.com/wp-json/wp/v2/categories`
     );
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);

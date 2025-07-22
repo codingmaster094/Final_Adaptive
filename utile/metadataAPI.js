@@ -1,10 +1,7 @@
 export default async function MetaDataAPIS(params) {
   try {
     const response = await fetch(
-      `https://app.dev.adaptive-investments.com/wp-json/rankmath/v1/getHead?url=https://app.dev.adaptive-investments.com${params}`,
-      {
-        cache: "no-store",
-      }
+      `https://app.dev.adaptive-investments.com/wp-json/rankmath/v1/getHead?url=https://app.dev.adaptive-investments.com${params}`
     );
 
     if (!response.ok) {
