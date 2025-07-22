@@ -7,12 +7,21 @@ import PortfolioRisk_tools_Personalize from "../components/Portfolio-Risk-Weathe
 import Card_Section from "../components/home/Card_Section";
 import Alldata from "../../../utile/AllDatafetch";
 import AllPostGet from "../../../utile/AllPostget";
+import MetaDataAPIS from "../../../utile/metadataAPI";
+import dynamic from "next/dynamic";
+const SchemaInjector = dynamic(() => import("../Schema-Markup/SchemaInjector"));
 export default async function Page(){
   let PortfolioRiskWeatherTool;
    let blogsdatas;
+     let schemaJSON;
     try {
        PortfolioRiskWeatherTool = await Alldata("portfolioriskweathertool");
        blogsdatas = await AllPostGet();
+        const metadata = await MetaDataAPIS("/portfolioriskweathertool");
+         const schemaMatch = metadata.head.match(
+           /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+         );
+         schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
      } catch (error) {
        console.error("Error fetching data:", error);
      }
@@ -23,6 +32,7 @@ export default async function Page(){
       
   return (
     <>
+     <SchemaInjector schemaJSON={schemaJSON} />
       <Hero_Section2
         title={PortfolioRiskWeatherTool?.hero_title}
         description={PortfolioRiskWeatherTool?.hero_desc}
@@ -75,3 +85,28 @@ export default async function Page(){
   );
 };
 
+export async function generateMetadata() {
+  let metadata = await MetaDataAPIS("/portfolioriskweathertool");
+console.log("metadata", metadata);
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
+  const canonicalMatch = metadata.head.match(
+    /<link\s+rel="canonical"\s+href="([^"]+)"/i
+  );
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
+  const canonical =
+    canonicalMatch?.[1] || "https://app.dev.adaptive-investments.com";
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+  };
+} 

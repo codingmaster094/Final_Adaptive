@@ -7,14 +7,7 @@ import Footer from "./components/Footer";
 import { TransitionProvider } from "../../utile/transition-provider";
 
 
-export const metadata = {
-  title: "Adaptive",
-  description: "Adaptive",
-};
-
 export default function RootLayout({ children }) {
-  
-
   return (
     <html lang="en">
       <body>
