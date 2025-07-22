@@ -6,7 +6,6 @@ export default async function AllCategorys() {
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
-
     const data = await response.json();
     return data;
   } catch (error) {

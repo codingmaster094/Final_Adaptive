@@ -87,7 +87,7 @@ export default async function Page(){
 
 export async function generateMetadata() {
   let metadata = await MetaDataAPIS("/portfolioriskweathertool");
-console.log("metadata", metadata);
+
   // Extract metadata from the head string
   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
   const descriptionMatch = metadata.head.match(
