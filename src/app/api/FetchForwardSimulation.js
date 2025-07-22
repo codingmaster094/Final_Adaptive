@@ -14,7 +14,7 @@ export async function FetchForwardSimulation(portfolio_name, portfolio_value, si
         protection_level: protection_level,
         number_of_paths: number_of_paths,
     });
-    console.log(" raw", raw)
+
 
     var requestOptions = {
         method: "POST",

@@ -14,7 +14,7 @@ export async function UpdateLeads(
       description: About,
       adddetailflag: 'True'},
   });
-  console.log(raw);
+ 
 
   var requestOptions = {
     method: "PATCH",

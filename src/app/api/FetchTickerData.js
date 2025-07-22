@@ -12,7 +12,7 @@ export async function FetchTickerData() {
             requestOptions
         );
         const data = await response.json();
-        console.log(" data", data)
+
         if (data["result"] !== "") {
             return data["result"];
         } else {

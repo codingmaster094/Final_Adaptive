@@ -20,7 +20,7 @@ export async function AddMiscellaneousLogs(pli, uuid, request_source, action) {
             requestOptions
         );
         const data = await response.json();
-        console.log(" data", data);
+ 
         if (data["result"] !== "") {
             return data["result"];
         } else {

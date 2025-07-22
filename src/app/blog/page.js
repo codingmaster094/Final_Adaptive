@@ -23,7 +23,6 @@ export default async function Page() {
     return <div>Error loading data.</div>;
   }
 
-  console.log("postData", postData)
   if (!postData || !Categorys) {
     return <div>No data available.</div>;
   }
@@ -39,7 +38,7 @@ export default async function Page() {
 
 export async function generateMetadata() {
   let metadata = await MetaDataAPIS("/blog");
-console.log("metadata", metadata);
+
   // Extract metadata from the head string
   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
   const descriptionMatch = metadata.head.match(

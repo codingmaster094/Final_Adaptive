@@ -7,7 +7,7 @@ export async function FetchHaloRiskContribution(pli, uuid, request_source, actio
         action: action
     });
 
-    console.log(raw);
+
     var requestOptions = {
         method: "POST",
         body: raw,

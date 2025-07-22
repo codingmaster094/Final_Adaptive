@@ -20,7 +20,7 @@ export async function UploadCsvFile(file, uuid, request_source, action) {
             requestOptions
         );
         const data = await response.json();
-        console.log(" data", data);
+
         if (data["result"] !== "") {
             return data["result"];
         } else {

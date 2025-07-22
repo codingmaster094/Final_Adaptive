@@ -6,7 +6,7 @@ export async function FetchMarketShield(raw){
     //     protection_period: protection_period
     // });
 
-    console.log(" raw in ms", raw)
+
     var requestOptions = {
         method: "POST",
         body: raw,
