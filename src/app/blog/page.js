@@ -16,20 +16,20 @@ import SchemaInjector from "../Schema-Markup/SchemaInjector";
            /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
          );
          schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
-  } catch (error) {
-    console.error("Error fetching data:", error); 
-    return <div>Error loading data.</div>;
-  }
-  if (!postData) {
-    return <div>No data available.</div>;
-  }
-  return (
-    <>
-     <SchemaInjector schemaJSON={schemaJSON} />
-     <BlogsCard AllpostData={postData}/>
-   </>
-  );
-};
+        } catch (error) {
+          console.error("Error fetching data:", error); 
+          return <div>Error loading data.</div>;
+        }
+        if (!postData) {
+          return <div>No data available.</div>;
+        }
+        return (
+          <>
+          <SchemaInjector schemaJSON={schemaJSON} />
+          <BlogsCard AllpostData={postData}/>
+        </>
+        );
+      };
 export default page;
 
 export async function generateMetadata() {

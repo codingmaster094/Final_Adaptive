@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const BlogCard = ({ AllpostData }) => {
+const BlogsCard = ({ AllpostData }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [activeVideoUrl, setActiveVideoUrl] = useState('');
     const getEmbedUrl = (url) => {
@@ -145,4 +145,4 @@ const BlogCard = ({ AllpostData }) => {
     );
 };
 
-export default BlogCard;
+export default BlogsCard;
