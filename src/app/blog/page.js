@@ -1,13 +1,12 @@
 export const dynamic = "force-dynamic"; // 👈 add this line at the top
 import React from "react";
 import AllPostGet from "../../../utile/AllPostget";
-import BlogsCard from "../components/blogs/BlogsCard";
+import BlogsCard from "../components/blog/BlogsCard";
 import MetaDataAPIS from "../../../utile/metadataAPI";
 import SchemaInjector from "../Schema-Markup/SchemaInjector";
   const page = async() => {
   let postData;
-  let Categorys;
-    let schemaJSON;
+  let schemaJSON;
 
   try {
     postData = await AllPostGet();
