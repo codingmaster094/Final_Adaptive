@@ -8,6 +8,7 @@ const BlogSection = ({
   loadMore,
   hasMore,
   loading,
+  youtubLink
 }) => {
   const observerRef = useRef();
 
@@ -51,7 +52,7 @@ const BlogSection = ({
           <div className="blogs grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             {blogs?.map((blog) => (
               <div key={blog.id}>
-                <BlogCard blog={blog} />
+                <BlogCard blog={blog} youtub_Link={blog.acf.youtube_url}/>
               </div>
             ))}
           </div>

@@ -127,7 +127,7 @@ const PricingComponent = ({
                       key={i}
                       className="hover:bg-white hover:shadow-[2px_10px_40px_0px_#00000040] transition-all duration-500 linear xmd:bg-transparent bg-white xmd:shadow-none shadow-[2px_10px_40px_0px_#00000040]"
                     >
-                      {console.log("plan", plan)}
+ 
                       <div className="top-list flex flex-col h-full">
                         <div className="p-6 flex flex-col top-head">
                           <div className="mb-3 space-y-2">

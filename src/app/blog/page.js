@@ -26,11 +26,10 @@ export default async function Page() {
   if (!postData || !Categorys) {
     return <div>No data available.</div>;
   }
-
   return (
     <>
    <SchemaInjector schemaJSON={schemaJSON} />
-  <BlogTab AllpostData={postData} AllCategorys={Categorys} />;
+  <BlogTab AllpostData={postData} AllCategorys={Categorys}  />;
     </>
   )
 }
