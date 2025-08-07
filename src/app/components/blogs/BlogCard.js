@@ -69,24 +69,13 @@ const BlogCard = ({ blog, youtub_Link }) => {
 
         <div className="content space-y-[20px] my-6 flex-1 flex flex-col">
           <span className="flex justify-between items-center gap-2">
-            <span className="text-[12px] font-medium font-inter uppercase bg-[#EEA7DF33] p-[6px] rounded-[4px]">
-              {blog.category_names[0]}
-            </span>
+           
+              <span className="text-[12px] font-medium font-inter uppercase bg-[#EEA7DF33] p-[6px] rounded-[4px]">
+                {blog.category_names[0]}
+              </span>
 
-            {youtub_Link !== undefined && youtub_Link.trim() !== "" && (
-              <button
-                onClick={handleOpen}
-                className="text-[18px] font-medium font-inter uppercase bg-red-100 p-[6px] rounded-[4px] text-red-600 flex items-center gap-1"
-              >
-                <Image
-                  src={"/img/YOUTUBE.svg"}
-                  alt="youtub-icon"
-                  width={20}
-                  height={20}
-                  className=""
-                />
-              </button>
-            )}
+             
+           
             <span className="text-[12px] font-medium font-inter text-black-100">
               {new Date(blog.date).toLocaleDateString("en-GB", {
                 day: "numeric",
@@ -105,22 +94,37 @@ const BlogCard = ({ blog, youtub_Link }) => {
             dangerouslySetInnerHTML={{ __html: blog.excerpt.rendered }}
           ></span>
         </div>
-
+         <div className="flex justify-between items-center gap-4">
         <Link
           href={`/blog/${blog.slug}`}
           className="block underline underline-offset-4 text-black font-semibold font-overpass"
         >
           Read More
         </Link>
+         {youtub_Link !== undefined && youtub_Link.trim() !== "" && (
+                <button
+                  onClick={handleOpen}
+                  className="text-[18px] font-medium font-inter uppercase flex items-center gap-1"
+                >
+                  <Image
+                    src={"/img/YOUTUBE.svg"}
+                    alt="youtub-icon"
+                    width={24}
+                    height={24}
+                    className=""
+                  />
+                </button>
+              )}
+        </div>
       </div>
 
       {/* --- YOUTUBE POPUP --- */}
       {showPopup && youtub_Link !== undefined && youtub_Link.trim() !== "" && (
         <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center">
-          <div className="relative w-[90%] max-w-3xl bg-white p-4 rounded-lg shadow-lg">
+          <div className="relative w-[90%] max-w-[1024px] rounded-lg shadow-lg">
             <button
               onClick={handleClose}
-              className="absolute top-2 right-2 text-black text-xl font-bold"
+              className="absolute -top-12 md:-top-8 right-4 md:-right-8 text-white text-[32px] font-bold"
             >
               &times;
             </button>

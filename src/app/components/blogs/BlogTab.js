@@ -159,7 +159,7 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
     <section className="hero-section pt-[100px] border-b border-black-200 bg-white-100">
       <div className="flex justify-start items-start relative xmd:flex-row flex-col">
         {/* Sidebar for categories */}
-        <div className="flex items-center justify-center px-2 py-6 xl:w-[20%] xmd:w-[30%] w-full sticky xmd:top-[120px] top-[112px] shadow-lg xmd:shadow-none xmd:bg-transparent bg-white-100">
+        <div className="flex items-center justify-center px-2 py-6 xl:w-[20%] xmd:w-[30%] w-full sticky xmd:top-[120px] top-[112px] shadow-lg xmd:shadow-none xmd:bg-transparent bg-white-100 z-[11]">
           <div className="container">
             <div className="relative flex items-center w-full">
               <div className="main-btns flex xmd:flex-col flex-row sm:gap-2 gap-6 sm:overflow-x-visible overflow-x-auto xmd:whitespace-pre-wrap whitespace-nowrap scroll-smooth no-scrollbar text-black w-full text-body font-medium font-inter xmd:justify-start sm:justify-center justify-start">
