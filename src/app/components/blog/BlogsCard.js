@@ -51,9 +51,9 @@ const BlogsCard = ({ AllpostData }) => {
     return (
         <>
             <div className="pt-[200px] pb-[100px]" >
-                <div className="card-itemmain p-8 shadow-[1px_0_12px_rgba(51,52,54,0.1)] w-full max-w-4xl mx-auto">
+                <div className="card-itemmain p-4 shadow-[1px_0_12px_rgba(51,52,54,0.1)] w-full max-w-4xl mx-auto">
                     {AllpostData.map((main_item, i) => (
-                        <div className="" key={i}>
+                        <div className="container" key={i}>
                             <div className="item card-item h-full flex flex-col relative py-8 border-b-[1.5px] border-b-solid border-b-black-200">
                                 <h2 className="title-head text-h3 font-bold">{main_item?.title?.rendered}</h2>
                                 {main_item &&
