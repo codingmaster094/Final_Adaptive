@@ -22,6 +22,8 @@ import SchemaInjector from "../Schema-Markup/SchemaInjector";
         if (!postData) {
           return <div>No data available.</div>;
         }
+
+        
         return (
           <>
           <SchemaInjector schemaJSON={schemaJSON} />

@@ -88,7 +88,7 @@ const BlogsCard = ({ AllpostData }) => {
 
                                                 </Link>
                                                 <Link
-                                                    href={sub_item.free_webinar.title}
+                                                    href={sub_item.free_webinar.url}
                                                     className="flex justify-center items-center btn-green text-[18px] w-full xsm:w-auto"
                                                 >
                                                     {sub_item.free_webinar.title} <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
