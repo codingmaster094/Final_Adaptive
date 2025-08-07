@@ -1,18 +1,17 @@
 export const dynamic = "force-dynamic"; // 👈 add this line at the top
 import React from "react";
 import AllPostGet from "../../../utile/AllPostget";
-import AllCategorys from "../../../utile/AllCategorys";
-import BlogTab from "../components/blogs/BlogTab";
+import BlogsCard from "../components/blogs/BlogsCard";
 import MetaDataAPIS from "../../../utile/metadataAPI";
 import SchemaInjector from "../Schema-Markup/SchemaInjector";
-export default async function Page() {
+  const page = async() => {
   let postData;
   let Categorys;
     let schemaJSON;
 
   try {
     postData = await AllPostGet();
-    Categorys = await AllCategorys();
+    // Categorys = await AllCategorys();
      const metadata = await MetaDataAPIS("/blog");
          const schemaMatch = metadata.head.match(
            /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
@@ -22,18 +21,18 @@ export default async function Page() {
     console.error("Error fetching data:", error); 
     return <div>Error loading data.</div>;
   }
-
-  if (!postData || !Categorys) {
+  if (!postData) {
     return <div>No data available.</div>;
   }
   return (
     <>
-   <SchemaInjector schemaJSON={schemaJSON} />
-  <BlogTab AllpostData={postData} AllCategorys={Categorys}  />;
-    </>
-  )
-}
+     <SchemaInjector schemaJSON={schemaJSON} />
+   <BlogsCard AllpostData={postData}/>
+   </>
+  );
+};
 
+export default page;
 
 export async function generateMetadata() {
   let metadata = await MetaDataAPIS("/blog");
