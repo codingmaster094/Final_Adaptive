@@ -50,7 +50,7 @@ const BlogsCard = ({ AllpostData }) => {
 
     return (
         <>
-            <div className="pt-[200px] pb-[100px]" >
+            <div className="pt-[150px] md:pt-[200px] pb-16 md:pb-[100px] px-4" >
                 <div className="card-itemmain p-4 shadow-[1px_0_12px_rgba(51,52,54,0.1)] w-full max-w-4xl mx-auto">
                     {AllpostData.map((main_item, i) => (
                         <div className="container" key={i}>
