@@ -27,11 +27,10 @@ import SchemaInjector from "../Schema-Markup/SchemaInjector";
   return (
     <>
      <SchemaInjector schemaJSON={schemaJSON} />
-   <BlogsCard AllpostData={postData}/>
+     <BlogsCard AllpostData={postData}/>
    </>
   );
 };
-
 export default page;
 
 export async function generateMetadata() {
