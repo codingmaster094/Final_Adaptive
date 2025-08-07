@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const BlogsCard = ({ AllpostData }) => {
+    console.log("AllpostData" , AllpostData)
     const [showPopup, setShowPopup] = useState(false);
     const [activeVideoUrl, setActiveVideoUrl] = useState('');
     const getEmbedUrl = (url) => {
@@ -54,7 +55,7 @@ const BlogsCard = ({ AllpostData }) => {
                     <div className="container" key={i}>
                         <div className="item card-item h-full flex flex-col relative w-full max-w-4xl mx-auto">
                             <h2 className="title-head text-h3">{main_item?.title?.rendered}</h2>
-                            {Array.isArray(main_item.acf?.mike_videos) &&
+                            {main_item &&
                                 main_item.acf.mike_videos.map((sub_item, index) => (
                                     <div className="bg-white p-6 flex flex-col flex-1 shadow-[1px_0_12px_rgba(51,52,54,0.1)]" key={index}>
                                         <h3 className="text-body font-bold font-inter md:min-h-[20px] min-h-auto mb-8" dangerouslySetInnerHTML={{ __html: sub_item.title }}>

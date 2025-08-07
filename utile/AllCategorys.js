@@ -1,7 +1,10 @@
 export default async function AllCategorys() {
   try {
     const response = await fetch(
-      `https://app.dev.adaptive-investments.com/wp-json/wp/v2/categories`
+      `https://app.dev.adaptive-investments.com/wp-json/wp/v2/categories` ,
+      {
+          cache: "no-store", // 💡 this is key to solving cache issue
+        }
     );
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);

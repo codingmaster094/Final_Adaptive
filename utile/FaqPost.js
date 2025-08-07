@@ -1,7 +1,10 @@
 export default async function FaqPost() {
     try {
       const response = await fetch(
-        `https://app.dev.adaptive-investments.com/wp-json/custom/v1/combined-faq-categories-with-posts`
+        `https://app.dev.adaptive-investments.com/wp-json/custom/v1/combined-faq-categories-with-posts` ,
+        {
+          cache: "no-store", // 💡 this is key to solving cache issue
+        }
       );
       if (!response.ok) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);

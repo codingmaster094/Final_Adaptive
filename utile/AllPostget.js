@@ -8,6 +8,8 @@ export default async function AllPostGet() {
       const response = await fetch(
         `https://app.dev.adaptive-investments.com/wp-json/wp/v2/posts?page=1&per_page=100` , {
           
+          cache: "no-store", // 💡 this is key to solving cache issue
+        
         }
       );
 
