@@ -10,7 +10,6 @@ import SchemaInjector from "../Schema-Markup/SchemaInjector";
 
   try {
     postData = await AllPostGet();
-    // Categorys = await AllCategorys();
      const metadata = await MetaDataAPIS("/blog");
          const schemaMatch = metadata.head.match(
            /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
