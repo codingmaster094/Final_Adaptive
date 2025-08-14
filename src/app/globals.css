@@ -307,7 +307,7 @@
 sup {
   top: 15px;
   font-size: 36px;
-  margin-right: 9px;
+  /* margin-right: 9px; */
 }
 /* .checkmark {
   position: absolute;

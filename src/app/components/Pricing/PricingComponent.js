@@ -172,7 +172,7 @@ const PricingComponent = ({
                             </Link>
                           )}
                         </div>
-                        <ul className="price-list my-6 [&_li]:pl-10 [&_li]:pr-6 [&_li]:pb-4 [&_li]:border-b [&_li]:border-b-solid [&_li]:border-b-black-200 flex flex-col flex-1 [&_li]:flex [&_li]:items-stretch space-y-4 [&>li:last-child]:border-b-0">
+                        <ul className="price-list my-6 [&_li]:pl-10 [&_li]:pr-6 [&_li]:pb-4 [&_li]:border-b [&_li]:border-b-solid [&_li]:border-b-black-200 flex flex-col flex-1  space-y-4 [&>li:last-child]:border-b-0">
                           {plan.plan_list.map((feature, index) => (
                             <li
                               key={index}
