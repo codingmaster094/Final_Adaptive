@@ -34,7 +34,6 @@ export default async function Page() {
   )
 }
 
-
 export async function generateMetadata() {
   let metadata = await MetaDataAPIS("/blog");
 
