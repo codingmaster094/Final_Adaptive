@@ -16,6 +16,7 @@ export async function GET() {
     .join('')}
 </urlset>`;
 
+
   return new Response(sitemap, {
     headers: {
       'Content-Type': 'application/xml',
