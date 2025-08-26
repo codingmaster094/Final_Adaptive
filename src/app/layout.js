@@ -6,6 +6,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { TransitionProvider } from "../../utile/transition-provider";
 
+export const metadata = {
+  robots: "noindex, nofollow", // 🔴 This sets <meta name="robots" ...>
+};
 
 export default function RootLayout({ children }) {
   return (

@@ -455,6 +455,17 @@ const shouldHide = hideRoutes.includes(pathname);
                     Faq
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/webinars"
+                    aria-label="nav-link"
+                    role="link"
+                    className="hover:lg:text-blue w-full"
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
+                    Webinars
+                  </Link>
+                </li>
               </ul>
 
               {/* Buttons */}
