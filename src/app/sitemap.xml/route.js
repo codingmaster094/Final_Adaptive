@@ -1,8 +1,6 @@
 export async function GET() {
   const pages = [
-    'https://zmc-management-consulting.vercel.app/',
-    'https://zmc-management-consulting.vercel.app/Impressum',
-    'https://zmc-management-consulting.vercel.app/Datenschutz',
+    'https://corporate-seven-wine.vercel.app/',
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8" ?>
