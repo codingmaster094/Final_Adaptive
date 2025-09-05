@@ -1,9 +1,9 @@
 import React from "react";
-import AlldataPromotion from "../../../utile/AlldataPromotion";
-import Key_Features from "../components/promotion/Key_Features";
-import Toolssection from "../components/promotion/Toolssection";
-import Scroll_tools_section from "../components/promotion/Scroll_tools_section";
-import Whya_advisor from "../components/promotion/Whya_advisor";
+import AlldataPromotion from "../../../../utile/AlldataPromotion";
+import Key_Features from "../../components/promotion/Key_Features";
+import Toolssection from "../../components/promotion/Toolssection";
+import Scroll_tools_section from "../../components/promotion/Scroll_tools_section";
+import Whya_advisor from "../../components/promotion/Whya_advisor";
 
 const Page = async () => {
   let client_portfolios_unlock_hidden_income;

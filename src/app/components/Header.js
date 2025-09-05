@@ -7,8 +7,9 @@ const Header = ({params}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const dropdownRefs = useRef([]);
   const dropdownMenus = useRef([]);
-const pathname = usePathname();
-const hideRoutes = ["/protect-your-client-portfolios-unlock-hidden-income","/protect-your-client-portfolios-unlock-hidden-income-2"];
+  const pathname = usePathname();
+  console.log('pathname', pathname)
+const hideRoutes = [pathname.includes('/promotion/') ? pathname : null];
 
 const shouldHide = hideRoutes.includes(pathname);
   const toggleSidebar = () => {
