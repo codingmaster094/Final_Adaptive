@@ -3,12 +3,12 @@ import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
-const Header = () => {
+const Header = ({params}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const dropdownRefs = useRef([]);
   const dropdownMenus = useRef([]);
 const pathname = usePathname();
-const hideRoutes = ["/protect-your-client-portfolios-unlock-hidden-income"];
+const hideRoutes = ["/protect-your-client-portfolios-unlock-hidden-income","/protect-your-client-portfolios-unlock-hidden-income-2"];
 
 const shouldHide = hideRoutes.includes(pathname);
   const toggleSidebar = () => {
