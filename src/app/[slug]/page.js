@@ -19,14 +19,19 @@ const Page = async () => {
   if (!client_portfolios_unlock_hidden_income) {
     return <div>No data available.</div>;
   }
+
   return (
     <>
-      <Toolssection data={client_portfolios_unlock_hidden_income[0]}/>
-      <Key_Features/>
-      <Scroll_tools_section/>
-      <Whya_advisor/>
+      <Toolssection title={client_portfolios_unlock_hidden_income.title}
+       description={client_portfolios_unlock_hidden_income.acf.promotion_description}
+       data={client_portfolios_unlock_hidden_income.acf}/>
+       <Key_Features title={client_portfolios_unlock_hidden_income.acf.key_feature_title} 
+       description={client_portfolios_unlock_hidden_income.acf.key_feature_desc}
+       data={client_portfolios_unlock_hidden_income.acf.key_features}/>
+      <Scroll_tools_section data={client_portfolios_unlock_hidden_income.acf}/>
+      <Whya_advisor data={client_portfolios_unlock_hidden_income.acf}/>
     
-    </>
+    </> 
   );
 };
 

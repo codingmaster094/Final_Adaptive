@@ -1,7 +1,7 @@
 export default async function AlldataPromotion(params) {
   try {
     const response = await fetch(
-      `https://app.dev.adaptive-investments.com/wp-json/wp/v2/promotion?slug=${params}` ,
+      `https://app.dev.adaptive-investments.com/wp-json/wp/v2/promotion/byslug/${params}` ,
       {
           cache: "no-store", 
         }
