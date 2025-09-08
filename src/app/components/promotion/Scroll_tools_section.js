@@ -54,7 +54,7 @@ const Scroll_tools_section = ({show_solutions_section_cta , data}) => {
     show_solutions_section_cta &&
    <section
       ref={containerRef}
-      className="tools-section lg:py-[150px] md:py-[80px] sm:py-[50px] py-6 bg-[#f7f7f7] border-t border-t-black-200"
+      className="tools-section lg:py-[150px] md:py-[80px] sm:py-[50px] py-6  border-t border-t-black-200"
     >
       <div className="container">
         <div className="flex flex-col lg:flex-row items-start lg:gap-[100px] md:gap-[48px] gap-[32px]">

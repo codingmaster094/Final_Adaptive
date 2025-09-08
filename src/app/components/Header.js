@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
-const Header = ({params}) => {
+const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const dropdownRefs = useRef([]);
   const dropdownMenus = useRef([]);

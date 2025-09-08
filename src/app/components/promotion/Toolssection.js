@@ -56,12 +56,11 @@ const Toolssection = ({
                 </div>
               )}
               {upload_video && (
-                <div className="left w-full flex-shrink-0">
+                <div className="left w-full flex-shrink-0 max-w-[1024px] mx-auto">
                   <video
                     src={upload_video.url}
                     controls
                     width="100%"
-                    height="auto"
                   >
                   </video>
                 </div>

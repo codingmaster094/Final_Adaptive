@@ -309,6 +309,29 @@ sup {
   font-size: 36px;
   /* margin-right: 9px; */
 }
+.content ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.content ul li{
+    position: relative;
+    padding-left: 40px;
+    font-size: 16px;
+    line-height: 24px;
+}
+.content ul li:before{
+    content:"";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px; 
+    background-image: url('/img/tick-svggreen.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 /* .checkmark {
   position: absolute;
   top: 0;

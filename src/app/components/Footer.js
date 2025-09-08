@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 const Footer = () => {
   const pathname = usePathname();
-  const hideRoutes = ["/protect-your-client-portfolios-unlock-hidden-income"];
+  const hideRoutes = [pathname.includes('/promotion/') ? pathname : null];
+const shouldHide = hideRoutes.includes(pathname);
 
-  const shouldHide = hideRoutes.includes(pathname);
   return (
-    !shouldHide &&
+    !shouldHide ? (
     <footer className="footer lg:py[100px] md:py-[80px] py-[50px] bg-white-100">
       <div className="container">
         <div className="inner flex justify-start items-start gap-8 xlg:gap-[48px] xl:gap-[64px]  flex-wrap *:xl:w-[calc(25%-126px)] *:xlg:w-[calc(25%-93px)] *:md:w-[calc(33%-20px)] *:w-full">
@@ -112,6 +112,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
+      </div>
+    </footer>
+    ) : 
+    <footer className="footer  py-[50px] bg-white-100">
+      <div className="container">
+      <h3 className="text-center">2023 © Adaptive Investment Solutions LLC</h3>
       </div>
     </footer>
   );
