@@ -2,10 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const Key_Features = ({ title, description, data }) => {
-  console.log('DATA+++++', title)
-  console.log('DATA+++++', description)
+const Key_Features = ({ show_key_feature_section_cta , title, description, data }) => {
   return (
+    show_key_feature_section_cta &&
     <section className="t-section lg:py-[150px] md:py-[80px] sm:py-[50px] py-6 w-full border-y border-black-200 bg-white-100">
       <div className="container">
         <div className="inner-content flex flex-col items-center space-y-8">

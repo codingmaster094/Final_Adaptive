@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react'
 
 
-const Scroll_tools_section = ({data}) => {
+const Scroll_tools_section = ({show_solutions_section_cta , data}) => {
     const [activeImage, setActiveImage] = useState(data.solutions[0]?.image?.url);
         const sectionsRef = useRef([]);
         const containerRef = useRef(null);
@@ -51,6 +51,7 @@ const Scroll_tools_section = ({data}) => {
           };
         }, []);
   return (
+    show_solutions_section_cta &&
    <section
       ref={containerRef}
       className="tools-section lg:py-[150px] md:py-[80px] sm:py-[50px] py-6 bg-[#f7f7f7] border-t border-t-black-200"

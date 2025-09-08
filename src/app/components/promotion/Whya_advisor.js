@@ -3,8 +3,9 @@ import Link from 'next/link'
 import React from 'react'
 
 
-const Whya_advisor = ({data}) => {
+const Whya_advisor = ({show_advisor_section_cta , data}) => {
   return (
+    show_advisor_section_cta &&
      <section className="t-section lg:py[150px] md:py-[80px] sm:py-[50px] py-6 w-full border-b-[1px] border-b-black-200 border-b-solid border-t-[1px] border-t-black-200 border-t-solid">
               <div className="container">
                 <div className="inner-content flex flex-col  space-y-8">
