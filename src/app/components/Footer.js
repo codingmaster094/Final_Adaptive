@@ -117,7 +117,7 @@ const shouldHide = hideRoutes.includes(pathname);
     ) : 
     <footer className="footer  py-[50px] bg-white-100">
       <div className="container">
-      <h3 className="text-center">2023 © Adaptive Investment Solutions LLC</h3>
+      <h3 className="text-center">2025 © Adaptive Investment Solutions LLC</h3>
       </div>
     </footer>
   );
