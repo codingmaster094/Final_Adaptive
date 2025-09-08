@@ -42,7 +42,6 @@ const Toolssection = ({
                 ></div>
               )}
             </div>
-
             <div className="inner flex lg:gap-16 gap-8 flex-col">
               {featured_image != null && (
                 <div className="left w-full flex-shrink-0">
@@ -67,7 +66,6 @@ const Toolssection = ({
                   </video>
                 </div>
               )}
-
               <div className="right font-inter flex flex-col xmd:flex-row xmd:gap-8 gap-4">
                 <div className="left-block grid grid-cols-1 sm:grid-cols-2 md:gap-8 gap-4 w-full">
                   {data.promotion_detail_description &&
