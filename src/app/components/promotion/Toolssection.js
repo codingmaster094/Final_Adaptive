@@ -105,6 +105,7 @@ const Toolssection = ({
                 className="text-h2 font-ivy font-semibold relative text-center"
                 dangerouslySetInnerHTML={{ __html: data.cta_title }}
               ></h2>
+              <p>{data.cta_title_copy}</p>
               <div className="btn-green *:text-4">
                 {data.cta_link.url && (
                   <Link href={data.cta_link.url} role="link">
