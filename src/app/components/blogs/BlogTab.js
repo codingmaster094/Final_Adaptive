@@ -12,7 +12,6 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
   const displayCategories = AllCategorys?.filter(
     (cat) => cat.name !== "Uncategorized"
   );
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 90) {
