@@ -1,7 +1,7 @@
 // components/SearchInput.jsx
 import React from "react";
 import Image from "next/image";
-const SearchInput = ({ searchTerm, setSearchTerm }) => (
+const SearchInput = ({ searchTerm, setSearchTerm , placeholder }) => (
   <div className="w-full flex justify-start items-center mb-4 xmd:mt-0 mt-4">
     <div className="flex relative group lg:w-1/4 sm:w-1/3 xsm:w-1/2 w-[95%] ">
       <button
@@ -12,7 +12,7 @@ const SearchInput = ({ searchTerm, setSearchTerm }) => (
       </button>
       <input
         type="text"
-        placeholder="Search Blog title"
+        placeholder={placeholder}
         value={searchTerm}
         onChange={(e) => {
           setSearchTerm(e.target.value);

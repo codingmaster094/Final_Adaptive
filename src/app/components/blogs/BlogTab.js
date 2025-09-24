@@ -207,6 +207,7 @@ const BlogTab = ({ AllpostData, AllCategorys }) => {
             <SearchInput
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
+              placeholder="Search Blog title"
             />
           </div>
           {renderBlogSections()}
