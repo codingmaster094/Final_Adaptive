@@ -32,6 +32,7 @@ const page = async() => {
         hero_peragraph={AdvisorsWealthManagers?.hero_desc}
         button1={AdvisorsWealthManagers?.hero_btn1}
         button2={AdvisorsWealthManagers?.sign_up}
+        hideshow={true}
       />
       <ForadvisorandwealthmanagerAbout
         title={AdvisorsWealthManagers?.tailored_tools_title}

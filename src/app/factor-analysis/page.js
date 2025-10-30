@@ -37,6 +37,7 @@ let schemaJSON;
         hero_peragraph={FactorAnalysis?.hero_desc}
         button1={FactorAnalysis?.hero_left_button}
         button2={FactorAnalysis?.hero_right_button}
+        hideshow={true}
       />
 
       <Factor_about

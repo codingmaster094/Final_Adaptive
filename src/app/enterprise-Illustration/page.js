@@ -35,6 +35,7 @@ export default async function Page(){
         hero_peragraph={EnterPrice_illustration?.hero_desc}
         button1={EnterPrice_illustration?.try_now}
         button2={EnterPrice_illustration?.sign_up_today}
+        hideshow={true}
       />
       <Enterprise_Solutions_Include
         Main_title={EnterPrice_illustration?.enterprise_solution__title}

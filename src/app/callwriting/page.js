@@ -34,6 +34,7 @@ export default async function Page(){
         hero_text={Callwritingcangenerate?.hero_title}
         button1={Callwritingcangenerate?.hero_left_button}
         button2={Callwritingcangenerate?.hero_right_button}
+        hideshow={true}
       />
       <Callwritingcangenerate_tools
         img={Callwritingcangenerate?.features__left_image}

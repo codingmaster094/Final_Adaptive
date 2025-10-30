@@ -35,6 +35,7 @@ export default async function Page(){
         hero_text={portfolioprotectioncalculator?.hero_title}
         button1={portfolioprotectioncalculator?.hero_left_button}
         button2={portfolioprotectioncalculator?.hero_right_button}
+        hideshow={true}
       />
       <PortfolioAbout
         title={portfolioprotectioncalculator?.long_term_title}

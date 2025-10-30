@@ -33,6 +33,7 @@ export default async function Page(){
         hero_peragraph={PricingData?.banner_content}
         button1={PricingData?.try_now}
         button2={PricingData?.start_free_}
+        hideshow={PricingData?.hideshow}
       />
       <PRICINGNEW
         pricing_main_title={PricingData?.title}
@@ -48,8 +49,6 @@ export default async function Page(){
         year_plan_Card={PricingData?.Yearly_plan}
         PricingData={PricingData.pricing_plan}
       /> */}
-
-      {/* <PRICINGNEW PricingData={PricingData.pricing_plan}/> */}
     </>
   );
 }

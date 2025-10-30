@@ -117,11 +117,11 @@ export default function PRICINGNEW({ pricing_main_title, pricing_description, Pr
                 <table className="w-[1000px] xlg:w-full border border-gray-300 text-sm text-center">
                   <thead className="text-white">
                     <tr>
-                      <th className="border border-gray-300 px-6 py-3 text-left !bg-blue">
+                      <th className="border border-gray-300 px-6 py-4 text-left !bg-blue">
                         <div className="font-bold font-ivy xxl:text-h2 text-h3">FEATURES</div>
                       </th>
                       {headers.map((h, idx) => (
-                        <th key={idx} className="border border-gray-300 px-6 py-3 !bg-blue font-semibold text-center space-y-3">
+                        <th key={idx} className="border border-gray-300 px-6 py-4 !bg-blue font-semibold text-center space-y-5">
                           <div className="font-bold font-ivy xxl:text-h2 text-h3">{h.plan_title}</div>
                           <div className="font-medium text-p">{h.cta_text}</div>
                           {h.plan_description && <div className="text-p">{h.plan_description}</div>}

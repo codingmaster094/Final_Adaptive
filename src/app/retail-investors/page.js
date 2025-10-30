@@ -34,6 +34,7 @@ export default async function Page(){
         hero_peragraph={Retail_Investors?.hero_desc}
         button1={Retail_Investors?.try_now}
         button2={Retail_Investors?.sign_up}
+        hideshow={true}
       />
 
       <Retailer_tools_section

@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React from "react";
 
-const Hero_without_img = ({ hero_text, hero_peragraph, button1, button2 }) => {
+const Hero_without_img = ({ hideshow , hero_text, hero_peragraph, button1, button2 }) => {
   return (
+    hideshow &&
     <section className="hero-section pt-[100px]">
       <div className="container">
         <div className="inner pt-[18px] lg:pt-0">
