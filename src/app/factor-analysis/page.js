@@ -17,7 +17,7 @@ let schemaJSON;
     FactorAnalysis = await Alldata(`factor-analysis`);
      const metadata = await MetaDataAPIS("/factor-analysis");
      const schemaMatch = metadata.head.match(
-       /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+       /<script[^>]*type="application\/ld\+json"[^>]*className="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
      );
      schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   } catch (error) {

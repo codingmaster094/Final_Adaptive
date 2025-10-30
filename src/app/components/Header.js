@@ -8,7 +8,6 @@ const Header = () => {
   const dropdownRefs = useRef([]);
   const dropdownMenus = useRef([]);
   const pathname = usePathname();
-  console.log('pathname', pathname)
 const hideRoutes = [pathname.includes('/promotion/') ? pathname : null];
 
 const shouldHide = hideRoutes.includes(pathname);

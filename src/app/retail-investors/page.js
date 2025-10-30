@@ -14,7 +14,7 @@ export default async function Page(){
         Retail_Investors = await Alldata("retail-investors");
          const metadata = await MetaDataAPIS("/retail-investors");
     const schemaMatch = metadata.head.match(
-      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+      /<script[^>]*type="application\/ld\+json"[^>]*className="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
     );
     schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
       } catch (error) {

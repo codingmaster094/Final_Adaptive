@@ -4,6 +4,7 @@ import PricingComponent from "../components/Pricing/PricingComponent";
 import Alldata from '../../../utile/AllDatafetch';
 import MetaDataAPIS from "../../../utile/metadataAPI";
 import dynamic from "next/dynamic";
+import PRICINGNEW from '../components/PRICINGNEW';
 const SchemaInjector = dynamic(() => import("../Schema-Markup/SchemaInjector"));
 export default async function Page(){
     let PricingData;
@@ -12,7 +13,7 @@ export default async function Page(){
         PricingData = await Alldata(`pricing`);
          const metadata = await MetaDataAPIS("/pricing");
          const schemaMatch = metadata.head.match(
-           /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+           /<script[^>]*type="application\/ld\+json"[^>]*className="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
          );
          schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
       } catch (error) {
@@ -23,6 +24,7 @@ export default async function Page(){
       if (!PricingData) {
         return <div>No data available.</div>;
       }
+      console.log('PricingData', PricingData)
   return (
     <>
      <SchemaInjector schemaJSON={schemaJSON} />
@@ -32,12 +34,22 @@ export default async function Page(){
         button1={PricingData?.try_now}
         button2={PricingData?.start_free_}
       />
-      <PricingComponent
+      <PRICINGNEW
         pricing_main_title={PricingData?.title}
         pricing_description={PricingData?.plans_description}
         Month_plan_Card={PricingData?.monthly_plan}
         year_plan_Card={PricingData?.Yearly_plan}
+        PricingData={PricingData.pricing_plan}
       />
+      {/* <PricingComponent
+        pricing_main_title={PricingData?.title}
+        pricing_description={PricingData?.plans_description}
+        Month_plan_Card={PricingData?.monthly_plan}
+        year_plan_Card={PricingData?.Yearly_plan}
+        PricingData={PricingData.pricing_plan}
+      /> */}
+
+      {/* <PRICINGNEW PricingData={PricingData.pricing_plan}/> */}
     </>
   );
 }

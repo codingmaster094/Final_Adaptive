@@ -13,7 +13,7 @@ const page = async() => {
       AdvisorsWealthManagers = await Alldata("for-advisors-wealth-managers");
       const metadata = await MetaDataAPIS("/for-advisors-wealth-managers");
     const schemaMatch = metadata.head.match(
-      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+      /<script[^>]*type="application\/ld\+json"[^>]*className="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
     );
     schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
     } catch (error) {

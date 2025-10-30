@@ -15,7 +15,7 @@ export default async function Page() {
     Categorys = await AllCategorys();
      const metadata = await MetaDataAPIS("/blog");
          const schemaMatch = metadata.head.match(
-           /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+           /<script[^>]*type="application\/ld\+json"[^>]*className="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
          );
          schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   } catch (error) {
