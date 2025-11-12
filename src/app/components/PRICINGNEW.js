@@ -115,7 +115,7 @@ export default function PricingComponent({ pricing_main_title, pricing_descripti
               </div>
 
               {/* Table */}
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto feature-table">
                 <table className="w-[1000px] xlg:w-full border border-gray-300 text-sm text-center">
                   <thead className="text-black">
                     <tr>
@@ -134,62 +134,65 @@ export default function PricingComponent({ pricing_main_title, pricing_descripti
                   <tbody>
                     {features.map((f, idx) => (
                       <>
-                      <tr key={idx}>
-                        <td className="border px-6 py-3 text-left font-medium text-p">
-                          <div className="flex items-center gap-2">
-                            <span 
-                            data-tooltip-id={`tooltip-${idx}`}
-                                  data-tooltip-content={f.feature_hover_name}
-                                  aria-label={`More info about ${f.feature_name}`}
-                                  dangerouslySetInnerHTML={{__html: f.feature_name}}
-                            ></span>
-                            {f.feature_hover_name && (
-                              <>
-                                <button
-                                  data-tooltip-id={`tooltip-${idx}`}
-                                  data-tooltip-content={f.feature_hover_name}
-                                  aria-label={`More info about ${f.feature_name}`}
-                                  className="text-[10px] text-p text-blue px-1 py-0.5 rounded-sm border"
-                                >
-                                  i
-                                </button>
-                                <ReactTooltip id={`tooltip-${idx}`} place="top" />
-                              </>
-                            )}
-                          </div>
-                        </td>
-                            
-                        {/* For each plan column we assume the JSON keys follow the pattern: investor_plan, advisor_plan, advisor_pro_plan. We will render any keys that end with "_plan" */}
-                         {Object.keys(f)
-                          .filter((k) => k.endsWith("_plan") && k !== "feature_hover_name")
-                          .map((planKey, planIdx) => {
-                            return (
-                            <td key={planIdx} className="border px-6 py-3 text-p">
-                                {
-                                 f[planKey] === 'TRUE' ? (
-                                    <Image src="/img/list-tick.svg" className="mx-auto" width={24} height={24} alt={f[planKey]}/>
-                                 ) : 
-                                    f[planKey] === 'FALSE' ? (
-                                      <Image src="/img/close.svg" className="mx-auto" width={24} height={24} alt={f[planKey]}/>     
-                                    ): f[planKey]
-                                }
-                            </td>
-                          )
-                          })}
-                      </tr>
+                        <tr key={idx}>
+                          <td className="border px-6 py-3 text-left font-medium text-p">
+                            <div className="relative  gap-1 w-fit">
+                              <span
+                                data-tooltip-id={`tooltip-${idx}`}
+                                data-tooltip-content={f.feature_hover_name}
+                                aria-label={`More info about ${f.feature_name}`}
+                                dangerouslySetInnerHTML={{ __html: f.feature_name }}
+                                className=" align-middle"
+                              ></span>
+
+                              {f.feature_hover_name && (
+                                <>
+                                  <a
+                                    data-tooltip-id={`tooltip-${idx}`}
+                                    data-tooltip-content={f.feature_hover_name}
+                                    aria-label={`More info about ${f.feature_name}`}
+                                    className="text-[10px] text-white rounded-full  bg-black w-4 h-4  ml-1 align-middle inline-flex justify-center items-center cursor-pointer"
+                                  >
+                                    i
+                                  </a>
+                                  <ReactTooltip id={`tooltip-${idx}`} place="top" />
+                                </>
+                              )}
+                            </div>
+
+                          </td>
+
+                          {/* For each plan column we assume the JSON keys follow the pattern: investor_plan, advisor_plan, advisor_pro_plan. We will render any keys that end with "_plan" */}
+                          {Object.keys(f)
+                            .filter((k) => k.endsWith("_plan") && k !== "feature_hover_name")
+                            .map((planKey, planIdx) => {
+                              return (
+                                <td key={planIdx} className="border px-6 py-3 text-p">
+                                  {
+                                    f[planKey] === 'TRUE' ? (
+                                      <Image src="/img/list-tick.svg" className="mx-auto" width={24} height={24} alt={f[planKey]} />
+                                    ) :
+                                      f[planKey] === 'FALSE' ? (
+                                        <Image src="/img/close.svg" className="mx-auto" width={24} height={24} alt={f[planKey]} />
+                                      ) : f[planKey]
+                                  }
+                                </td>
+                              )
+                            })}
+                        </tr>
                       </>
                     ))}
-                   <tr>
-                    <td className="border px-6 py-3 text-left font-medium text-p"></td>
-                    {
-                      headers.map((h, ind) => (
-                        <td className="border px-6 py-3 text-left font-medium text-p" key={ ind}>
-                          <Link href={"/"} className="btn-green block w-full text-center mt-auto font-medium text-p ">{h.cta_text}</Link>
-                        </td>
-                      ))
-                    }
+                    <tr>
+                      <td className="border px-6 py-3 text-left font-medium text-p"></td>
+                      {
+                        headers.map((h, ind) => (
+                          <td className="border px-6 py-3 text-left font-medium text-p" key={ind}>
+                            <Link href={"/"} className="btn-green block w-full text-center mt-auto font-medium text-p ">{h.cta_text}</Link>
+                          </td>
+                        ))
+                      }
 
-                   </tr>
+                    </tr>
                   </tbody>
                 </table>
               </div>

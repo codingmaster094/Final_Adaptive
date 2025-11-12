@@ -470,7 +470,10 @@ sup {
     background-color: #000000;
   }
 }
-
+.feature-table tbody tr:nth-of-type(1) td {
+    font-size: 20px !important;
+    font-weight: 700;
+}
 @media (max-width: 768px) {
   .vixdail {
       width: 300px;
