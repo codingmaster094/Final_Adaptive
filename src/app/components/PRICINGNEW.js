@@ -1,5 +1,7 @@
+
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
@@ -9,7 +11,7 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 //  - pricing_description (string, HTML allowed)
 //  - PricingData (object) -> structure like the JSON you provided (monthly in pricing_table_headers/pricing_features, yearly in yearly_pricing_table_headers/yearly_pricing_features)
 
-export default function PRICINGNEW({ pricing_main_title, pricing_description, PricingData }) {
+export default function PricingComponent({ pricing_main_title, pricing_description, PricingData }) {
   const [isYearly, setIsYearly] = useState(false); // false => Monthly, true => Yearly
 
   // Equalize heights for nicer table rows (keeps your original behavior)
@@ -115,16 +117,15 @@ export default function PRICINGNEW({ pricing_main_title, pricing_description, Pr
               {/* Table */}
               <div className="overflow-x-auto">
                 <table className="w-[1000px] xlg:w-full border border-gray-300 text-sm text-center">
-                  <thead className="text-white">
+                  <thead className="text-black">
                     <tr>
-                      <th className="border border-gray-300 px-6 py-4 text-left !bg-blue">
-                        <div className="font-bold font-ivy xxl:text-h2 text-h3">FEATURES</div>
-                      </th>
+                      <th className="border border-gray-300 px-6 py-3 text-left !bg-white font-semibold font-ivy xxl:text-h2 text-h3">Features</th>
+
                       {headers.map((h, idx) => (
-                        <th key={idx} className="border border-gray-300 px-6 py-4 !bg-blue font-semibold text-center space-y-5">
+                        <th key={idx} className="border border-gray-300 px-6 py-3 !bg-white font-semibold text-center space-y-4">
                           <div className="font-bold font-ivy xxl:text-h2 text-h3">{h.plan_title}</div>
-                          <div className="font-medium text-p">{h.cta_text}</div>
                           {h.plan_description && <div className="text-p">{h.plan_description}</div>}
+                          <Link href={"/"} className="btn-green block w-full text-center mt-auto font-medium text-p ">{h.cta_text}</Link>
                         </th>
                       ))}
                     </tr>
@@ -132,6 +133,7 @@ export default function PRICINGNEW({ pricing_main_title, pricing_description, Pr
 
                   <tbody>
                     {features.map((f, idx) => (
+                      <>
                       <tr key={idx}>
                         <td className="border px-6 py-3 text-left font-medium text-p">
                           <div className="flex items-center gap-2">
@@ -142,16 +144,25 @@ export default function PRICINGNEW({ pricing_main_title, pricing_description, Pr
                                   dangerouslySetInnerHTML={{__html: f.feature_name}}
                             ></span>
                             {f.feature_hover_name && (
-                            <ReactTooltip id={`tooltip-${idx}`} place="top" />
+                              <>
+                                <button
+                                  data-tooltip-id={`tooltip-${idx}`}
+                                  data-tooltip-content={f.feature_hover_name}
+                                  aria-label={`More info about ${f.feature_name}`}
+                                  className="text-[10px] text-p text-blue px-1 py-0.5 rounded-sm border"
+                                >
+                                  i
+                                </button>
+                                <ReactTooltip id={`tooltip-${idx}`} place="top" />
+                              </>
                             )}
                           </div>
                         </td>
-
+                            
                         {/* For each plan column we assume the JSON keys follow the pattern: investor_plan, advisor_plan, advisor_pro_plan. We will render any keys that end with "_plan" */}
-                        {Object.keys(f)
+                         {Object.keys(f)
                           .filter((k) => k.endsWith("_plan") && k !== "feature_hover_name")
                           .map((planKey, planIdx) => {
-                            console.log('f[planKey]', f[planKey])
                             return (
                             <td key={planIdx} className="border px-6 py-3 text-p">
                                 {
@@ -166,7 +177,19 @@ export default function PRICINGNEW({ pricing_main_title, pricing_description, Pr
                           )
                           })}
                       </tr>
+                      </>
                     ))}
+                   <tr>
+                    <td className="border px-6 py-3 text-left font-medium text-p"></td>
+                    {
+                      headers.map((h, ind) => (
+                        <td className="border px-6 py-3 text-left font-medium text-p" key={ ind}>
+                          <Link href={"/"} className="btn-green block w-full text-center mt-auto font-medium text-p ">{h.cta_text}</Link>
+                        </td>
+                      ))
+                    }
+
+                   </tr>
                   </tbody>
                 </table>
               </div>
@@ -178,3 +201,4 @@ export default function PRICINGNEW({ pricing_main_title, pricing_description, Pr
     </section>
   );
 }
+

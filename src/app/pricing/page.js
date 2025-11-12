@@ -24,7 +24,6 @@ export default async function Page(){
       if (!PricingData) {
         return <div>No data available.</div>;
       }
-      console.log('PricingData', PricingData)
   return (
     <>
      <SchemaInjector schemaJSON={schemaJSON} />

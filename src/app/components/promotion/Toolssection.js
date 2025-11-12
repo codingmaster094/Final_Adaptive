@@ -13,7 +13,7 @@ const Toolssection = ({
   return (
     <section className="tools-section lg:py[150px] py-[80px] w-full bg-dots_bg bg-cover bg-center bg-no-repeat ">
       <div className="container">
-        <div className="md:space-y-8 space-y-4">
+        <div className="md:space-y-8 space-y-4 max-w-[1024px] mx-auto">
           <div className="top w-full flex justify-center items-center xmd:mb-16 mb-10">
             <div className="logo">
               <Link href="/" role="link">
