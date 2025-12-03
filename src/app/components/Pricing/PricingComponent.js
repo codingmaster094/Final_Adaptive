@@ -157,13 +157,13 @@ const PricingComponent = ({
                           </span>
                         )}
 
-                        {plan.plan_button && (
+                        {plan.plan_link && (
                           <Link
-                            href={plan.plan_button.url}
+                            href={plan.plan_link}
                             className={`${plan.currency_symbol != "" ? "btn-green" : "btn-link"
                               } block w-full text-center mt-auto`}
                           >
-                            {plan.plan_button.title}
+                            {plan.cta_text || "Get Started"}
                           </Link>
                         )}
                       </div>
@@ -185,13 +185,13 @@ const PricingComponent = ({
 
                       {/* ---------- Bottom Button ---------- */}
                       <span className="block px-6 pb-4 mt-auto">
-                        {plan.plan_button && (
+                        {plan.plan_link && (
                           <Link
-                            href={plan.plan_button.url}
+                            href={plan.plan_link}
                             className={`${plan.currency_symbol != "" ? "btn-green" : "btn-link"
                               } block w-full text-center mt-auto`}
                           >
-                            {plan.plan_button.title}
+                            {plan.cta_text || "Get Started"}
                           </Link>
                         )}
                       </span>

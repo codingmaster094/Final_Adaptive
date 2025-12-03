@@ -125,7 +125,7 @@ export default function PricingComponent({ pricing_main_title, pricing_descripti
                         <th key={idx} className="border border-gray-300 px-6 py-3 !bg-white font-semibold text-center space-y-4">
                           <div className="font-bold font-ivy xxl:text-h2 text-h3">{h.plan_title}</div>
                           {h.plan_description && <div className="text-p">{h.plan_description}</div>}
-                          <Link href={"/"} className="btn-green block w-full text-center mt-auto font-medium text-p ">{h.cta_text}</Link>
+                            <Link href={h.plan_link || "/"} className="btn-green block w-full text-center mt-auto font-medium text-p ">{h.cta_text}</Link>
                         </th>
                       ))}
                     </tr>
@@ -187,7 +187,7 @@ export default function PricingComponent({ pricing_main_title, pricing_descripti
                       {
                         headers.map((h, ind) => (
                           <td className="border px-6 py-3 text-left font-medium text-p" key={ind}>
-                            <Link href={"/"} className="btn-green block w-full text-center mt-auto font-medium text-p ">{h.cta_text}</Link>
+                              <Link href={h.plan_link || "/"} className="btn-green block w-full text-center mt-auto font-medium text-p ">{h.cta_text}</Link>
                           </td>
                         ))
                       }
