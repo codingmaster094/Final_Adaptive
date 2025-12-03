@@ -55,16 +55,6 @@ const Toolssection = ({
                   />
                 </div>
               )}
-              {upload_video && (
-                <div className="left w-full flex-shrink-0 max-w-[1024px] mx-auto">
-                  <video
-                    src={upload_video.url}
-                    controls
-                    width="100%"
-                  >
-                  </video>
-                </div>
-              )}
               <div className="right font-inter flex flex-col xmd:flex-row xmd:gap-8 gap-4">
                 <div className="left-block grid grid-cols-1 sm:grid-cols-2 md:gap-8 gap-4 w-full">
                   {data.promotion_detail_description &&
@@ -97,6 +87,16 @@ const Toolssection = ({
                     ))}
                 </div>
               </div>
+               {upload_video && (
+                <div className="left w-full flex-shrink-0 max-w-[1024px] mx-auto">
+                  <video
+                    src={upload_video.url}
+                    controls
+                    width="100%"
+                  >
+                  </video>
+                </div>
+              )}
             </div>
           </div>
           {show_cta_section && (
